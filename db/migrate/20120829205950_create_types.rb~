@@ -4,6 +4,7 @@ class CreateTypes < ActiveRecord::Migration
       t.datetime "date_at"
       t.datetime "date_to"
       t.text "descriptif"
+      t.references :item
       t.timestamps
     end
   end
