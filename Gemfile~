@@ -27,7 +27,6 @@ gem 'paperclip'
 
 group :development, :test do
   gem 'guard'
-  gem 'rb-fsevent'
   gem 'guard-rspec'
   gem 'guard-coffeescript'
   gem 'guard-rails-assets'
