@@ -1,4 +1,12 @@
 Kukariri::Application.routes.draw do
+  resources :pictures
+
+  resources :contacts
+
+  resources :countries
+
+  resources :states
+
   resources :notifications
 
   resources :types
