@@ -1,19 +1,16 @@
 Kukariri::Application.routes.draw do
-  resources :pictures
+  devise_for :users, :path => "users", :path_names => { :sign_in => "login", :sign_up => "new_user" }
 
-  resources :contacts
+  resources :items do
+    resources :contacts do
+      resources :types do
+        resources :pictures
+        resources :notifications
+      end 
+    end
+  end
 
-  resources :countries
-
-  resources :states
-
-  resources :notifications
-
-  resources :types
-
-  resources :items
-
-  resources :users
+  #devise_for :users, :path => "users", :path_names => { :sign_in => "login", :sign_up => "new_user" }
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
