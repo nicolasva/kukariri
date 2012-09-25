@@ -1,0 +1,8 @@
+%form#new_items
+  %p
+    %label{for: "item_title"} = "Title"
+    %br
+    %input{type: "text", id: "item_title", name: "item[title]"}
+
+  .actions
+    %input{type: "submit", name: "submit", value: "Valid"}

@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %title Kukariri
+    = stylesheet_link_tag("application", :media => "all")
+    = javascript_include_tag(be_backbone? ? "rails/application" : "kukariri_backbonejs/application")
+    = csrf_meta_tags
+  %body
+    %section.header
+
+    %section.container
+      = yield
+
+    %section.footer

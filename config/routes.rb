@@ -1,4 +1,4 @@
-Kukariri::Application.routes.draw do
+Kukariri::Application.routes.draw do 
   devise_for :users, :path => "users", :path_names => { :sign_in => "login", :sign_up => "new_user" }
 
   resources :items do
@@ -9,6 +9,8 @@ Kukariri::Application.routes.draw do
       end 
     end
   end
+
+  root :to => "items#index"
 
   #devise_for :users, :path => "users", :path_names => { :sign_in => "login", :sign_up => "new_user" }
 
