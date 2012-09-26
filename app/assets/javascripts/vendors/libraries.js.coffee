@@ -5,14 +5,3 @@
 #= require ./bootstrap.min
 #= require ./bootstrap-modal
 #= require ./bootstrap-dropdown
-#= require ./chosen.jquery.min
-#= require ./plupload.full
-#= require ./placeholder
-#= require ./jquery.jstree
-#= require ./moment.min
-#= require ./colorpicker
-#= require ./highcharts
-#= require ./jquery.ui.datepicker.min
-#= require ./select2.min
-#= require ./jquery.placeholder.min
-#= require ./placeholder

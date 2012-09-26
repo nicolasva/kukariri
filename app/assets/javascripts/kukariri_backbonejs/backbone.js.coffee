@@ -20,7 +20,6 @@
   Routers: {}
   Libs: {}
   init: ->
-    alert("nicolas")
     new App.Routers.Items()
     Backbone.history.start()
     return
