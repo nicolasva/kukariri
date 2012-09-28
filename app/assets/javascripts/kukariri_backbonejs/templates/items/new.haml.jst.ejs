@@ -5,8 +5,14 @@
     %input{type: "text", id: "item_title", name: "item[title]"}
 
   %p
-    %label{for: "item_pictures_attributes_0_pictures"}
+    %label{for: "item_pictures_attributes_0_pictures"} = "Pictures"
     %br
-    %input{type: "file", name: "item[pictures_attributes][0][picture]"
+    %input{type: "file",  id: "item_pictures_attributes_0_pictures", name: "item[pictures_attributes][0][picture]"}
+
+  %p
+    %label{for: "item_pictures_attributes_0_pictures_attributes_0_types_attributes_0_descriptif"} = "descriptif"
+    %br
+    %input{type: "text", id: "item_pictures_attributes_O_types_attributes_0_descriptif", name: "item[pictures_attributes][0][types_attributes][0][descriptif]"}
+  
   .actions
     %input{type: "submit", name: "submit", value: "Valid"}
