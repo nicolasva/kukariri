@@ -1,13 +1,19 @@
 class App.Routers.Items extends Backbone.Router
   routes:
     "/items/new": "new"
+    "/items/:id/edit" : "edit"
 
   initialize: ->
     @item = new App.Item()
   
   new: ->
     @create()
-    @ViewItemsNew = new App.Views.Items.New(item: @item)
+
+  edit: (id) ->
+    @item = new App.Item(id: id)
+    @item.fetch
+      success: (models, response) ->
+        console.log models.toJSON()
 
   create: ->
     self = @
@@ -41,18 +47,27 @@ class App.Routers.Items extends Backbone.Router
             @type.contact_id = contact.toJSON().id
             @type.save(hash_params_create_type, {
               success: (type) ->
-                console.log type.toJSON()
-              error:
+                hash_params_create_picture =
+                  picture:
+                    item_id: item.toJSON().id
+                    type_id: type.toJSON().id
+                @picture = new App.Picture()
+                @picture.item_id = item.toJSON().id
+                @picture.contact_id = contact.toJSON().id
+                @picture.type_id = type.toJSON().id
+                @picture.save(hash_params_create_picture, {
+                  success: (picture) ->
+                    window.location.hash = "#/items/#{item.toJSON().id}/edit"
+                  error: (picture, response) ->
+                    alert("Error Type")
+                })
+              error: (type, response) ->
                 alert("Error Type")
             })
           error: (contact, response) ->
             alert("Error Contact")
 
         })
-        #hash_params_create_type = 
-        #  type:
-        #    descriptif: "Object Description"
-        #@type = new App.Type() 
       error: (item, response) ->
         alert("Error")
     })
