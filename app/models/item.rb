@@ -4,5 +4,6 @@ class Item < ActiveRecord::Base
   has_many :types
   accepts_nested_attributes_for :pictures
   accepts_nested_attributes_for :types
-  attr_accessible :title
+  accepts_nested_attributes_for :types
+  attr_accessible :title, :types_attributes, :user_id, :id
 end

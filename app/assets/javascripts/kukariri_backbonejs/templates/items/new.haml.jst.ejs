@@ -1,18 +1,26 @@
-%form#new_items
+%form#edit_items
   %p
     %label{for: "item_title"} = "Title"
     %br
-    %input{type: "text", id: "item_title", name: "item[title]"}
+    %input{type: "text", id: "item_title", name: "item[title]", value: item.title}
+
+  %input{type: "hidden", name: "item[types_attributes][0][id]", id: "item_types_attributes_0_id", value: item.types[0].id}
+  %p
+    %label{for: "item_types_attributes_0_date_at"} = "Date at"
+    %br
+    %input{type: "text", name: "item[types_attributes][0][date_at]", id: "item_types_attributes_0_date_at", value: item.types[0].date_at }
 
   %p
-    %label{for: "item_pictures_attributes_0_pictures"} = "Pictures"
+    %label{for: "item_types_attributes_0_date_to"} = "Date to"
     %br
-    %input{type: "file",  id: "item_pictures_attributes_0_pictures", name: "item[pictures_attributes][0][picture]"}
+    %input{type: "text", id: "item_types_attributes_0_date_to", name: "item[types_attributes][0][date_to]", value: item.types[0].date_to}
 
   %p
-    %label{for: "item_pictures_attributes_0_pictures_attributes_0_types_attributes_0_descriptif"} = "descriptif"
+    %label{for: "item_types_attributes_0_descriptif"} = "Descriptif"
     %br
-    %input{type: "text", id: "item_pictures_attributes_O_types_attributes_0_descriptif", name: "item[pictures_attributes][0][types_attributes][0][descriptif]"}
+    %textarea{id: "item_types_attributes_0_descriptif", name: "item[types_attributes][0][descriptif]"}
+      = item.types[0].descriptif
+  
 
   .actions
     %input{type: "submit", name: "submit", value: "Submit"}

@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @items }
+      format.json { render json: @items.to_json(:include => {:types => {:include =>[:pictures,:contact]}}) }
     end
   end
 
@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @item }
+      format.json { render json: @item.to_json(:include => {:types => {:include =>[:pictures,:contact]}}) }
     end
   end
 
@@ -56,10 +56,20 @@ class ItemsController < ApplicationController
   # PUT /items/1
   # PUT /items/1.json
   def update
+    Rails.logger.info params[:item]
+    #"title"=>"new title", "types_attributes"=>
+    #[{"date_at"=>"null", "date_to"=>"null", "descriptif"=>"Descriptif", 
+    #"contacts"=>{"lastname"=>"Lastname", "firstname"=>"Firstname", "email"=>"<email>@<server>.<com,fr>", "tel_home"=>"Home Phone Number", "tel_mobil"=>"Mobile Phone Number", "adress"=>"Adress"}, 
+    #"contact"=>{"country"=>"Country"}}]}
+    hash_params_item = Hash.new
+    hash_params_item["title"] = params[:item][:title]
+    hash_params_item["id"] = params[:item][:id]
+    hash_params_item["user_id"] = current_user.id
+    hash_params_item["types_attributes"] = {"0" => {"id" => params[:item][:types_attributes][0][:id], "date_at" => params[:item][:types_attributes][0][:date_at], "date_to" => params[:item][:types_attributes][0][:date_to], "descriptif" => params[:item][:types_attributes][0][:descriptif]}}
     @item = Item.find(params[:id])
 
     respond_to do |format|
-      if @item.update_attributes(params[:item])
+      if @item.update_attributes(hash_params_item)
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { head :no_content }
       else
