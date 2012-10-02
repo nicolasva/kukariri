@@ -56,16 +56,11 @@ class ItemsController < ApplicationController
   # PUT /items/1
   # PUT /items/1.json
   def update
-    Rails.logger.info params[:item]
-    #"title"=>"new title", "types_attributes"=>
-    #[{"date_at"=>"null", "date_to"=>"null", "descriptif"=>"Descriptif", 
-    #"contacts"=>{"lastname"=>"Lastname", "firstname"=>"Firstname", "email"=>"<email>@<server>.<com,fr>", "tel_home"=>"Home Phone Number", "tel_mobil"=>"Mobile Phone Number", "adress"=>"Adress"}, 
-    #"contact"=>{"country"=>"Country"}}]}
     hash_params_item = Hash.new
     hash_params_item["title"] = params[:item][:title]
-    hash_params_item["id"] = params[:item][:id]
+    hash_params_item["id"] = params[:id]
     hash_params_item["user_id"] = current_user.id
-    hash_params_item["types_attributes"] = {"0" => {"id" => params[:item][:types_attributes][0][:id], "date_at" => params[:item][:types_attributes][0][:date_at], "date_to" => params[:item][:types_attributes][0][:date_to], "descriptif" => params[:item][:types_attributes][0][:descriptif]}}
+    hash_params_item["types_attributes"] = {"0" => {"id" => params[:item][:types_attributes][0][:id], "item_id" => params[:item][:id], "date_at" => params[:item][:types_attributes][0][:date_at], "date_to" => params[:item][:types_attributes][0][:date_to], "descriptif" => params[:item][:types_attributes][0][:descriptif]}}
     @item = Item.find(params[:id])
 
     respond_to do |format|
