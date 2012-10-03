@@ -9,12 +9,12 @@
       = "Edit"
     %th
       = "Delete"
-  -  @items.each do |item|
+  - @items.each do |item|
     %tr
       %td
-        = items.title
+        = item.title
       %td
-        = link_to('Edit', "#/items/#{@item.id}/edit")
+        = link_to('Edit', "#/items/#{item.id}/edit")
       %td
         = link_to('Destroy', item, method: :delete, data: { confirm: 'Are you sure?' })
 %br
