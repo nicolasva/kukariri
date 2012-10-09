@@ -60,15 +60,15 @@ class App.Routers.Items extends Backbone.Router
                   success: (picture) ->
                     window.location.hash = "#/items/#{item.toJSON().id}/edit"
                   error: (picture, response) ->
-                    alert("Error Type")
+                    alert("Error  Create Picture")
                 })
               error: (type, response) ->
-                alert("Error Type")
+                alert("Error Create Type")
             })
           error: (contact, response) ->
-            alert("Error Contact")
+            alert("Error Create Contact")
 
         })
       error: (item, response) ->
-        alert("Error")
+        alert("Error Create Item")
     })

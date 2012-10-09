@@ -5,3 +5,4 @@
 #= require ./bootstrap.min
 #= require ./bootstrap-modal
 #= require ./bootstrap-dropdown
+#= require ./plupload.full

@@ -20,7 +20,12 @@
     %br
     %textarea{id: "item_types_attributes_0_descriptif", name: "item[types_attributes][0][descriptif]"}
       = item.types[0].descriptif
-  
 
   .actions
-    %input{type: "submit", name: "submit", value: "Submit"}
+    %ul
+      %li
+        %input{type: "button", name: "add_decline_items", value: "Add decline items", class: "add_decline_items"}
+      %li
+        %input{type: "button", name: "add_picture_items", value: "Add pictures", class: "add_pictures"}
+      %li
+        %input{type: "submit", name: "submit_items", value: "Submit", class: "id_submit_items"}
