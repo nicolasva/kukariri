@@ -32,7 +32,7 @@ gem 'devise'
 gem 'devise-encryptable'
 gem 'tire'
 gem 'haml'
-gem 'paperclip'
+#gem 'paperclip'
 
 group :development, :test do
   gem 'guard'
