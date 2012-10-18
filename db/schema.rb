@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120904064038) do
+ActiveRecord::Schema.define(:version => 20121018072048) do
 
   create_table "contacts", :force => true do |t|
     t.string   "lastname",   :null => false
@@ -50,8 +50,10 @@ ActiveRecord::Schema.define(:version => 20120904064038) do
     t.datetime "picture_updated_at"
     t.integer  "item_id"
     t.integer  "type_id"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.boolean  "master",               :default => false, :null => false
+    t.string   "picture_cached_path"
   end
 
   add_index "pictures", ["item_id"], :name => "index_items_on_pictures", :unique => true

@@ -4,6 +4,7 @@ class CreatePictures < ActiveRecord::Migration
       t.string "picture_file_name"
       t.string "picture_content_type"
       t.string "picture_file_size"
+      t.boolean "master", :null => false
       t.datetime "picture_updated_at"
       t.references :item
       t.references :type
