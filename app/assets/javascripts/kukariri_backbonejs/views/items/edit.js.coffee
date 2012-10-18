@@ -7,6 +7,7 @@ class App.Views.Items.Edit extends Backbone.View
   events:
     "submit #edit_items" : "update"
     "click .add_pictures" : "add_pictures"
+    "click #select_files" : "select_files"
 
   initialize: (options) ->
     @item = options.item
@@ -18,7 +19,14 @@ class App.Views.Items.Edit extends Backbone.View
     $(@el).html(Haml.render(@template(), {locals: {item: @item.toJSON()}}))
 
   select_files: (event) ->
-    @viewAddPictures = new App.Views.Pictures.AddPictures({item: @item})
+    @pictures = new App.Collections.Pictures()
+    #console.log @item.toJSON().types[0].contact_id
+    @pictures.item_id = @item.toJSON().id
+    @pictures.contact_id = @item.toJSON().types[0].contact_id
+    @pictures.types_id = @item.toJSON().types[0].id
+    @pictures.fetch
+      success: (collection, response) ->
+        @viewAddPictures = new App.Views.Pictures.AddPictures({item: @item, pictures: collection})
   
   init_uploader: ->
     @uploader = new plupload.Uploader({
