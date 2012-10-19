@@ -8,12 +8,15 @@ class App.Views.Pictures.AddPictures extends Backbone.View
   initialize: (options) ->
     @item = options.item
     @pictures = options.pictures
-    @pictures.add_pictures("nicolas")
+    #@pictures.add_pictures("nicolas")
     #console.log @item.toJSON()
+    self = @
     #new App.Libs.UploadPicture({
     #  browse_button: 'select_files',
     #  container: 'container',
     #}, (up, file, data) ->
+    #  self.pictures.add_pictures(data)
+
 
 
 
@@ -28,3 +31,6 @@ class App.Views.Pictures.AddPictures extends Backbone.View
     new App.Libs.UploadPicture({  
       browse_button: ""
     }) 
+
+  display_picture: (data) ->
+
