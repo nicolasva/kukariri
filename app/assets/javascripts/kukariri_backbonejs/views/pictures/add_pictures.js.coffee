@@ -11,14 +11,19 @@ class App.Views.Pictures.AddPictures extends Backbone.View
     #@pictures.add_pictures("nicolas")
     #console.log @item.toJSON()
     self = @
-    #new App.Libs.UploadPicture({
-    #  browse_button: 'select_files',
-    #  container: 'container',
-    #}, (up, file, data) ->
-    #  self.pictures.add_pictures(data)
+    new App.Libs.UploadPicture({
+      browse_button: 'select_files',
+      container: 'container',
+    }, (up, file, data) ->
+      self.pictures.add_pictures(data)
+      self.display_picture(data)
 
-
-
+  display_picture: (data) ->
+    #console.log "nicolas"
+    unless $('.pictures .master img').length > 0
+      @view_img_master_template = new App.Views.Pictures.AddPicturesMaster({data: data})
+    else
+      @view_img_variant_pictures = new App.Views.Pictures.OtherImgVariantPictures({data: data})
 
   filesAdded: (up, files) ->
     @uploader.start()
