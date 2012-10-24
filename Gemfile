@@ -31,6 +31,7 @@ gem 'devise'
 gem 'devise-encryptable'
 gem 'tire'
 gem 'haml'
+gem 'carrierwave'
 #gem 'paperclip'
 
 group :development, :test do

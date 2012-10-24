@@ -8,3 +8,4 @@
 
    render: ->
      $(@el).append(Haml.render(@template(),{locals: {data: @data}}))
+     
