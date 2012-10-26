@@ -14,9 +14,22 @@ class App.Views.Pictures.AddPictures extends Backbone.View
     new App.Libs.UploadPicture({
       browse_button: 'select_files',
       container: 'container',
-    }, (up, file, data) ->
-      self.pictures.add_pictures(data)
-      self.display_picture(data)
+      }, (up, file, data) ->
+        self.pictures.add_pictures(data)
+        self.display_picture(data)
+        picture = new App.VariantsPicture
+        picture.set = {url: data.url, cached_path: data.cached_name} 
+        picture.cid = picture.get('cached_path')
+        @pictures.add picture
+        self.view_pic.unbind() unless self.view_pic == undefined
+        self.view_pic = new App.Views.Pictures.ShowPictures(
+          el: $('#pictures'),
+          pictures: self.pictures,
+          master_picture: self.pictures.get_master_picture()
+        )
+      ,"picture"
+      ,"#select_files"
+    )
 
   display_picture: (data) ->
     #console.log "nicolas"
