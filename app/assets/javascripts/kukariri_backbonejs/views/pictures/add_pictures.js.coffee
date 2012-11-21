@@ -51,4 +51,12 @@ class App.Views.Pictures.AddPictures extends Backbone.View
     }) 
 
   display_picture: (data) ->
+    img = "<img src='#{data.url}' alt='#{data.picture_file_name}'>" 
+    if $(".pictures.master img").length < 0
+      $(".pictures.master").append(img)
+      $(".pictures.master").show()
+    else
+      $(".caroussel.other_pictures ul").append("<li>#{img}</li>")
+      $(".caroussel.other_pictures").show()
 
+      
