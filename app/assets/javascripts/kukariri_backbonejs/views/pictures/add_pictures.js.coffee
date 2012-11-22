@@ -27,7 +27,6 @@ class App.Views.Pictures.AddPictures extends Backbone.View
           pictures: self.pictures,
           master_picture: self.pictures.get_master_picture()
         )
-      ,"picture"
       ,"#select_files"
     )
 
@@ -37,13 +36,6 @@ class App.Views.Pictures.AddPictures extends Backbone.View
       @view_img_master_template = new App.Views.Pictures.AddPicturesMaster({data: data})
     else
       @view_img_variant_pictures = new App.Views.Pictures.OtherImgVariantPictures({data: data})
-
-  filesAdded: (up, files) ->
-    @uploader.start()
-  
-  fileUploaded: (up, file, call) ->
-    console.log "nicolas"
-    #@uploader
 
   add_pictures: (event) ->
     new App.Libs.UploadPicture({  
@@ -59,4 +51,4 @@ class App.Views.Pictures.AddPictures extends Backbone.View
       $(".caroussel.other_pictures ul").append("<li>#{img}</li>")
       $(".caroussel.other_pictures").show()
 
-      
+   

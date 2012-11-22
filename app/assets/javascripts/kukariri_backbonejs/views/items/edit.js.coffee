@@ -14,16 +14,14 @@ class App.Views.Items.Edit extends Backbone.View
     @render()
 
   render: ->
-    #console.log @item.toJSON().types[0].contact.adress
-    console.log @item.toJSON()
     $(@el).html(Haml.render(@template(), {locals: {item: @item.toJSON()}}))
 
   select_files: (event) ->
     @pictures = new App.Collections.Pictures()
-    #console.log @item.toJSON().types[0].contact_id
     @pictures.item_id = @item.toJSON().id
     @pictures.contact_id = @item.toJSON().types[0].contact_id
-    @pictures.types_id = @item.toJSON().types[0].id
+    console.log @item.toJSON().types[0].id 
+    @pictures.type_id = @item.toJSON().types[0].id
     @pictures.fetch
       success: (collection, response) ->
         @viewAddPictures = new App.Views.Pictures.AddPictures({item: @item, pictures: collection})

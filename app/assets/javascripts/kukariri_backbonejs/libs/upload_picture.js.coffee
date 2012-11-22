@@ -1,3 +1,4 @@
+App.Libs ||= {}
 class App.Libs.UploadPicture extends Backbone.View
   defaults_options:
     runtime: "html5,flash,silverlight"
