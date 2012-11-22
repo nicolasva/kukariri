@@ -1,12 +1,9 @@
 class CreatePictures < ActiveRecord::Migration
   def change
     create_table :pictures do |t| 
-      t.string "picture_file_name"
-      t.string "picture_content_type"
-      t.string "picture_file_size"
-      t.string "picture_cached_path"
+      t.string "picture"
+      t.string "cached_path"
       t.boolean "master", :null => false
-      t.datetime "picture_updated_at"
       t.references :item
       t.references :type
       t.timestamps

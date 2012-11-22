@@ -22,7 +22,7 @@ class PicturesUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    "/assets/images/pictures/product_default.gif"
+    "/assets/images/pictures/noImage.jpg"
   end
 
   process :resize_to_fil => [300, 300]

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121018072048) do
+ActiveRecord::Schema.define(:version => 20121122135824) do
 
   create_table "contacts", :force => true do |t|
     t.string   "lastname",   :null => false
@@ -44,15 +44,13 @@ ActiveRecord::Schema.define(:version => 20121018072048) do
   add_index "notifications", ["type_id"], :name => "index_notifications_on_types", :unique => true
 
   create_table "pictures", :force => true do |t|
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.string   "picture_file_size"
-    t.datetime "picture_updated_at"
+    t.string   "picture"
+    t.string   "cached_path"
     t.integer  "item_id"
     t.integer  "type_id"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
-    t.boolean  "master",               :default => false, :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.boolean  "master",              :default => false, :null => false
     t.string   "picture_cached_path"
   end
 
