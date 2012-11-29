@@ -20,7 +20,7 @@ class App.Views.Pictures.AddPictures extends Backbone.View
         picture = new App.VariantsPicture
         picture.set = {url: data.url, cached_path: data.cached_name} 
         picture.cid = picture.get('cached_path')
-        @pictures.add picture
+        self.pictures.add picture
         self.view_pic.unbind() unless self.view_pic == undefined
         self.view_pic = new App.Views.Pictures.ShowPictures(
           el: $('#pictures'),

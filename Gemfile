@@ -32,7 +32,7 @@ gem 'devise-encryptable'
 gem 'tire'
 gem 'haml'
 gem 'carrierwave'
-#gem 'paperclip'
+gem 'rmagick'
 
 group :development, :test do
   gem 'guard'
