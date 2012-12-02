@@ -26,7 +26,6 @@ class App.Libs.UploadPicture extends Backbone.View
     @uploader.start()
 
   filesUploaded: (up, file, call) ->
-    console.log file
     data = $.parseJSON(call.response)
     @callback(up, file, data)
 
