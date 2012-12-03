@@ -22,10 +22,11 @@ class App.Libs.UploadPicture extends Backbone.View
     @uploader.bind('FilesAdded', @filesAdded)
     @uploader.bind('FileUploaded', @filesUploaded) 
 
-  filesAdded: (up, files) ->
+  filesAdded: (up, files) =>
+    console.log "nicolas"
     @uploader.start()
 
-  filesUploaded: (up, file, call) ->
+  filesUploaded: (up, file, call) =>
     data = $.parseJSON(call.response)
     @callback(up, file, data)
 

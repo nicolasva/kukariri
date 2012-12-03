@@ -4,11 +4,13 @@ Kukariri::Application.routes.draw do
   resources :items do
     resources :contacts do
       resources :types do
-        resources :pictures
+        resources :pictures do
+        end
         resources :notifications
       end 
     end
   end
+  resources :attachments, :only => :create
 
   root :to => "items#index"
 
