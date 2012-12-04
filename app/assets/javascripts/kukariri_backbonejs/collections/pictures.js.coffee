@@ -11,6 +11,7 @@ class App.Collections.Pictures extends Backbone.Collection
       picture_upload.is_master = true
     else
       picture_upload.is_master = false
+    console.log @.toArray()
     for picture in @.toArray()
       picture.push(picture_upload)
     @set_master_picture()

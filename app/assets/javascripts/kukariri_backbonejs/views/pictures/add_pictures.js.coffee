@@ -17,7 +17,7 @@ class App.Views.Pictures.AddPictures extends Backbone.View
       }, (up, file, data) ->
         self.pictures.add_pictures(data)
         self.display_picture(data)
-        picture = new App.VariantsPicture
+        picture = new App.Picture
         picture.set = {url: data.url, cached_path: data.cached_name} 
         picture.cid = picture.get('cached_path')
         self.pictures.add picture
@@ -27,6 +27,7 @@ class App.Views.Pictures.AddPictures extends Backbone.View
           pictures: self.pictures,
           master_picture: self.pictures.get_master_picture()
         )
+      ,"picture"
       ,"#select_files"
     )
 

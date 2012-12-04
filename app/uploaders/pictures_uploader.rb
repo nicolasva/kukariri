@@ -25,7 +25,7 @@ class PicturesUploader < CarrierWave::Uploader::Base
     "/assets/images/pictures/noImage.jpg"
   end
 
-  process :resize_to_fil => [300, 300]
+  process :resize_to_fit => [300, 300]
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url

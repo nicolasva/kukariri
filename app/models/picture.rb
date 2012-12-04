@@ -1,8 +1,7 @@
 class Picture < ActiveRecord::Base
-  #has_attached_file :picture, :styles => { :thumb => ["100x100#"], :original => ["500x500#"] },
-  #:url => "/images/items/:item_id/pictures/:id/:basename.:extension",
-  #:path => ":rails_root/app/assets/images/items/:item_id/pictures/:id/:basename.:extension"
+  attr_accessible :picture, :cached_path, :is_master
   mount_uploader :picture, PicturesUploader
+  before_save :build_picture_from_cache, :if => "remote_picture_url.blank?" 
   validates_presence_of :master
   belongs_to :item
   belongs_to :type
@@ -14,4 +13,20 @@ class Picture < ActiveRecord::Base
   attr_accessible :picture_updated_at
   attr_accessible :item_id
   attr_accessible :type_id
+
+  def build_picture_from_cache
+    unless self.cached_path.nil? or self.cached_path.eql?('default_picture')
+      uploader = PicturesUploader.new
+      uploader.retrieve_from_cache!(self.cached_path)
+      picture = File.open("#{Rails.root}/public#{uploader.to_s}")
+      self.picture = CarrierWave::SanitizedFile.new(picture)
+    end
+  end
+
+  def picture=(val)
+    if !val.is_a?(String) && valid?
+      picture_will_change!
+      super
+    end
+  end
 end

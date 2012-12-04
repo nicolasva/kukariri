@@ -7,6 +7,7 @@ Rails.application.config.middleware.insert_before(
   FlashSessionCookieMiddleware,
   Rails.application.config.session_options[:key]
 )
+
 #Kukariri::Application.config.session_store :active_record_store
 
 # Use the database for sessions instead of the cookie-based default,
