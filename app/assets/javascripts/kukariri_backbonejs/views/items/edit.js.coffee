@@ -17,6 +17,7 @@ class App.Views.Items.Edit extends Backbone.View
     $(@el).html(Haml.render(@template(), {locals: {item: @item.toJSON()}}))
 
   select_files: (event) ->
+    self = @
     @pictures = new App.Collections.Pictures()
     @pictures.item_id = @item.toJSON().id
     @pictures.contact_id = @item.toJSON().types[0].contact_id
@@ -24,7 +25,7 @@ class App.Views.Items.Edit extends Backbone.View
     @pictures.type_id = @item.toJSON().types[0].id
     @pictures.fetch
       success: (collection, response) ->
-        @viewAddPictures = new App.Views.Pictures.AddPictures({item: @item, pictures: collection})
+        @viewAddPictures = new App.Views.Pictures.AddPictures({item: self.item, pictures: collection})
   
   init_uploader: ->
     @uploader = new plupload.Uploader({
