@@ -3,7 +3,7 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
-    @pictures = Picture.all
+    @pictures = Item.find(params[:item_id]).pictures.order(:position)
 
     respond_to do |format|
       format.html # index.html.erb

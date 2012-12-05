@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @items.to_json(:include => {:types => {:include =>[:pictures,:contact]}}) }
+      format.json { render json: @items.to_json(:include => {:types => {:include =>[:contact]}}) }
     end
   end
 

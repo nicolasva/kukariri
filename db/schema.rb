@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121202104103) do
+ActiveRecord::Schema.define(:version => 20121205070842) do
 
   create_table "contacts", :force => true do |t|
     t.string   "lastname",   :null => false
@@ -48,24 +48,10 @@ ActiveRecord::Schema.define(:version => 20121202104103) do
     t.string   "cached_path"
     t.integer  "item_id"
     t.integer  "type_id"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.boolean  "master",              :default => false, :null => false
-    t.string   "picture_cached_path"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "position",    :default => 0, :null => false
   end
-
-  add_index "pictures", ["item_id"], :name => "index_items_on_pictures", :unique => true
-  add_index "pictures", ["type_id"], :name => "index_types_on_pictures", :unique => true
-
-  create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
-    t.text     "data"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
-  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "types", :force => true do |t|
     t.datetime "date_at"

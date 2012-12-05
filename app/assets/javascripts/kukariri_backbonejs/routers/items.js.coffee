@@ -10,11 +10,17 @@ class App.Routers.Items extends Backbone.Router
     @create()
 
   edit: (id) ->
+    self = @
     @item = new App.Item(id: id)
+    @pictures = new App.Collections.Pictures()
+    @pictures.item_id = id
+    @pictures.contact_id = 1
+    @pictures.type_id = 1
     @item.fetch
       success: (model, response) ->
-        #console.log models.toJSON()
-        @ViewsItemsEdit = new App.Views.Items.Edit(item: model)
+        self.pictures.fetch
+          success: (collection, response) ->
+            @ViewsItemsEdit = new App.Views.Items.Edit(item: model, pictures: collection)
 
   create: ->
     self = @

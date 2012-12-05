@@ -10,18 +10,19 @@ class App.Views.Items.Edit extends Backbone.View
     "click #select_files" : "select_files"
 
   initialize: (options) ->
+    @pictures = options.pictures
     @item = options.item
     @render()
 
   render: ->
-    $(@el).html(Haml.render(@template(), {locals: {item: @item.toJSON()}}))
+    console.log @pictures.toJSON()
+    $(@el).html(Haml.render(@template(), {locals: {item: @item.toJSON(), pictures: @pictures.toJSON()}}))
 
   select_files: (event) ->
     self = @
     @pictures = new App.Collections.Pictures()
     @pictures.item_id = @item.toJSON().id
     @pictures.contact_id = @item.toJSON().types[0].contact_id
-    console.log @item.toJSON().types[0].id 
     @pictures.type_id = @item.toJSON().types[0].id
     @pictures.fetch
       success: (collection, response) ->
@@ -44,7 +45,6 @@ class App.Views.Items.Edit extends Backbone.View
     })
 
   update: (event) ->
-    console.log event
     event.preventDefault()
     event.stopPropagation()
     data = $(@id_form_update_edit).toJSON()
