@@ -42,7 +42,8 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     @picture = Picture.new(params[:picture])
-
+    @picture.picture = File.open("#{Rails.root.to_s}/public#{params[:picture][:picture][:current_path]}") 
+    
     respond_to do |format|
       if @picture.save
         format.html { redirect_to @picture, notice: 'Picture was successfully created.' }

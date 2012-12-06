@@ -1,5 +1,5 @@
 class Picture < ActiveRecord::Base
-  attr_accessible :picture, :cached_path, :item_id, :type_id, :master
+  attr_accessible :picture, :cached_path, :item_id, :type_id
   mount_uploader :picture, PicturesUploader
   before_save :build_picture_from_cache, :if => "remote_picture_url.blank?" 
   belongs_to :item

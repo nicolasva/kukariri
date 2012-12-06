@@ -21,8 +21,10 @@ class App.Views.Pictures.AddPictures extends Backbone.View
         picture.contact_id = self.item.toJSON().types[0].contact_id
         picture.type_id = self.item.toJSON().types[0].id
         @hash_picture = 
-          picture: 
-            picture: file.name
+          picture:
+            picture:
+              url: data.url
+              current_path: "/uploads/tmp/#{data.cached_name}"
             cached_path: data.cached_name
             item_id: self.item.toJSON().id
             type_id: self.item.toJSON().types[0].id
