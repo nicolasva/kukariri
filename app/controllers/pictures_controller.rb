@@ -71,7 +71,6 @@ class PicturesController < ApplicationController
         end
       end
     else
-      Rails.logger.info params[:pictures_all_sort]
       params[:pictures_all_sort].each_with_index do |id, index|
         Picture.position(index+1,id.to_i)
       end
