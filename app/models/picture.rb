@@ -21,4 +21,8 @@ class Picture < ActiveRecord::Base
       super
     end
   end
+
+  def self.position(index,id)
+    update_all(['position=?', index], ['id=?', id])
+  end
 end

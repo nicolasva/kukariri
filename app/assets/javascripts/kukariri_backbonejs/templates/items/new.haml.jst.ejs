@@ -27,13 +27,7 @@
     %div.caroussel.other_pictures
       %ul
         :each picture in pictures
-          %li
+          %li{class: 'picture_sort', id: picture.id}
             %img{ src: picture.picture.url}
   .actions
-    %ul
-      %li
-        %input{type: "button", name: "add_decline_items", value: "Add decline items", class: "add_decline_items"}
-      %li
-        %input{type: "button", name: "add_picture_items", value: "Add pictures", class: "add_pictures"}
-      %li
-        %input{type: "submit", name: "submit_items", value: "Submit", class: "id_submit_items"}
+    %input{type: "submit", name: "submit_items", value: "Submit", class: "id_submit_items"}

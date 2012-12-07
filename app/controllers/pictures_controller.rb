@@ -58,16 +58,24 @@ class PicturesController < ApplicationController
   # PUT /pictures/1
   # PUT /pictures/1.json
   def update
-    @picture = Picture.find(params[:id])
+    unless params[:id].nil?
+      @picture = Picture.find(params[:id])
 
-    respond_to do |format|
-      if @picture.update_attributes(params[:picture])
-        format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @picture.update_attributes(params[:picture])
+          format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @picture.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      Rails.logger.info params[:pictures_all_sort]
+      params[:pictures_all_sort].each_with_index do |id, index|
+        Picture.position(index+1,id.to_i)
+      end
+      render :nothing => true
     end
   end
 

@@ -13,9 +13,31 @@ class App.Views.Items.Edit extends Backbone.View
     @pictures = options.pictures
     @item = options.item
     @render()
+    self = @
+    $(".caroussel.other_pictures").children().first().sortable({
+      items: '.picture_sort',
+      update: ->
+        #@item = new App.Item()
+        #@item.sort = "sort"
+        #@item.save($(this).sortable('serialize'),
+        #  success: (sort_item, data) ->
+        #    console.log "nicolas"
+        #)
+        @pictures_all_sort = 
+          pictures_all_sort:
+            $(this).sortable('toArray')
+        @picture = new App.Picture()
+        @picture.item_id = self.item.toJSON().id
+        @picture.contact_id = self.item.toJSON().types[0].contact_id
+        @picture.type_id = self.item.toJSON().types[0].id
+        @picture.sort = "sort"
+        @picture.save(@pictures_all_sort,
+          success: (sort_item, data) ->
+            console.log "nicolas"
+        )
+    })
 
   render: ->
-    console.log @pictures.toJSON()
     $(@el).html(Haml.render(@template(), {locals: {item: @item.toJSON(), pictures: @pictures.toJSON()}}))
 
   select_files: (event) ->

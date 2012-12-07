@@ -4,6 +4,7 @@ Kukariri::Application.routes.draw do
   resources :items do
     resources :contacts do
       resources :types do
+        match "pictures/sort" => "pictures#update"
         resources :pictures do
         end
         resources :notifications
