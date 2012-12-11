@@ -1,14 +1,12 @@
 class PicturesController < ApplicationController
   skip_before_filter :verify_authenticity_token
+  respond_to :html, :json
   # GET /pictures
   # GET /pictures.json
   def index
     @pictures = Item.find(params[:item_id]).pictures.order(:position)
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @pictures }
-    end
+    respond_with(@pictures)
   end
 
   # GET /pictures/1
@@ -16,10 +14,7 @@ class PicturesController < ApplicationController
   def show
     @picture = Picture.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @picture }
-    end
+    respond_with(@picture)
   end
 
   # GET /pictures/new
@@ -27,10 +22,7 @@ class PicturesController < ApplicationController
   def new
     @picture = Picture.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @picture }
-    end
+    respond_with(@picture)
   end
 
   # GET /pictures/1/edit
@@ -43,16 +35,17 @@ class PicturesController < ApplicationController
   def create
     @picture = Picture.new(params[:picture])
     @picture.picture = File.open("#{Rails.root.to_s}/public#{params[:picture][:picture][:current_path]}") 
-    
-    respond_to do |format|
-      if @picture.save
-        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-        format.json { render json: @picture, status: :created }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
-      end
-    end
+    @picture.save
+    #respond_to do |format|
+    #  if @picture.save
+    #    format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
+    #    format.json { render json: @picture, status: :created }
+    #  else
+    #    format.html { render action: "new" }
+    #    format.json { render json: @picture.errors, status: :unprocessable_entity }
+    #  end
+    #end
+    respond_with(@picture)
   end
 
   # PUT /pictures/1
@@ -60,16 +53,8 @@ class PicturesController < ApplicationController
   def update
     unless params[:id].nil?
       @picture = Picture.find(params[:id])
-
-      respond_to do |format|
-        if @picture.update_attributes(params[:picture])
-          format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
-          format.json { head :no_content }
-        else
-          format.html { render action: "edit" }
-          format.json { render json: @picture.errors, status: :unprocessable_entity }
-        end
-      end
+      @picture.update_attributes(params[:picture])
+      respond_with(@picture)
     else
       params[:pictures_all_sort].each_with_index do |id, index|
         Picture.position(index+1,id.to_i)
@@ -84,9 +69,6 @@ class PicturesController < ApplicationController
     @picture = Picture.find(params[:id])
     @picture.destroy
 
-    respond_to do |format|
-      format.html { redirect_to pictures_url }
-      format.json { head :no_content }
-    end
+    respond_with(@picture)
   end
 end

@@ -1,13 +1,10 @@
 class ItemsController < ApplicationController
+  respond_to :html, :json
   # GET /items
   # GET /items.json
   def index
     @items = Item.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @items.to_json(:include => {:types => {:include =>[:contact]}}) }
-    end
+    respond_with(@items)
   end
 
   # GET /items/1
@@ -15,9 +12,12 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @item.to_json(:include => {:types => {:include =>[:pictures,:contact]}}) }
+    #respond_to do |format|
+    #  format.html # show.html.erb
+    #  format.json { render json: @item.to_json(:include => {:types => {:include =>[:pictures,:contact]}}) }
+    #end
+    respond_with(@item) do |format| 
+      format.json {render json: @item.to_json(:include => {:types => {:include =>[:pictures,:contact]}})}
     end
   end
 
@@ -26,10 +26,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @item }
-    end
+    respond_with(@item)
   end
 
   # GET /items/1/edit
@@ -41,16 +38,8 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(params[:item])
-
-    respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render json: @item, status: :created, location: @item }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
-    end
+    @item.save
+    respond_with(@item)
   end
 
   # PUT /items/1
@@ -62,16 +51,8 @@ class ItemsController < ApplicationController
     hash_params_item["user_id"] = current_user.id
     hash_params_item["types_attributes"] = {"0" => {"id" => params[:item][:types_attributes][0][:id], "item_id" => params[:id], "date_at" => params[:item][:types_attributes][0][:date_at], "date_to" => params[:item][:types_attributes][0][:date_to], "descriptif" => params[:item][:types_attributes][0][:descriptif]}}
     @item = Item.find(params[:id])
-
-    respond_to do |format|
-      if @item.update_attributes(hash_params_item)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
-    end
+    @item.update_attributes(params[:item])
+    respond_with(@item)
   end
 
   # DELETE /items/1
@@ -80,9 +61,6 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item.destroy
 
-    respond_to do |format|
-      format.html { redirect_to items_url }
-      format.json { head :no_content }
-    end
+    respond_with(@item)
   end
 end

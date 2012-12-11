@@ -2,6 +2,7 @@ class App.Routers.Items extends Backbone.Router
   routes:
     "/items/new": "new"
     "/items/:id/edit" : "edit"
+    "/items/:id" : "destroy"
 
   initialize: ->
     @item = new App.Item()
@@ -78,3 +79,11 @@ class App.Routers.Items extends Backbone.Router
       error: (item, response) ->
         alert("Error Create Item")
     })
+
+  destroy: (id) ->
+    #item = @items.get id
+    @item = new App.Item(id: id)
+    @item.destroy ->
+      success: (item, response) ->
+        console.log response
+    return false
