@@ -35,17 +35,13 @@ class PicturesController < ApplicationController
   def create
     @picture = Picture.new(params[:picture])
     @picture.picture = File.open("#{Rails.root.to_s}/public#{params[:picture][:picture][:current_path]}") 
-    @picture.save
-    #respond_to do |format|
-    #  if @picture.save
-    #    format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-    #    format.json { render json: @picture, status: :created }
-    #  else
-    #    format.html { render action: "new" }
-    #    format.json { render json: @picture.errors, status: :unprocessable_entity }
-    #  end
-    #end
-    respond_with(@picture)
+    respond_with(@picture) do |format|
+      if @picture.save
+        format.json { render json: @picture, status: :created }
+      else
+        format.json { render json: @picture.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PUT /pictures/1
@@ -54,7 +50,13 @@ class PicturesController < ApplicationController
     unless params[:id].nil?
       @picture = Picture.find(params[:id])
       @picture.update_attributes(params[:picture])
-      respond_with(@picture)
+      respond_with(@picture) do |format|
+        if @picture.update_attributes(params[:picture])
+          format.json { render json: @picture, status: :updated }
+        else
+          format.json { render json: @picture.errors, status: :unprocessable_entity }
+        end
+      end
     else
       params[:pictures_all_sort].each_with_index do |id, index|
         Picture.position(index+1,id.to_i)

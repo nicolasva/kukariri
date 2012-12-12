@@ -39,7 +39,13 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(params[:item])
     @item.save
-    respond_with(@item)
+    respond_with(@item) do |format|
+      if @item.save
+        format.json { render json: @item, status: :created }
+      else
+        format.json { render json: @item.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PUT /items/1
@@ -51,8 +57,13 @@ class ItemsController < ApplicationController
     hash_params_item["user_id"] = current_user.id
     hash_params_item["types_attributes"] = {"0" => {"id" => params[:item][:types_attributes][0][:id], "item_id" => params[:id], "date_at" => params[:item][:types_attributes][0][:date_at], "date_to" => params[:item][:types_attributes][0][:date_to], "descriptif" => params[:item][:types_attributes][0][:descriptif]}}
     @item = Item.find(params[:id])
-    @item.update_attributes(params[:item])
-    respond_with(@item)
+    respond_with(@item) do |format|
+      if @item.update_attributes(params[:item])
+        format.json { render json: @type, status: :updated }
+      else
+        format.json { render json: @type.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /items/1

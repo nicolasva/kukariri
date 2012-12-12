@@ -1,4 +1,4 @@
-class TypesController < ApplicationController
+class TypesController < ApplicationController 
   respond_to :html, :json
   # GET /types
   # GET /types.json
@@ -33,16 +33,27 @@ class TypesController < ApplicationController
   # POST /types.json
   def create
     @type = Type.new(params[:type])
-    @type.save
-    respond_with(@type)
+    respond_with(@type) do |format|
+      if @type.save
+        format.json { render json: @type, status: :created }
+      else
+        format.json { render json: @type.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PUT /types/1
   # PUT /types/1.json
   def update
     @type = Type.find(params[:id])
-    @type.update_attributes(params[:type])
-    respond_with(@type)
+
+    respond_with(@type) do |format|
+      if @type.update_attributes(params[:type])
+        format.json { render json: @type, status: :updated }
+      else
+        format.json { render json: @type.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /types/1
@@ -50,7 +61,6 @@ class TypesController < ApplicationController
   def destroy
     @type = Type.find(params[:id])
     @type.destroy
-
     respond_with(@type)
   end
 end
