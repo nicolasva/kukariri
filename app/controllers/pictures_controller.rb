@@ -34,7 +34,7 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     @picture = Picture.new(params[:picture])
-    @picture.picture = File.open("#{Rails.root.to_s}/public#{params[:picture][:picture][:current_path]}") 
+    @picture.picture = File.open("#{Rails.root.to_s}/public#{params[:picture][:picture][:current_path]}") unless params[:picture][:picture].nil?
     respond_with(@picture) do |format|
       if @picture.save
         format.json { render json: @picture, status: :created }
