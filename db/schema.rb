@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121205070842) do
+ActiveRecord::Schema.define(:version => 20121229153655) do
 
   create_table "contacts", :force => true do |t|
     t.string   "lastname",   :null => false
@@ -23,7 +23,10 @@ ActiveRecord::Schema.define(:version => 20121205070842) do
     t.string   "country",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
+
+  add_index "contacts", ["user_id"], :name => "index_users_on_contacts"
 
   create_table "items", :force => true do |t|
     t.string   "title",      :null => false
@@ -32,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20121205070842) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "items", ["user_id"], :name => "index_users_on_items", :unique => true
+  add_index "items", ["user_id"], :name => "index_users_on_items"
 
   create_table "notifications", :force => true do |t|
     t.datetime "date_at",    :null => false

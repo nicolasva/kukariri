@@ -3,7 +3,7 @@ class App.Picture extends Backbone.Model
     picture_file_name: "no_image"
 
   url: ->
-    base = "/items/#{@item_id}/contacts/#{@contact_id}/types/#{@type_id}/pictures"
+    base = "/items/#{@item_id}/types/#{@type_id}/pictures"
     if @sort
       base + "/" + @sort
     else

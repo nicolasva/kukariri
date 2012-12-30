@@ -1,0 +1,27 @@
+%table{border: 1}
+  %tr
+    %th
+      = "Associer à ce contact"
+    %th
+      = "lastname"
+    %th
+      = "firstname"
+    %th
+      = "Edit"
+    %th
+      = "Destroy"
+  :each contact in contacts
+    %tr
+      %td
+        = "checkbox" 
+      %td
+        = contact.lastname
+      %td
+        = contact.firstname
+      %td
+        %a{href: "#/items/"+item_id+"/types/"+type_id+"/contacts/"+contact.id+"/edit"} 
+          = "Edit"
+      %td
+        %a{href: "#/items/"+item_id+"/types/"+type_id+"/contacts/"+contact.id+"/delete", rel: "nofollow", data-confirm: "Are you sure ?"} 
+          = "Destroy"
+

@@ -22,6 +22,7 @@
   Libs: {}
   init: ->
     new App.Routers.Items()
+    new App.Routers.Contacts()
     Backbone.history.start()
     return
 

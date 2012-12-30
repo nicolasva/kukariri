@@ -1,13 +1,11 @@
 class ContactsController < ApplicationController
+  respond_to :html, :json
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.all
+    @contacts = Contact.where(:user_id => current_user.id)
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @contacts }
-    end
+    respond_with(@contacts)
   end
 
   # GET /contacts/1
@@ -15,10 +13,11 @@ class ContactsController < ApplicationController
   def show
     @contact = Contact.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @contact }
-    end
+    #respond_to do |format|
+    #  format.html # show.html.erb
+    #  format.json { render json: @contact }
+    #end
+    respond_with(@contact)
   end
 
   # GET /contacts/new
@@ -26,10 +25,11 @@ class ContactsController < ApplicationController
   def new
     @contact = Contact.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @contact }
-    end
+    #respond_to do |format|
+    #  format.html # new.html.erb
+    #  format.json { render json: @contact }
+    #end
+    respond_with(@contact)
   end
 
   # GET /contacts/1/edit

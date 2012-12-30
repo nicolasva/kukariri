@@ -6,8 +6,8 @@ class App.Views.Items.Edit extends Backbone.View
 
   events:
     "submit #edit_items" : "update"
-    "click .add_pictures" : "add_pictures"
     "click #select_files" : "select_files"
+    "click .class_add_contact_item" : "associate_item_contact"
 
   initialize: (options) ->
     @pictures = options.pictures
@@ -28,7 +28,6 @@ class App.Views.Items.Edit extends Backbone.View
             $(this).sortable('toArray')
         @picture = new App.Picture()
         @picture.item_id = self.item.toJSON().id
-        @picture.contact_id = self.item.toJSON().types[0].contact_id
         @picture.type_id = self.item.toJSON().types[0].id
         @picture.sort = "sort"
         @picture.save(@pictures_all_sort,
@@ -44,7 +43,6 @@ class App.Views.Items.Edit extends Backbone.View
     self = @
     @pictures = new App.Collections.Pictures()
     @pictures.item_id = @item.toJSON().id
-    @pictures.contact_id = @item.toJSON().types[0].contact_id
     @pictures.type_id = @item.toJSON().types[0].id
     @pictures.fetch
       success: (collection, response) ->
@@ -69,17 +67,19 @@ class App.Views.Items.Edit extends Backbone.View
   update: (event) ->
     event.preventDefault()
     event.stopPropagation()
+    @update_location("/items", false)
+
+  associate_item_contact: (event) ->
+    @update_location("#/items/#{@item.toJSON().id}/types/#{@item.toJSON().types[0].id}/contacts", true)
+
+  update_location: (location, hash)  ->
     data = $(@id_form_update_edit).toJSON()
-    console.log data
     @item.save(data,
       success: (adress, data) ->
-        #console.log adress
-        
+        if hash == true
+          window.location.hash = location
+        else
+          window.location = location 
       error: (response) ->
         console.log response
     )
-
-  add_pictures: (event) ->
-    alert("nicolas")
-        
-

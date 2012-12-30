@@ -6,6 +6,6 @@ class CreateItems < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :items, [:user_id], :name => "index_users_on_items", :unique => true
+    add_index :items, [:user_id], :name => "index_users_on_items", :unique => false
   end
 end

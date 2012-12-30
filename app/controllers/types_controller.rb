@@ -35,7 +35,7 @@ class TypesController < ApplicationController
     @type = Type.new(params[:type])
     respond_with(@type) do |format|
       if @type.save
-        format.json { render json: @type, status: :created }
+        format.json { render json: @type }
       else
         format.json { render json: @type.errors, status: :unprocessable_entity }
       end

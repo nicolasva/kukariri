@@ -2,14 +2,12 @@ Kukariri::Application.routes.draw do
   devise_for :users, :path => "users", :path_names => { :sign_in => "login", :sign_up => "new_user" }
 
   resources :items do
-    resources :contacts do
-      resources :types do
-        match "pictures/sort" => "pictures#update"
-        resources :pictures do
-        end
-        resources :notifications
-      end 
-    end
+    resources :types do
+      match "pictures/sort" => "pictures#update"
+      resources :pictures
+      resources :notifications
+      resources :contacts
+    end 
   end
   resources :attachments, :only => :create
 

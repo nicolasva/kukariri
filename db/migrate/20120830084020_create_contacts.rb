@@ -8,7 +8,10 @@ class CreateContacts < ActiveRecord::Migration
       t.string "tel_mobil", :null => true
       t.string "adress", :null => true
       t.string "country", :null => false
+      t.references :user
       t.timestamps
     end
+
+    add_index :contacts, [:user_id], :name => "index_users_on_contacts", :unique => false
   end
 end

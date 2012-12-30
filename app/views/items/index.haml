@@ -14,8 +14,8 @@
       %td
         = item.title
       %td
-        = link_to('Edit', "#/items/#{item.id}/edit")
+        = link_to('Edit', "/#/items/#{item.id}/edit")
       %td
-        = link_to('Destroy', "#/items/#{item.id}", method: :delete, data: { confirm: 'Are you sure?' })
+        = link_to('Destroy', "/#/items/#{item.id}", method: :delete, data: { confirm: 'Are you sure?' })
 %br
-= link_to('New Item', "#/items/new")
+= link_to('New Item', "/#/items/new")

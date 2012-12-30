@@ -31,51 +31,51 @@ class App.Routers.Items extends Backbone.Router
         title: "new title"
     @item.save(hash_params_create_items,{
       success: (item) ->
-        hash_params_create_contact = 
-          contact:
-            lastname: "Lastname"
-            firstname: "Firstname"
-            email: "<email>@<server>.<com,fr>"
-            tel_home: "Home Phone Number"
-            tel_mobil: "Mobile Phone Number"
-            adress: "Adress"
-            country: "Country"
+        #hash_params_create_contact = 
+        #  contact:
+        #    lastname: "Lastname"
+        #    firstname: "Firstname"
+        #    email: "<email>@<server>.<com,fr>"
+        #    tel_home: "Home Phone Number"
+        #    tel_mobil: "Mobile Phone Number"
+        #    adress: "Adress"
+        #    country: "Country"
 
-        @contact = new App.Contact()
-        @contact.item_id = item.toJSON().id
-        @contact.save(hash_params_create_contact,{
-          success: (contact) ->
-            hash_params_create_type = 
-              type:
-                descriptif: "Descriptif" 
+        #@contact = new App.Contact()
+        #@contact.item_id = item.toJSON().id
+        #@contact.save(hash_params_create_contact,{
+        #  success: (contact) ->
+        hash_params_create_type = 
+          type:
+            descriptif: "Descriptif" 
+            item_id: item.toJSON().id
+            contact_id: null
+        @type = new App.Type()
+        @type.item_id = item.toJSON().id
+        #@type.contact_id = contact.toJSON().id
+        @type.save(hash_params_create_type, {
+          success: (type) ->
+            hash_params_create_picture =
+              picture:
                 item_id: item.toJSON().id
-                contact_id: contact.toJSON().id
-            @type = new App.Type()
-            @type.item_id = item.toJSON().id
-            @type.contact_id = contact.toJSON().id
-            @type.save(hash_params_create_type, {
-              success: (type) ->
-                hash_params_create_picture =
-                  picture:
-                    item_id: item.toJSON().id
-                    type_id: type.toJSON().id
-                @picture = new App.Picture()
-                @picture.item_id = item.toJSON().id
-                @picture.contact_id = contact.toJSON().id
-                @picture.type_id = type.toJSON().id
-                @picture.save(hash_params_create_picture, {
-                  success: (picture) ->
-                    window.location.hash = "#/items/#{item.toJSON().id}/edit"
-                  error: (picture, response) ->
-                    alert("Error  Create Picture")
-                })
-              error: (type, response) ->
-                alert("Error Create Type")
+                type_id: type.toJSON().id
+            @picture = new App.Picture()
+            @picture.item_id = item.toJSON().id
+            #@picture.contact_id = contact.toJSON().id
+            @picture.type_id = type.toJSON().id
+            @picture.save(hash_params_create_picture, {
+              success: (picture) ->
+                window.location.hash = "#/items/#{item.toJSON().id}/edit"
+              error: (picture, response) ->
+                alert("Error  Create Picture")
             })
-          error: (contact, response) ->
-            alert("Error Create Contact")
-
+          error: (type, response) ->
+            alert("Error Create Type")
         })
+            #error: (contact, response) ->
+            #alert("Error Create Contact")
+
+            #})
       error: (item, response) ->
         alert("Error Create Item")
     })

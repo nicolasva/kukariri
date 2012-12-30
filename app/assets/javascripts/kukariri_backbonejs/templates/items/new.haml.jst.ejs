@@ -30,4 +30,8 @@
           %li{class: 'picture_sort', id: picture.id}
             %img{ src: picture.picture.url}
   .actions
-    %input{type: "submit", name: "submit_items", value: "Submit", class: "id_submit_items"}
+    %ul
+      %li
+        %input{type: "button", name: "button_items_go_contact", value: "Add Contact for this item", class: "class_add_contact_item"}
+      %li
+        %input{type: "submit", name: "submit_items", value: "Submit", class: "id_submit_items"}

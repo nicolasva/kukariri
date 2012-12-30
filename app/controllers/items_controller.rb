@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.where(:user_id => current_user.id)
     respond_with(@items)
   end
 
@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
   # GET /items/new
   # GET /items/new.json
   def new
-    @item = Item.new
+    @item = Item.new(:user_id => current_user.id)
 
     respond_with(@item)
   end
@@ -37,8 +37,7 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(params[:item])
-    @item.save
+    @item = Item.new(:title => params[:item][:title], :user_id => current_user.id)
     respond_with(@item) do |format|
       if @item.save
         format.json { render json: @item, status: :created }
@@ -55,13 +54,13 @@ class ItemsController < ApplicationController
     hash_params_item["title"] = params[:item][:title]
     hash_params_item["id"] = params[:id]
     hash_params_item["user_id"] = current_user.id
-    hash_params_item["types_attributes"] = {"0" => {"id" => params[:item][:types_attributes][0][:id], "item_id" => params[:id], "date_at" => params[:item][:types_attributes][0][:date_at], "date_to" => params[:item][:types_attributes][0][:date_to], "descriptif" => params[:item][:types_attributes][0][:descriptif]}}
+    #hash_params_item["types_attributes"] = {"0" => {"id" => params[:item][:types_attributes][0][:id], "item_id" => params[:id], "date_at" => params[:item][:types_attributes][0][:date_at], "date_to" => params[:item][:types_attributes][0][:date_to], "descriptif" => params[:item][:types_attributes][0][:descriptif]}}
     @item = Item.find(params[:id])
     respond_with(@item) do |format|
       if @item.update_attributes(params[:item])
-        format.json { render json: @type, status: :updated }
+        format.json { render json: @item }
       else
-        format.json { render json: @type.errors, status: :unprocessable_entity }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
   end
