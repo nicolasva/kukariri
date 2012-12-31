@@ -14,6 +14,10 @@ class TypesController < ApplicationController
     @type = Type.find(params[:id])
 
     respond_with(@type)
+    #respond_with(@type) do |format|
+    #  format.json {render json: @type.to_json(:include => :item)}
+    #end
+
   end
 
   # GET /types/new
@@ -49,7 +53,7 @@ class TypesController < ApplicationController
 
     respond_with(@type) do |format|
       if @type.update_attributes(params[:type])
-        format.json { render json: @type, status: :updated }
+        format.json { render json: @type}
       else
         format.json { render json: @type.errors, status: :unprocessable_entity }
       end

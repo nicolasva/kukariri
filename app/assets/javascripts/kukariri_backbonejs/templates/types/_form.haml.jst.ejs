@@ -1,0 +1,15 @@
+%p
+  %input{type: "hidden", name: "contact[types_attributes][0][contact_id]", value: contact.id}
+  %select{name: "contact[types_attributes][0][id]"}
+    :each type in types
+      :if _.isEmpty(type_selected) 
+        %option{value: type.id, selected:  }
+          = type.descriptif
+      :if !_.isEmpty(type_selected)
+        :if type_selected.id == type.id
+          %option{value: type.id, selected: "selected"}
+            = type.descriptif
+        :if !type_selected.id == type.id
+          %option{value: type.id}
+            = type.descriptif
+         

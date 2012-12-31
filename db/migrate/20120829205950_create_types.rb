@@ -9,7 +9,7 @@ class CreateTypes < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :types, [:item_id], :name => "index_types_on_items", :unique => true
-    add_index :types, [:contact_id], :name => "index_types_on_contacts", :unique => true
+    add_index :types, [:item_id], :name => "index_types_on_items", :unique => false
+    add_index :types, [:contact_id], :name => "index_types_on_contacts", :unique => false
   end
 end

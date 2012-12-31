@@ -26,11 +26,32 @@ class App.Routers.Contacts extends Backbone.Router
         console.log contact.toJSON()
 
   edit: (item_id, type_id, id) ->
+    @contacts.item_id = item_id
+    @contacts.type_id = type_id
+    #contact = @contacts.get(id)
+    #contact.item_id = item_id
+    #contact.type_id = type_id
+    #hash_contact = 
+    #  id: id
+    #  contact:
+    #    types_attributes:
+    #      O:
+    #        id: type_id
+    #        contact_id: id
+    #console.log hash_contact
+    #contact.save(hash_contact, {
+    #  success: (contact, response) ->
+    #    alert("nicolas")
+    #  error: (contact, response) ->
+    #    alert("nicolas")
+    #})
     @types.item_id = item_id
     self = @
     type = new App.Type(id: type_id)
     type.item_id = item_id
     contact = @contacts.get(id)
+    contact.item_id = item_id
+    contact.type_id = type_id
     contact.fetch
       success: (model, response) ->
         type.fetch
@@ -38,6 +59,11 @@ class App.Routers.Contacts extends Backbone.Router
             self.types.fetch
               success: (collection, response_type) ->
                 @ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection})
+                hash_type = 
+                  id: type_id
+                  type:
+                    contact_id: id
+                type.save(hash_type)
       error: (model, response) ->
         alert("Error")
         console.log model.toJSON()
