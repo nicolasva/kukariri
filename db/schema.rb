@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121231191122) do
+ActiveRecord::Schema.define(:version => 20130101181534) do
 
   create_table "contacts", :force => true do |t|
     t.string   "lastname",   :null => false
@@ -61,8 +61,9 @@ ActiveRecord::Schema.define(:version => 20121231191122) do
     t.datetime "date_to"
     t.integer  "contact_id"
     t.integer  "item_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.boolean  "date_to_activation", :default => true, :null => false
   end
 
   add_index "provided_dates", ["contact_id"], :name => "index_provided_dated_on_contacts"

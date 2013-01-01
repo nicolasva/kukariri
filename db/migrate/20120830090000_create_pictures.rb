@@ -1,9 +1,9 @@
 class CreatePictures < ActiveRecord::Migration
   def change
     create_table :pictures do |t| 
-      t.string "picture"
-      t.string "cached_path"
-      t.integer "position", :default => 0
+      t.string :picture
+      t.string :cached_path
+      t.integer :position, :default => 0
       t.references :item
       t.references :type
       t.timestamps

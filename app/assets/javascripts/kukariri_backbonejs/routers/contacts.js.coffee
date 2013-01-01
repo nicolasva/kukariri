@@ -58,12 +58,27 @@ class App.Routers.Contacts extends Backbone.Router
           success: (model_type_selected, response_type_selected) ->
             self.types.fetch
               success: (collection, response_type) ->
+                currentTime = new Date()
+                month = currentTime.getMonth() + 1
+                day = currentTime.getDate()
+                year = currentTime.getFullYear()
+                current_time_sql_datetime = day + "-" + month + "-" + year
+                hash_provided_date = 
+                  contact_id: id
+                  item_id: item_id
+                  date_at: day + "-" + month + "-" + year
+                @provided_date = new App.ProvidedDate()
+                @provided_date.item_id = item_id
+                @provided_date.type_id = type_id
+                @provided_date.contact_id = id
+                @provided_date.save(hash_provided_date)
                 @ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection})
                 hash_type = 
                   id: type_id
                   type:
                     contact_id: id
                 type.save(hash_type)
+
       error: (model, response) ->
         alert("Error")
         console.log model.toJSON()
