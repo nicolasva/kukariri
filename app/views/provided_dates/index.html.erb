@@ -1,0 +1,21 @@
+<h1>Listing provided_dates</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @provided_dates.each do |provided_date| %>
+  <tr>
+    <td><%= link_to 'Show', provided_date %></td>
+    <td><%= link_to 'Edit', edit_provided_date_path(provided_date) %></td>
+    <td><%= link_to 'Destroy', provided_date, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Provided date', new_provided_date_path %>

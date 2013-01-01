@@ -32,6 +32,8 @@ class ItemsController < ApplicationController
   # GET /items/1/edit
   def edit
     @item = Item.find(params[:id])
+
+    respond_with(@item)
   end
 
   # POST /items
@@ -54,7 +56,6 @@ class ItemsController < ApplicationController
     hash_params_item["title"] = params[:item][:title]
     hash_params_item["id"] = params[:id]
     hash_params_item["user_id"] = current_user.id
-    #hash_params_item["types_attributes"] = {"0" => {"id" => params[:item][:types_attributes][0][:id], "item_id" => params[:id], "date_at" => params[:item][:types_attributes][0][:date_at], "date_to" => params[:item][:types_attributes][0][:date_to], "descriptif" => params[:item][:types_attributes][0][:descriptif]}}
     @item = Item.find(params[:id])
     respond_with(@item) do |format|
       if @item.update_attributes(params[:item])

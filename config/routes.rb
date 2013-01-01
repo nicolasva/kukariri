@@ -6,7 +6,9 @@ Kukariri::Application.routes.draw do
       match "pictures/sort" => "pictures#update"
       resources :pictures
       resources :notifications
-      resources :contacts
+      resources :contacts do 
+        resources :provided_dates
+      end
     end 
   end
   resources :attachments, :only => :create

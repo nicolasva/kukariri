@@ -85,5 +85,5 @@ class App.Routers.Items extends Backbone.Router
     @item = new App.Item(id: id)
     @item.destroy ->
       success: (item, response) ->
-        console.log response
+        window.location = "/items" 
     return false
