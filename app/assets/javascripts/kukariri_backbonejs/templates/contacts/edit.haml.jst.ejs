@@ -36,6 +36,18 @@
         %br
         %input{type: "text", id: "contact_country", name: "contact[country]", value: contact.country}
 
+      %input{type: "hidden", name: "provided_date[id]", id: "provided_date_id"}
+      %p
+        %label{for: "provided_date_at"} = "Date at"
+        %br
+        %input{type: "text", id: "provided_date_at", name: "provided_date[date_at]"}
+
+      %div.date_to_activation
+        %p
+          %label{for: "provided_date_date_to_activation"} = "Programmer une date de retour"
+          %br
+          %input{type: "checkbox", name: "provided_date[date_to_activation]", id: "provided_date_date_to_activation"}
+        
     %p
       %input{type: "submit", value: "Submit"}
 

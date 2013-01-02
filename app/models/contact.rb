@@ -9,7 +9,7 @@ class Contact < ActiveRecord::Base
   attr_accessible :country
   attr_accessible :types_attributes
   has_many :types
-  has_one :provided_dates
+  has_one :provided_date
   accepts_nested_attributes_for :types
   validates_presence_of :lastname
   validates_presence_of :firstname

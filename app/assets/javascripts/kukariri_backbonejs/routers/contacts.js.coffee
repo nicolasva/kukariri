@@ -67,12 +67,15 @@ class App.Routers.Contacts extends Backbone.Router
                   contact_id: id
                   item_id: item_id
                   date_at: day + "-" + month + "-" + year
+                console.log hash_provided_date
                 @provided_date = new App.ProvidedDate()
                 @provided_date.item_id = item_id
                 @provided_date.type_id = type_id
                 @provided_date.contact_id = id
                 @provided_date.save(hash_provided_date)
-                @ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection})
+                @provided_date.fetch 
+                  success: (model_provided_date, response_provided_date) ->
+                    @ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection, provided_date: model_provided_date})
                 hash_type = 
                   id: type_id
                   type:

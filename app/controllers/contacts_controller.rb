@@ -13,11 +13,9 @@ class ContactsController < ApplicationController
   def show
     @contact = Contact.find(params[:id])
 
-    #respond_to do |format|
-    #  format.html # show.html.erb
-    #  format.json { render json: @contact }
-    #end
-    respond_with(@contact)
+    respond_with(@contact) do |format|
+      format.json { render json: @contact.to_json(:include => :provided_date) }
+    end
   end
 
   # GET /contacts/new

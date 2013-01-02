@@ -4,17 +4,6 @@
     %br
     %input{type: "text", id: "item_title", name: "item[title]", value: item.title}
 
-  %input{type: "hidden", name: "item[types_attributes][0][id]", id: "item_types_attributes_0_id", value: item.types[0].id}
-  %p
-    %label{for: "item_types_attributes_0_date_at"} = "Date at"
-    %br
-    %input{type: "text", name: "item[types_attributes][0][date_at]", id: "item_types_attributes_0_date_at", value: item.types[0].date_at }
-
-  %p
-    %label{for: "item_types_attributes_0_date_to"} = "Date to"
-    %br
-    %input{type: "text", id: "item_types_attributes_0_date_to", name: "item[types_attributes][0][date_to]", value: item.types[0].date_to}
-
   %p
     %label{for: "item_types_attributes_0_descriptif"} = "Descriptif"
     %br
