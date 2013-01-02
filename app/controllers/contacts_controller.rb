@@ -38,7 +38,7 @@ class ContactsController < ApplicationController
   # POST /contacts
   # POST /contacts.json
   def create
-    @contact = Contact.new(params[:contact])
+    @contact = Contact.new(:lastname => params[:contact][:lastname], :firstname => params[:contact][:firstname], :email => params[:contact][:email], :tel_home => params[:contact][:tel_home], :tel_mobil => params[:contact][:tel_mobil], :adress => params[:contact][:adress], :country => params[:contact][:country], :user_id => current_user.id)
 
     respond_with(@contact) do |format|
       if @contact.save

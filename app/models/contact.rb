@@ -7,6 +7,7 @@ class Contact < ActiveRecord::Base
   attr_accessible :tel_mobil
   attr_accessible :adress
   attr_accessible :country
+  attr_accessible :user_id
   attr_accessible :types_attributes
   has_many :types
   has_one :provided_date

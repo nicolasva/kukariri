@@ -3,6 +3,8 @@ class App.Routers.Contacts extends Backbone.Router
     "/items/:item_id/types/:type_id/contacts": "index"
     "/items/:item_id/types/:type_id/contacts/:id/delete": "destroy"
     "/items/:item_id/types/:type_id/contacts/:id/edit" : "edit"
+    "/items/:item_id/types/:type_id/contacts/new" : "new"
+
   initialize: ->
     @contacts = new App.Collections.Contacts()
     @types = new App.Collections.Types()
@@ -85,3 +87,12 @@ class App.Routers.Contacts extends Backbone.Router
       error: (model, response) ->
         alert("Error")
         console.log model.toJSON()
+
+  new: (item_id, type_id) ->
+    @contact = new App.Contact()
+    @contact.item_id = item_id
+    @contact.type_id = type_id
+    @contact.fetch
+      success: (model, response) ->
+        @ViewContactNew = new App.Views.Contacts.New({contact: model, item_id: item_id, type_id: type_id})
+
