@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130101181534) do
+ActiveRecord::Schema.define(:version => 20121231191122) do
 
   create_table "contacts", :force => true do |t|
     t.string   "lastname",   :null => false
@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(:version => 20130101181534) do
     t.string   "tel_mobil"
     t.string   "adress"
     t.string   "country",    :null => false
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "user_id"
   end
 
   add_index "contacts", ["user_id"], :name => "index_users_on_contacts"
@@ -49,21 +49,24 @@ ActiveRecord::Schema.define(:version => 20130101181534) do
   create_table "pictures", :force => true do |t|
     t.string   "picture"
     t.string   "cached_path"
+    t.integer  "position",    :default => 0
     t.integer  "item_id"
     t.integer  "type_id"
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
-    t.integer  "position",    :default => 0, :null => false
   end
+
+  add_index "pictures", ["item_id"], :name => "index_items_on_pictures", :unique => true
+  add_index "pictures", ["type_id"], :name => "index_types_on_pictures", :unique => true
 
   create_table "provided_dates", :force => true do |t|
     t.datetime "date_at"
     t.datetime "date_to"
+    t.boolean  "date_to_activation", :default => true, :null => false
     t.integer  "contact_id"
     t.integer  "item_id"
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
-    t.boolean  "date_to_activation", :default => true, :null => false
   end
 
   add_index "provided_dates", ["contact_id"], :name => "index_provided_dated_on_contacts"
