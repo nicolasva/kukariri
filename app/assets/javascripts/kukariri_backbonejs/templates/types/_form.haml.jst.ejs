@@ -1,6 +1,7 @@
 %p
-  %input{type: "hidden", name: "contact[types_attributes][0][contact_id]", value: contact.id}
-  %select{name: "contact[types_attributes][0][id]"}
+  :if !_.isEmpty(contact)
+    %input{type: "hidden", name: name+"[contact_id]", value: contact.id}
+  %select{name: name+"[id]"}
     :each type in types
       :if _.isEmpty(type_selected) 
         %option{value: type.id, selected:  }

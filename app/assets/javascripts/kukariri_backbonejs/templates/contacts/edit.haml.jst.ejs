@@ -1,53 +1,6 @@
 %form#edit_contact
   %div.actions
     %fieldset
-      %p
-        %label{for: "contact_lastname"} = "Lastname"
-        %br
-        %input{type: "text", id: "contact_lastname", name: "contact[lastname]", value: contact.lastname}
-
-      %p
-        %label{for: "contact_firstname"} = "Firstname"
-        %br
-        %input{type: "text", id: "contact_firstname", name: "contact[firstname]", value: contact.firstname}
-
-      %p
-        %label{for: "contact_email"} = "Email"
-        %br
-        %input{type: "text", id: "contact_email", name: "contact[email]", value: contact.email}
-
-      %p
-        %label{for: "contact_tel_home"} = "Phone tel (home)"
-        %br
-        %input{type: "tel", id: "contact_tel_home", name: "contact[tel_home]", value: contact.tel_home}
-
-      %p
-        %label{for: "contact_tel_mobil"} = "Phone tel (mobil)"
-        %br
-        %input{type: "tel", id: "contact_tel_mobil", name: "contact[tel_mobil]", value: contact.tel_mobil}
-
-      %p
-        %label{for: "contact_adress"} = "Adress"
-        %br
-        %input{type: "text", id: "contact_adress" , name: "contact[adress]", value: contact.adress}
-
-      %p
-        %label{for: "contact_country"} = "Country"
-        %br
-        %input{type: "text", id: "contact_country", name: "contact[country]", value: contact.country}
-
-      %input{type: "hidden", name: "provided_date[id]", id: "provided_date_id"}
-      %p
-        %label{for: "provided_date_at"} = "Date at"
-        %br
-        %input{type: "text", id: "provided_date_at", name: "provided_date[date_at]"}
-
-      %div.date_to_activation
-        %p
-          %label{for: "provided_date_date_to_activation"} = "Programmer une date de retour"
-          %br
-          %input{type: "checkbox", name: "provided_date[date_to_activation]", id: "provided_date_date_to_activation"}
-        
     %p
       %input{type: "submit", value: "Submit"}
 

@@ -1,4 +1,9 @@
 class App.ProvidedDate extends Backbone.Model
+  defaults:
+    date_at: new Date().getFullYear()+"/"+ new Date().getMonth() + 1 + "/" + new Date().getFullYear()
+    date_to: "" 
+    date_to_activation: false
+
   url: ->
     base = "/items/#{@item_id}/types/#{@type_id}/contacts/#{@contact_id}/provided_dates"
     return base if @isNew()

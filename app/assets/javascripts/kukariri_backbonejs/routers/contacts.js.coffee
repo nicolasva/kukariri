@@ -6,6 +6,7 @@ class App.Routers.Contacts extends Backbone.Router
     "/items/:item_id/types/:type_id/contacts/new" : "new"
 
   initialize: ->
+    @provided_date = new App.ProvidedDate()
     @contacts = new App.Collections.Contacts()
     @types = new App.Collections.Types()
 
@@ -30,23 +31,6 @@ class App.Routers.Contacts extends Backbone.Router
   edit: (item_id, type_id, id) ->
     @contacts.item_id = item_id
     @contacts.type_id = type_id
-    #contact = @contacts.get(id)
-    #contact.item_id = item_id
-    #contact.type_id = type_id
-    #hash_contact = 
-    #  id: id
-    #  contact:
-    #    types_attributes:
-    #      O:
-    #        id: type_id
-    #        contact_id: id
-    #console.log hash_contact
-    #contact.save(hash_contact, {
-    #  success: (contact, response) ->
-    #    alert("nicolas")
-    #  error: (contact, response) ->
-    #    alert("nicolas")
-    #})
     @types.item_id = item_id
     self = @
     type = new App.Type(id: type_id)
@@ -69,13 +53,11 @@ class App.Routers.Contacts extends Backbone.Router
                   contact_id: id
                   item_id: item_id
                   date_at: day + "-" + month + "-" + year
-                console.log hash_provided_date
-                @provided_date = new App.ProvidedDate()
-                @provided_date.item_id = item_id
-                @provided_date.type_id = type_id
-                @provided_date.contact_id = id
-                @provided_date.save(hash_provided_date)
-                @provided_date.fetch 
+                self.provided_date.item_id = item_id
+                self.provided_date.type_id = type_id
+                self.provided_date.contact_id = id
+                self.provided_date.save(hash_provided_date)
+                self.provided_date.fetch 
                   success: (model_provided_date, response_provided_date) ->
                     @ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection, provided_date: model_provided_date})
                 hash_type = 
@@ -89,10 +71,23 @@ class App.Routers.Contacts extends Backbone.Router
         console.log model.toJSON()
 
   new: (item_id, type_id) ->
+    @types.item_id = item_id
     @contact = new App.Contact()
     @contact.item_id = item_id
     @contact.type_id = type_id
+    self = @
+    type = new App.Type(id: type_id)
+    type.item_id = item_id
     @contact.fetch
       success: (model, response) ->
-        @ViewContactNew = new App.Views.Contacts.New({contact: model, item_id: item_id, type_id: type_id})
+        self.types.fetch 
+          success: (collection, response) ->
+            type.fetch
+              success: (type_selected, response_selected) ->
+                self.provided_date.item_id = item_id
+                self.provided_date.type_id = type_id
+                self.provided_date.contact_id = "new"
+                self.provided_date.fetch
+                  success: (provided_date, response_provided_date) ->
+                    @ViewContactNew = new App.Views.Contacts.New({contact: model, item_id: item_id, type_id: type_id, types: collection, type_selected: type_selected, provided_date: provided_date})
 

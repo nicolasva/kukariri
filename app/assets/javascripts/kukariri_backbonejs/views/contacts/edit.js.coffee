@@ -2,6 +2,8 @@ class App.Views.Contacts.Edit extends Backbone.View
   el: ".container"
   template: JST["kukariri_backbonejs/templates/contacts/edit"]
 
+  template_contact_form: JST["kukariri_backbonejs/templates/contacts/_form"]
+
   template_type_form: JST["kukariri_backbonejs/templates/types/_form"]
 
   id_form_edit_contact: "#edit_contact"
@@ -20,12 +22,12 @@ class App.Views.Contacts.Edit extends Backbone.View
     $(@el).html(Haml.render(@template(), {locals: {contact: @contact.toJSON()}}))
     $("#provided_date_at").datepicker()
     el_type_form = $('.actions').children().first()
-    el_type_form.append(Haml.render(@template_type_form(), {locals: {types: @types.toJSON(), type_selected: @type_selected.toJSON(), contact: @contact.toJSON()}}))
+    el_type_form.append(Haml.render(@template_contact_form(), {locals: {contact: @contact.toJSON(), provided_date: @provided_date.toJSON()}}))
+    el_type_form.append(Haml.render(@template_type_form(), {locals: {types: @types.toJSON(), type_selected: @type_selected.toJSON(), contact: @contact.toJSON(), name: "contact[types_attributes][0]"}}))
 
   update: (event) ->
     self = @
     data = $(@id_form_edit_contact).toJSON()
-    console.log data
     @contact.save(data,{
       success: (contact, response) ->
         #self.type_selected.save(data, {
