@@ -17,12 +17,6 @@ class App.Views.Items.Edit extends Backbone.View
     $(".caroussel.other_pictures").children().first().sortable({
       items: '.picture_sort',
       update: ->
-        #@item = new App.Item()
-        #@item.sort = "sort"
-        #@item.save($(this).sortable('serialize'),
-        #  success: (sort_item, data) ->
-        #    console.log "nicolas"
-        #)
         @pictures_all_sort = 
           pictures_all_sort:
             $(this).sortable('toArray')
