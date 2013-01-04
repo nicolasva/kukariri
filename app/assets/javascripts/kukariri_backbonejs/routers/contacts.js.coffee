@@ -76,8 +76,6 @@ class App.Routers.Contacts extends Backbone.Router
                     self.provided_date.fetch
                       success: (model_provided_date, response_model_provided_date) ->
                         @ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection, provided_date: model_provided_date})
-                    #@ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection, provided_date: model_provided_date})
-
       error: (model, response) ->
         alert("Error")
         console.log model.toJSON()
