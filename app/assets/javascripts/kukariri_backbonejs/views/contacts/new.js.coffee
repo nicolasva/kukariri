@@ -23,7 +23,8 @@ class App.Views.Contacts.New extends Backbone.View
   render: ->
     $(@el).html(Haml.render(@template(), {locals: {contact: @contact.toJSON()}}))
     el_type_form = $('.actions').children().first()
-    el_type_form.append(Haml.render(@template_contact_form(), {locals: {contact: @contact.toJSON(), provided_date: @provided_date.toJSON()}}))
+    el_type_form.append(Haml.render(@template_contact_form(), {locals: {contact: @contact.toJSON()}}))
+    @viewProvidedDates = new App.Views.ProvidedDates.Form({provided_date: @provided_date, el: el_type_form})
     el_type_form.append(Haml.render(@template_type_form(), {locals: {types: @types.toJSON(), type_selected: @type_selected.toJSON(), contact: "", name: "type"}}))
     $("#provided_date_at").datepicker()
 

@@ -14,6 +14,7 @@
     Countries: {}
     Items: {}
     Notifications: {}
+    ProvidedDates: {}
     Pictures: {}
     States: {}
     Types: {}
