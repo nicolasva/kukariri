@@ -6,6 +6,7 @@ class App.Routers.Contacts extends Backbone.Router
     "/items/:item_id/types/:type_id/contacts/new" : "new"
 
   initialize: ->
+    @provided_dates = new App.Collections.ProvidedDates()
     @provided_date = new App.ProvidedDate()
     @contacts = new App.Collections.Contacts()
     @types = new App.Collections.Types()
@@ -49,22 +50,33 @@ class App.Routers.Contacts extends Backbone.Router
                 day = currentTime.getDate()
                 year = currentTime.getFullYear()
                 current_time_sql_datetime = day + "-" + month + "-" + year
-                hash_provided_date = 
-                  contact_id: id
-                  item_id: item_id
-                  date_at: day + "-" + month + "-" + year
-                self.provided_date.item_id = item_id
-                self.provided_date.type_id = type_id
-                self.provided_date.contact_id = id
-                self.provided_date.save(hash_provided_date)
-                self.provided_date.fetch 
-                  success: (model_provided_date, response_provided_date) ->
-                    @ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection, provided_date: model_provided_date})
-                hash_type = 
-                  id: type_id
-                  type:
-                    contact_id: id
-                type.save(hash_type)
+                self.provided_dates.item_id = item_id
+                self.provided_dates.type_id = type_id
+                self.provided_dates.contact_id = id
+                self.provided_dates.fetch 
+                  success: (collection_provided_date, response_provided_date) ->
+                    if _.isNull(model_type_selected.toJSON().contact_id)
+                      hash_type = 
+                        id: type_id
+                        type:
+                          contact_id: id
+                      type.save(hash_type)
+                    if _.isEmpty(collection_provided_date.toJSON())
+                      hash_provided_date = 
+                        contact_id: id
+                        item_id: item_id
+                        date_at: day + "-" + month + "-" + year
+                      self.provided_date.item_id = item_id 
+                      self.provided_date.type_id = type_id
+                      self.provided_date.contact_id = id
+                      self.provided_date.save(hash_provided_date)
+                    else
+                      self.provided_date = self.provided_dates.get(collection_provided_date.toJSON()[0].id)
+                    
+                    self.provided_date.fetch
+                      success: (model_provided_date, response_model_provided_date) ->
+                        @ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection, provided_date: model_provided_date})
+                    #@ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection, provided_date: model_provided_date})
 
       error: (model, response) ->
         alert("Error")

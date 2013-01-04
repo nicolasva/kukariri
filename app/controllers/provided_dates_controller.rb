@@ -3,7 +3,7 @@ class ProvidedDatesController < ApplicationController
   # GET /provided_dates
   # GET /provided_dates.json
   def index
-    @provided_dates = ProvidedDate.all
+    @provided_dates = ProvidedDate.where(:item_id => params[:item_id], :contact_id => params[:contact_id])
 
     respond_with(@provided_dates)
   end
