@@ -3,7 +3,7 @@ class App.Views.ProvidedDates.Form extends Backbone.View
 
   events:
     "click #provided_date_date_to_activation" : "checked_date_to_activation"
-    "click #provided_date_date_to_activation" : "checkbox_checked_for_activation"
+    "click #span_provided_date_date_to_activation" : "checkbox_checked_for_activation"
 
   initialize: (options) ->
     @provided_date = options.provided_date
@@ -20,6 +20,8 @@ class App.Views.ProvidedDates.Form extends Backbone.View
       $(event.target).attr("value", false)
 
   checkbox_checked_for_activation: (event) ->
-    console.log "nicolas"
-    
+    if $("#provided_date_date_to_activation").is(':checked')
+      $("#provided_date_date_to_activation").attr("checked", false)
+    else 
+      $("#provided_date_date_to_activation").attr("checked", true)
 
