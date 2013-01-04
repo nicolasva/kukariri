@@ -24,7 +24,6 @@ class App.Views.Contacts.Edit extends Backbone.View
     el_type_form.append(Haml.render(@template_contact_form(), {locals: {contact: @contact.toJSON()}}))
     @viewProvidedDates = new App.Views.ProvidedDates.Form({provided_date: @provided_date, el: el_type_form})
     el_type_form.append(Haml.render(@template_type_form(), {locals: {types: @types.toJSON(), type_selected: @type_selected.toJSON(), contact: @contact.toJSON(), name: "contact[types_attributes][0]"}}))
-    $("#provided_date_at").datepicker()
 
   update: (event) ->
     self = @
