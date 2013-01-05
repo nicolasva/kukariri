@@ -25,10 +25,7 @@ class App.Routers.Items extends Backbone.Router
 
   create: ->
     self = @
-    hash_params_create_items = 
-      item:
-        title: "new title"
-    @item.save(hash_params_create_items,{
+    @item.save({},{
       success: (item) ->
         hash_params_create_type = 
           type:
