@@ -15,6 +15,7 @@ class App.Views.ProvidedDates.Form extends Backbone.View
   render: ->
     @el.append(Haml.render(@template(), {locals: {provided_date: @provided_date.toJSON()}}))
     $("#provided_date_at").datepicker()
+    @libsIphoneButtonIphoneButton = new App.Libs.IphoneButton.IphoneButton()
 
   checked_date_to_activation: (event) ->
     if $(event.target).attr("checked") == "checked"

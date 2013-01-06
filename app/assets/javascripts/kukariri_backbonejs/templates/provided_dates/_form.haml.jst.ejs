@@ -7,7 +7,9 @@
 
 %div.date_to_activation
   %p
+  %p
     %span#span_provided_date_date_to_activation
       %label{for: "provided_date_date_to_activation"} = "Programmer une date de retour"
-    %input{type: "checkbox", name: "provided_date[date_to_activation]", id: "provided_date_date_to_activation", value: provided_date.date_to_activation}
+    %input{type: "hidden", name: "provided_date[date_to_activation]", id: "provided_date_date_to_activation", value: provided_date.date_to_activation}
+    %div.iphone-style.off{rel: "sample-checkbox-1", style: "background-position: 100% O%;"}
     
