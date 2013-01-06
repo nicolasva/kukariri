@@ -2,4 +2,7 @@ class App.Collections.Contacts extends Backbone.Collection
   model: App.Contact
 
   url: ->
-    "/items/#{@item_id}/types/#{@type_id}/contacts"
+    unless _.isUndefined(@item_id)
+      "/items/#{@item_id}/types/#{@type_id}/contacts"
+    else
+      "/contacts"

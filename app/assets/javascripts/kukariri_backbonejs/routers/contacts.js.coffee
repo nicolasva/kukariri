@@ -4,6 +4,9 @@ class App.Routers.Contacts extends Backbone.Router
     "/items/:item_id/types/:type_id/contacts/:id/delete": "destroy"
     "/items/:item_id/types/:type_id/contacts/:id/edit" : "edit"
     "/items/:item_id/types/:type_id/contacts/new" : "new"
+    "/contacts/new" : "new_contact"
+    "/contacts" : "index_all"
+    "/contacts/:id/edit" : "edit_all"
 
   initialize: ->
     @provided_dates = new App.Collections.ProvidedDates()
@@ -17,6 +20,24 @@ class App.Routers.Contacts extends Backbone.Router
     @contacts.fetch
       success: (collection, response) ->
         @ViewsContactsIndex = new App.Views.Contacts.Index({contacts: collection, item_id: item_id, type_id: type_id})
+
+  index_all: ->
+    @contacts.fetch 
+      success: (collection, response) ->
+        @ViewsContactsIndex = new App.Views.Contacts.Index({contacts: collection})
+
+  edit_all: (id) ->
+    @contact = @contacts.get(id)
+    @contact.fetch
+      success: (model, response) ->
+        @viewContactnew = new App.Views.Contacts.Edit({contact: model})
+
+
+  new_contact: ->
+    @contact = new App.Contact()
+    @contact.fetch
+      success: (model, response) ->
+        @ViewsContactsNewContact = new App.Views.Contacts.NewContact({contact: model})
 
   destroy: (item_id, type_id, id) ->
     @contacts.item_id = item_id
