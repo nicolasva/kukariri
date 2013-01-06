@@ -32,12 +32,29 @@ class App.Views.Contacts.Edit extends Backbone.View
     data = $(@id_form_edit_contact).toJSON()
     @contact.save(data,{
       success: (contact, response) ->
-        if _.isUndefined(@provided_date)
+        if _.isUndefined(self.provided_date)
           window.location.hash = "#/contacts"
         else
-          window.location.hash = "#/items/"+self.type_selected.toJSON().item_id+"/types/"+self.type_selected.toJSON().id+"/contacts" 
+          #format date 2013-01-03T00:00:00Z
+          data["provided_date"]["date_at"] = data["provided_date"]["date_at"].split("/").reverse().join("-")
+
+          self.provided_date.save(data,{ 
+            success: (provided_date, response) ->
+              self.type_selected.save(data,{
+                success: (type, response) ->
+                  window.location.hash = "#/items/"+type.item_id+"/types/"+type.id+"/contacts"
+                error: (type, response) ->
+                  alert("Type Error")
+                  console.log type
+              })
+            error: (provided_date, response) ->
+              alert("Provided Date Error")
+              console.log provided_date
+          })
+
+          # 
       error: (contact, response) ->
-        alert("Error")
+        alert("Contact Error")
         console.log contact
     })
     return false

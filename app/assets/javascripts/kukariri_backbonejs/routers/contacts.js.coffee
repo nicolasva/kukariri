@@ -7,6 +7,7 @@ class App.Routers.Contacts extends Backbone.Router
     "/contacts/new" : "new_contact"
     "/contacts" : "index_all"
     "/contacts/:id/edit" : "edit_all"
+    "/contacts/:id/delete" : "destroy_all"
 
   initialize: ->
     @provided_dates = new App.Collections.ProvidedDates()
@@ -38,6 +39,15 @@ class App.Routers.Contacts extends Backbone.Router
     @contact.fetch
       success: (model, response) ->
         @ViewsContactsNewContact = new App.Views.Contacts.NewContact({contact: model})
+
+  destroy_all: (id) ->
+    contact = @contacts.get(id)
+    contact.destroy
+      success: (contact, response) ->
+        window.location.hash = "#/contacts"
+      error: (contact, response) ->
+        alert("Error")
+        console.log contact.toJSON()
 
   destroy: (item_id, type_id, id) ->
     @contacts.item_id = item_id
@@ -87,13 +97,13 @@ class App.Routers.Contacts extends Backbone.Router
                         contact_id: id
                         item_id: item_id
                         date_at: day + "-" + month + "-" + year
-                      self.provided_date.item_id = item_id 
-                      self.provided_date.type_id = type_id
-                      self.provided_date.contact_id = id
                       self.provided_date.save(hash_provided_date)
                     else
-                      self.provided_date = self.provided_dates.get(collection_provided_date.toJSON()[0].id)
-                    
+                      self.provided_date = self.provided_dates.get(collection_provided_date.toJSON()[0].id) 
+                      
+                    self.provided_date.item_id = item_id 
+                    self.provided_date.type_id = type_id
+                    self.provided_date.contact_id = id
                     self.provided_date.fetch
                       success: (model_provided_date, response_model_provided_date) ->
                         @ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection, provided_date: model_provided_date})

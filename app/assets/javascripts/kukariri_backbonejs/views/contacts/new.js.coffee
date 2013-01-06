@@ -42,7 +42,7 @@ class App.Views.Contacts.New extends Backbone.View
             date_to = "" unless $("#provided_date_date_to_activation").attr("checked") == true
             hash_provided_date = 
               provided_date:
-                date_at: data["provided_date"]["date_at"]
+                date_at: data["provided_date"]["date_at"].split("/").reverse().join("-")
                 date_to: date_to
                 date_to_activation: data["provided_date"]["date_to_activation"] 
                 contact_id: contact.id
