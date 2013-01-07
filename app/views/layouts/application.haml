@@ -9,6 +9,13 @@
       %meta{:content => u(cookies[Rails.application.config.session_options[:key]]), :name => "session-key-value"}
   %body.container-fluid
     %section.header
+      %ul
+        %li
+          = link_to("Contact list", "/#/contacts")
+        %li
+          = link_to("New Contact", "/#/contacts/new")
+        %li
+          = link_to("New Item", "/#/items/new")
 
     %section.container
       = yield

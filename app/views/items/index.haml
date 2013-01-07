@@ -17,10 +17,3 @@
         = link_to('Edit', "/#/items/#{item.id}/edit")
       %td
         = link_to('Destroy', "/#/items/#{item.id}", method: :delete, data: { confirm: 'Are you sure?' })
-%ul
-  %li
-    = link_to("Contact list", "/#/contacts")
-  %li
-    = link_to("New Contact", "/#/contacts/new")
-  %li
-    = link_to('New Item', "/#/items/new")
