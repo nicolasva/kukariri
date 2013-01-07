@@ -17,6 +17,7 @@ Kukariri::Application.routes.draw do
     end 
   end
   resources :attachments, :only => :create
+  resources :translates, :only => :index
 
   root :to => "items#index"
 
