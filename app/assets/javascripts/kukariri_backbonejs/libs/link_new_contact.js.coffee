@@ -1,5 +1,11 @@
-#class App.Libs.LinkNewContact extends Backbone.View
-#  initialize: (options) ->
-#    $(document).ready ->
-#      if window.location.hash != ""
-        #"#/items/1/types/1/contacts".scan(/^.{1,}(types).{1,}contacts$/)
+class App.Libs.LinkNewContact extends Backbone.View
+  initialize: (options) ->
+    $(document).ready ->
+        regex = new RegExp("^.{1,}types.{1,}contacts$")
+        window_location_hash = window.location.hash
+        if regex.test(window_location_hash)
+          item_id = window_location_hash.split("/")[2]
+          type_id = window_location_hash.split("/")[4]
+          $(".header").children().first().children().first().children().first().attr("href", "#/items/"item_id+"/types/"+type_id+"/contacts/new")
+        else
+          $(".header").children().first().children().first().children().first().attr("href", "#/contacts/new")

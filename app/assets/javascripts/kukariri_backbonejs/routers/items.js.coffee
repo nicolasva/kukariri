@@ -5,6 +5,7 @@ class App.Routers.Items extends Backbone.Router
     "/items/:id" : "destroy"
 
   initialize: ->
+    @libsLinkNewContact = new App.Libs.LinkNewContact()
     @item = new App.Item()
   
   new: ->
