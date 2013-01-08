@@ -7,9 +7,14 @@
 # Emended by Benjamin des Gachons and Patrick Chew : <http://www.fitima.org/docs/fiche.pdf>
 
 fr:
+  common_button:
+    submit: "Valider"
   items:
     edit:
       title: "Titre"
+      description: "Description"
+      select_files: "Cliquer ici pour selectionner un fichier"
+      add_contact_for_item: "Ajouter un contact pour cette objet"
   date:
     formats:
       default: "%d/%m/%Y"

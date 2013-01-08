@@ -1,18 +1,18 @@
 %form#edit_items
   %p
-    %label{for: "item_title"} = translates.items.edit.title
+    %label{for: "item_title"} = translate.items.edit.title
     %br
     %input{type: "text", id: "item_title", name: "item[title]", value: item.title}
 
   %p
-    %label{for: "item_types_attributes_0_descriptif"} = "Descriptif"
+    %label{for: "item_types_attributes_0_descriptif"} = translate.items.edit.description
     %br
     %textarea{id: "item_types_attributes_0_descriptif", name: "item[types_attributes][0][descriptif]"}
       = item.types[0].descriptif
 
   %div#container
     %span#select_files
-      = "Select files"
+      = translate.items.edit.select_files
     %div.caroussel.other_pictures
       %ul
         :each picture in pictures
@@ -21,6 +21,6 @@
   .actions
     %ul
       %li
-        %input{type: "button", name: "button_items_go_contact", value: "Add Contact for this item", class: "class_add_contact_item"}
+        %input{type: "button", name: "button_items_go_contact", value: translate.items.edit.add_contact_for_item, class: "class_add_contact_item"}
       %li
-        %input{type: "submit", name: "submit_items", value: "Submit", class: "id_submit_items"}
+        %input{type: "submit", name: "submit_items", value: translate.common_button.submit, class: "id_submit_items"}

@@ -32,7 +32,7 @@ class App.Views.Items.Edit extends Backbone.View
     })
 
   render: ->
-    $(@el).html(Haml.render(@template(), {locals: {item: @item.toJSON(), pictures: @pictures.toJSON(), translates: @translate.toJSON()}}))
+    $(@el).html(Haml.render(@template(), {locals: {item: @item.toJSON(), pictures: @pictures.toJSON(), translate: @translate.toJSON()}}))
 
   select_files: (event) ->
     self = @

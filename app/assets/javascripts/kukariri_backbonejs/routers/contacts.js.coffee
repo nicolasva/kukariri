@@ -10,17 +10,21 @@ class App.Routers.Contacts extends Backbone.Router
     "/contacts/:id/delete" : "destroy_all"
 
   initialize: ->
+    @translate = new App.Translate()
     @provided_dates = new App.Collections.ProvidedDates()
     @provided_date = new App.ProvidedDate()
     @contacts = new App.Collections.Contacts()
     @types = new App.Collections.Types()
 
   index: (item_id, type_id) ->
+    self = @
     @contacts.item_id = item_id
     @contacts.type_id = type_id
-    @contacts.fetch
-      success: (collection, response) ->
-        @ViewsContactsIndex = new App.Views.Contacts.Index({contacts: collection, item_id: item_id, type_id: type_id})
+    @translate.fetch
+      success: () ->
+        self.contacts.fetch
+          success: (collection, response) ->
+            @ViewsContactsIndex = new App.Views.Contacts.Index({contacts: collection, item_id: item_id, type_id: type_id, translate: self.translate})
 
   index_all: ->
     @contacts.fetch 
