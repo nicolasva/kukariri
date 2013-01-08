@@ -7,6 +7,9 @@
 # Emended by Benjamin des Gachons and Patrick Chew : <http://www.fitima.org/docs/fiche.pdf>
 
 fr:
+  items:
+    edit:
+      title: "Titre"
   date:
     formats:
       default: "%d/%m/%Y"
@@ -214,9 +217,3 @@ fr:
         other: "Impossible d'enregistrer ce(tte) %{model} : %{count} erreurs"
       body: "Veuillez vérifier les champs suivants : "
 
-  activemodel:
-    errors:
-      <<: *errors
-  activerecord:
-    errors:
-      <<: *errors

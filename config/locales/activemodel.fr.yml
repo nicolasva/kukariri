@@ -1,1 +1,4 @@
 fr:
+  activemodel:
+    errors:
+      #<<: *errors

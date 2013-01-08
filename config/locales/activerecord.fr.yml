@@ -1,2 +1,4 @@
 fr:
-
+  activerecord:
+    errors:
+      #<<: *errors

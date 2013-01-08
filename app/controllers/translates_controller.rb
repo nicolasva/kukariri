@@ -4,7 +4,6 @@ class TranslatesController < ApplicationController
     lang = params[:lang].split("-").first or params[:lang]
     I18n.backend.send(:init_translations)
     translations = I18n.backend.send(:translations)
-
     respond_to do |format|
       format.json { render json: translations[:"#{lang}"]}
     end

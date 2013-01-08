@@ -11,7 +11,7 @@ class App.Views.Items.Edit extends Backbone.View
 
   initialize: (options) ->
     self = @
-    @translates = options.translates
+    @translate = options.translate
     @pictures = options.pictures
     @item = options.item
     @render()
@@ -32,7 +32,7 @@ class App.Views.Items.Edit extends Backbone.View
     })
 
   render: ->
-    $(@el).html(Haml.render(@template(), {locals: {item: @item.toJSON(), pictures: @pictures.toJSON()}}))
+    $(@el).html(Haml.render(@template(), {locals: {item: @item.toJSON(), pictures: @pictures.toJSON(), translates: @translate.toJSON()}}))
 
   select_files: (event) ->
     self = @
