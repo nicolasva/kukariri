@@ -10,10 +10,11 @@ class App.Views.Items.Edit extends Backbone.View
     "click .class_add_contact_item" : "associate_item_contact"
 
   initialize: (options) ->
+    self = @
+    @translates = options.translates
     @pictures = options.pictures
     @item = options.item
     @render()
-    self = @
     $(".caroussel.other_pictures").children().first().sortable({
       items: '.picture_sort',
       update: ->

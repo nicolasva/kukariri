@@ -5,6 +5,7 @@ class App.Routers.Items extends Backbone.Router
     "/items/:id" : "destroy"
 
   initialize: ->
+    @translates = new App.Collections.Translates()
     @libsLinkNewContact = new App.Libs.LinkNewContact()
     @item = new App.Item()
   
@@ -18,11 +19,13 @@ class App.Routers.Items extends Backbone.Router
     @pictures.item_id = id
     @pictures.contact_id = 1
     @pictures.type_id = 1
-    @item.fetch
-      success: (model, response) ->
-        self.pictures.fetch
-          success: (collection, response) ->
-            @ViewsItemsEdit = new App.Views.Items.Edit(item: model, pictures: collection)
+    @translates.fetch
+      success: () ->
+        @item.fetch
+          success: (model, response) ->
+            self.pictures.fetch
+              success: (collection, response) ->
+                @ViewsItemsEdit = new App.Views.Items.Edit(item: model, pictures: collection, translates: self.translates.toJSON())
 
   create: ->
     self = @
