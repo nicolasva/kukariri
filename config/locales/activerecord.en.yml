@@ -1,4 +1,36 @@
 en:
   activerecord:
-    errors:
-      #<<: *errors
+    models: 
+      contact: "Contact"
+      item: "Objet"
+      notification: "Notification"
+      picture: "Picture"
+      provided_date: "Provided Date"
+      type: "Type"
+      user: "User"
+    attributes: 
+      contact:
+        lastname: "Lastname"
+        firstname: "Firstname"
+        email: "Email"
+        tel_phone: "Home Phone"
+        tel_mobil: "Mobil Phone"
+        adress: "Address"
+        country: "Country"
+        user_id: "User id"
+      item:
+        title: "Title"
+        user_id: "User id"
+      notification:
+        date_at: "Date at"
+        user_id: "Id user"
+      picture: 
+        picture: "Picture"
+        item_id: "Item id"
+        type_id: "Type id"
+      provided_date:
+        date_at: "Date at"
+        date_to: "Date to"
+        date_to_activation: "Activation date"
+        contact_id: "Contact Id"
+        item_id: "Item Id"

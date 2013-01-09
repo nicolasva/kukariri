@@ -1,4 +1,6 @@
 en:
+  common_sentence:
+    confirm_delete: "Are you sure ?"
   common_button:
     submit: "Submit"
   items: 
@@ -7,6 +9,15 @@ en:
       description: "Description"
       select_files: "Click to select file"
       add_contact_for_item: "Add contact for this item"
+  contacts:
+    index:
+      assoc_contact: "Associate contact"
+      lastname: "Lastname"
+      firstname: "Firstname"
+      to_edit: "Editable"
+      to_destroy: "removable"
+      edit: "Edit"
+      destroy: "Delete"
   date:
     abbr_day_names:
     - Sun

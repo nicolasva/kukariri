@@ -1,15 +1,15 @@
 %table{border: 1}
   %tr
     %th
-      = "Associer à ce contact"
+      = translate.contacts.index.assoc_contact
     %th
-      = "lastname"
+      = translate.contacts.index.lastname
     %th
-      = "firstname"
+      = translate.contacts.index.firstname
     %th
-      = "Edit"
+      = translate.contacts.index.edit
     %th
-      = "Destroy"
+      = translate.contacts.index.destroy
   :each contact in contacts
     %tr.contact_lists{id: "contact_lists_"+contact.id}
       %td
