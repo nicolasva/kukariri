@@ -34,3 +34,7 @@ fr:
       date_to_activation: "Date de l'activation"
       contact_id: "Id du contact"
       item_id: "Id de l'item"
+    type:
+      descriptif: "Descriptif"
+      item_id: "Id de l'objet"
+      contact_id: "Id du contact"

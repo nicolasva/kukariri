@@ -34,3 +34,7 @@ en:
         date_to_activation: "Activation date"
         contact_id: "Contact Id"
         item_id: "Item Id"
+      type:
+        descriptif: "Description"
+        item_id: "Item Id"
+        contact_id: "Contact Id"
