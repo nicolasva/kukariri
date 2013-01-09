@@ -45,10 +45,13 @@ class App.Routers.Contacts extends Backbone.Router
 
 
   new_contact: ->
+    self = @
     @contact = new App.Contact()
-    @contact.fetch
-      success: (model, response) ->
-        @ViewsContactsNewContact = new App.Views.Contacts.NewContact({contact: model})
+    @translate.fetch
+      success: () ->
+        self.contact.fetch
+          success: (model, response) ->
+            @ViewsContactsNewContact = new App.Views.Contacts.NewContact({contact: model, translate: self.translate})
 
   destroy_all: (id) ->
     contact = @contacts.get(id)
@@ -80,46 +83,48 @@ class App.Routers.Contacts extends Backbone.Router
     contact = @contacts.get(id)
     contact.item_id = item_id
     contact.type_id = type_id
-    contact.fetch
-      success: (model, response) ->
-        type.fetch
-          success: (model_type_selected, response_type_selected) ->
-            self.types.fetch
-              success: (collection, response_type) ->
-                currentTime = new Date()
-                month = currentTime.getMonth() + 1
-                day = currentTime.getDate()
-                year = currentTime.getFullYear()
-                current_time_sql_datetime = day + "-" + month + "-" + year
-                self.provided_dates.item_id = item_id
-                self.provided_dates.type_id = type_id
-                self.provided_dates.contact_id = id
-                self.provided_dates.fetch 
-                  success: (collection_provided_date, response_provided_date) ->
-                    if _.isNull(model_type_selected.toJSON().contact_id)
-                      hash_type = 
-                        id: type_id
-                        type:
-                          contact_id: id
-                      type.save(hash_type)
-                    if _.isEmpty(collection_provided_date.toJSON())
-                      hash_provided_date = 
-                        contact_id: id
-                        item_id: item_id
-                        date_at: day + "-" + month + "-" + year
-                      self.provided_date.save(hash_provided_date)
-                    else
-                      self.provided_date = self.provided_dates.get(collection_provided_date.toJSON()[0].id) 
-                      
-                    self.provided_date.item_id = item_id 
-                    self.provided_date.type_id = type_id
-                    self.provided_date.contact_id = id
-                    self.provided_date.fetch
-                      success: (model_provided_date, response_model_provided_date) ->
-                        @ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection, provided_date: model_provided_date})
-      error: (model, response) ->
-        alert("Error")
-        console.log model.toJSON()
+    @translate.fetch
+      success: () ->
+        contact.fetch
+          success: (model, response) ->
+            type.fetch
+              success: (model_type_selected, response_type_selected) ->
+                self.types.fetch
+                  success: (collection, response_type) ->
+                    currentTime = new Date()
+                    month = currentTime.getMonth() + 1
+                    day = currentTime.getDate()
+                    year = currentTime.getFullYear()
+                    current_time_sql_datetime = day + "-" + month + "-" + year
+                    self.provided_dates.item_id = item_id
+                    self.provided_dates.type_id = type_id
+                    self.provided_dates.contact_id = id
+                    self.provided_dates.fetch 
+                      success: (collection_provided_date, response_provided_date) ->
+                        if _.isNull(model_type_selected.toJSON().contact_id)
+                          hash_type = 
+                            id: type_id
+                            type:
+                              contact_id: id
+                          type.save(hash_type)
+                        if _.isEmpty(collection_provided_date.toJSON())
+                          hash_provided_date = 
+                            contact_id: id
+                            item_id: item_id
+                            date_at: day + "-" + month + "-" + year
+                          self.provided_date.save(hash_provided_date)
+                        else
+                          self.provided_date = self.provided_dates.get(collection_provided_date.toJSON()[0].id) 
+                          
+                        self.provided_date.item_id = item_id 
+                        self.provided_date.type_id = type_id
+                        self.provided_date.contact_id = id
+                        self.provided_date.fetch
+                          success: (model_provided_date, response_model_provided_date) ->
+                            @ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection, provided_date: model_provided_date, translate: self.translate})
+          error: (model, response) ->
+            alert("Error")
+            console.log model.toJSON()
 
   new: (item_id, type_id) ->
     @types.item_id = item_id
@@ -129,16 +134,18 @@ class App.Routers.Contacts extends Backbone.Router
     self = @
     type = new App.Type(id: type_id)
     type.item_id = item_id
-    @contact.fetch
-      success: (model, response) ->
-        self.types.fetch 
-          success: (collection, response) ->
-            type.fetch
-              success: (type_selected, response_selected) ->
-                self.provided_date.item_id = item_id
-                self.provided_date.type_id = type_id
-                self.provided_date.contact_id = "new"
-                self.provided_date.fetch
-                  success: (provided_date, response_provided_date) ->
-                    @ViewContactNew = new App.Views.Contacts.New({contact: model, item_id: item_id, type_id: type_id, types: collection, type_selected: type_selected, provided_date: provided_date})
+    @translate.fetch
+      success: () ->
+        self.contact.fetch
+          success: (model, response) ->
+            self.types.fetch 
+              success: (collection, response) ->
+                type.fetch
+                  success: (type_selected, response_selected) ->
+                    self.provided_date.item_id = item_id
+                    self.provided_date.type_id = type_id
+                    self.provided_date.contact_id = "new"
+                    self.provided_date.fetch
+                      success: (provided_date, response_provided_date) ->
+                        @ViewContactNew = new App.Views.Contacts.New({contact: model, item_id: item_id, type_id: type_id, types: collection, type_selected: type_selected, provided_date: provided_date, translate: self.translate})
 

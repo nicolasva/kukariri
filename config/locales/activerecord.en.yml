@@ -31,7 +31,7 @@ en:
       provided_date:
         date_at: "Date at"
         date_to: "Date to"
-        date_to_activation: "Activation date"
+        date_to_activation: "Activation come back date"
         contact_id: "Contact Id"
         item_id: "Item Id"
       type:

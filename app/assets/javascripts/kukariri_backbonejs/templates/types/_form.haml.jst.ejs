@@ -1,6 +1,8 @@
 %p
   :if !_.isEmpty(contact)
     %input{type: "hidden", name: name+"[contact_id]", value: contact.id}
+  %label{for: name+"_id"} = translate.activerecord.attributes.type.descriptif
+  %br
   %select{name: name+"[id]"}
     :each type in types
       :if _.isEmpty(type_selected) 

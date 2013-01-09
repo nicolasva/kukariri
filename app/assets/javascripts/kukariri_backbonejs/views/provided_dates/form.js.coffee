@@ -8,19 +8,20 @@ class App.Views.ProvidedDates.Form extends Backbone.View
     "click #span_provided_date_date_to_activation" : "checkbox_checked_for_activation"
 
   initialize: (options) ->
+    @translate = options.translate
     @provided_date = options.provided_date
     @el = options.el
     @render()
 
   render: ->
-    @el.append(Haml.render(@template(), {locals: {provided_date: @provided_date.toJSON()}}))
+    @el.append(Haml.render(@template(), {locals: {provided_date: @provided_date.toJSON(), translate: @translate.toJSON()}}))
     $("#provided_date_at").datepicker()
-    @libsIphoneButtonIphoneButton = new App.Libs.IphoneButton.IphoneButton({provided_date: @provided_date})
+    @libsIphoneButtonIphoneButton = new App.Libs.IphoneButton.IphoneButton({provided_date: @provided_date, translate: @translate})
 
   checked_date_to_activation: (event) ->
     if $(event.target).attr("checked") == "checked"
       $(event.target).attr("value", true)
-      $(@el_date_to_activation).append(Haml.render(@template_form_date_to(), {locals: {provided_date: @provided_date.toJSON()}}))
+      $(@el_date_to_activation).append(Haml.render(@template_form_date_to(), {locals: {provided_date: @provided_date.toJSON(), translate: @translate.toJSON()}}))
       $("#provided_date_date_to").datepicker()
     else
       $(event.target).attr("value", false)

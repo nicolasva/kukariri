@@ -21,12 +21,12 @@ class App.Views.Contacts.Edit extends Backbone.View
     @render()
 
   render: ->
-    $(@el).html(Haml.render(@template()))
-    el_type_form = $('.actions').children().first()
-    el_type_form.append(Haml.render(@template_contact_form(), {locals: {translate: @translate.toJSON()}}))
+    $(@el).html(Haml.render(@template(), {locals: {translate: @translate.toJSON()}}))
+    el_contact_form = $('.actions').children().first()
+    el_contact_form.append(Haml.render(@template_contact_form(), {locals: {contact: @contact.toJSON(), translate: @translate.toJSON()}}))
     unless _.isUndefined(@provided_date)
-      @viewProvidedDates = new App.Views.ProvidedDates.Form({provided_date: @provided_date, el: el_type_form})
-      el_type_form.append(Haml.render(@template_type_form(), {locals: {types: @types.toJSON(), type_selected: @type_selected.toJSON(), contact: @contact.toJSON(), name: "contact[types_attributes][0]", translate: @translate.toJSON()}}))
+      @viewProvidedDates = new App.Views.ProvidedDates.Form({provided_date: @provided_date, el: el_contact_form, translate: @translate})
+      el_contact_form.append(Haml.render(@template_type_form(), {locals: {types: @types.toJSON(), type_selected: @type_selected.toJSON(), contact: @contact.toJSON(), name: "contact[types_attributes][0]", translate: @translate.toJSON()}}))
 
   update: (event) ->
     self = @

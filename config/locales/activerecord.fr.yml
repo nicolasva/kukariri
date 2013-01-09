@@ -8,33 +8,33 @@ fr:
       provided_date: "Programmation des dates"
       type: "Type"
       user: "Utilisateur"
-  attributes:
-    contact:
-      lastname: "Nom"
-      firstname: "Prénom"
-      email: "Email"
-      tel_phone: "Téléhpone (domicile)"
-      tel_mobil: "Téléphone (mobile)" 
-      adress: "Adresse"
-      country: "Pays"
-      user_id: "Id de l'utilisateur"
-    item:
-      title: "Titre"
-      user_id: "Id de l'utilisateur"
-    notification:
-      date_at: "Date de"
-      user_id: "Id de l'utilisateur" 
-    picture:
-      picture: "Photo"
-      item_id: "Id de l'item"
-      type_id: "Id du type"
-    provided_date:
-      date_at: "de"
-      date_to: "à"
-      date_to_activation: "Date de l'activation"
-      contact_id: "Id du contact"
-      item_id: "Id de l'item"
-    type:
-      descriptif: "Descriptif"
-      item_id: "Id de l'objet"
-      contact_id: "Id du contact"
+    attributes:
+      contact:
+        lastname: "Nom"
+        firstname: "Prénom"
+        email: "Email"
+        tel_phone: "Téléhpone (domicile)"
+        tel_mobil: "Téléphone (mobile)" 
+        adress: "Adresse"
+        country: "Pays"
+        user_id: "Id de l'utilisateur"
+      item:
+        title: "Titre"
+        user_id: "Id de l'utilisateur"
+      notification:
+        date_at: "Date de"
+        user_id: "Id de l'utilisateur" 
+      picture:
+        picture: "Photo"
+        item_id: "Id de l'item"
+        type_id: "Id du type"
+      provided_date:
+        date_at: "de"
+        date_to: "à"
+        date_to_activation: "Activation pour une date de retour"
+        contact_id: "Id du contact"
+        item_id: "Id de l'item"
+      type:
+        descriptif: "Descriptif"
+        item_id: "Id de l'objet"
+        contact_id: "Id du contact"

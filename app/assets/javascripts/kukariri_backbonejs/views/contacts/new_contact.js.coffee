@@ -10,13 +10,14 @@ class App.Views.Contacts.NewContact extends Backbone.View
     "submit #new_contact": "create"
 
   initialize: (options) ->
+    @translate = options.translate
     @contact = options.contact
     @render()
 
   render: ->
-    $(@el).html(Haml.render(@template()))
+    $(@el).html(Haml.render(@template(), {locals: {translate: @translate.toJSON()}}))
     el_contact_form = $('.actions').children().first()
-    el_contact_form.append(Haml.render(@template_contact_form(), {locals: {contact: @contact.toJSON()}}))
+    el_contact_form.append(Haml.render(@template_contact_form(), {locals: {contact: @contact.toJSON(), translate: @translate.toJSON()}}))
 
   create: (event) ->
     data = $(@id_form_create).toJSON()

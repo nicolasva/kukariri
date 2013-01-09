@@ -3,7 +3,6 @@ class App.Libs.LinkNewContact extends Backbone.View
     $(window).bind 'hashchange', ->
         regex = new RegExp("^.{1,}types.{1,}contacts$")
         window_location_hash = window.location.hash
-        console.log window_location_hash
         if regex.test(window_location_hash) == true
           item_id = window_location_hash.split("/")[2]
           type_id = window_location_hash.split("/")[4]

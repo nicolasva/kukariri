@@ -3,9 +3,10 @@ class App.Views.ProvidedDates.FormDateTo extends Backbone.View
   template: JST["kukariri_backbonejs/templates/provided_dates/_form_date_to"]
 
   initialize: (options) ->
+    @translate = options.translate
     @provided_date = options.provided_date
     @render()
 
   render: ->
-    $(@el).append(Haml.render(@template(), {locals: {provided_date: @provided_date.toJSON()}}))
+    $(@el).append(Haml.render(@template(), {locals: {provided_date: @provided_date.toJSON(), translate: @translate.toJSON()}}))
 
