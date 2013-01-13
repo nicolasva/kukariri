@@ -1,5 +1,7 @@
 class Type < ActiveRecord::Base
-  attr_accessible :date_at, :date_to, :descriptif, :item_id, :contact_id
+  attr_accessible :descriptif
+  attr_accessible :item_id
+  attr_accessible :contact_id
   belongs_to :item
   belongs_to :contact
   has_many :notifications
