@@ -12,6 +12,7 @@ class App.Views.Contacts.NewContact extends Backbone.View
   initialize: (options) ->
     @translate = options.translate
     @contact = options.contact
+    @contact.translate = @translate.toJSON()
     @render()
 
   render: ->
@@ -23,8 +24,7 @@ class App.Views.Contacts.NewContact extends Backbone.View
     data = $(@id_form_create).toJSON()
     @contact.save(data,
       success: (contact, response_contact) ->
-        console.log "nicolas"
-        #window.location = "/items"
+        window.location = "/items"
       error: (contact, response_contact) ->
         alert("Error")
         console.log contact.toJSON()
