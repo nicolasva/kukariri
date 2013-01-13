@@ -11,4 +11,5 @@ class App.Common.CommonViews.Notice.Notice extends Backbone.View
     $(@el).html(Haml.render(@template(), {locals: {response_errors: @response_errors}}))
     if $(@el).is(':visible')
       $(@el).delay(1000).fadeToggle(4000, "linear")
+    return false
 

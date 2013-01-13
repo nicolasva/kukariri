@@ -3,7 +3,7 @@ class CreateProvidedDates < ActiveRecord::Migration
     create_table :provided_dates do |t|
       t.datetime :date_at
       t.datetime :date_to
-      t.boolean :date_to_activation, :default => true, :null => false
+      t.boolean :date_to_activation, :default => true
       t.references :contact
       t.references :item
       t.timestamps

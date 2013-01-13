@@ -14,7 +14,7 @@ class App.Views.ProvidedDates.Form extends Backbone.View
     @render()
 
   render: ->
-    @el.append(Haml.render(@template(), {locals: {provided_date: @provided_date.toJSON(), translate: @translate.toJSON()}}))
+    @el.append(Haml.render(@template(), {locals: {provided_date: @provided_date.toJSON(), translate: @translate.toJSON(), page: window.location.hash.split("/")[window.location.hash.split("/").length-1]}}))
     $("#provided_date_at").datepicker()
     @libsIphoneButtonIphoneButton = new App.Libs.IphoneButton.IphoneButton({provided_date: @provided_date, translate: @translate})
 

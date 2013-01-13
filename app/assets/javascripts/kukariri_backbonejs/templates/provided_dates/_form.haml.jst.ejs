@@ -1,9 +1,15 @@
 :if provided_date.id == undefined
-  %input{type: "hidden", name: "provided_date[id]", id: "provided_date_id", value: provided_date.id}
+  :if _.isEqual(page, "new")
+    %input{type: "hidden", name: "provided_date[id]", id: "provided_date_id", placeholder: provided_date.id}
+  :if !_.isEqual(page, "new") 
+    %input{type: "hidden", name: "provided_date[id]", id: "provided_date_id", value: provided_date.id}
 %p
   %label{for: "provided_date_at"} = translate.activerecord.attributes.provided_date.date_at
   %br
-  %input{type: "text", id: "provided_date_at", name: "provided_date[date_at]", value: provided_date.date_at}
+  :if _.isEqual(page, "new")
+    %input{type: "text", id: "provided_date_at", name: "provided_date[date_at]", placeholder: provided_date.date_at}
+  :if !_.isEqual(page, "new")
+    %input{type: "text", id: "provided_date_at", name: "provided_date[date_at]", value: provided_date.date_at}
 
 %div.date_to_activation
   %p

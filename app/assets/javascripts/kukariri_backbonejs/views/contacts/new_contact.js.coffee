@@ -17,7 +17,7 @@ class App.Views.Contacts.NewContact extends Backbone.View
   render: ->
     $(@el).html(Haml.render(@template(), {locals: {translate: @translate.toJSON()}}))
     el_contact_form = $('.actions').children().first()
-    el_contact_form.append(Haml.render(@template_contact_form(), {locals: {contact: @contact.toJSON(), translate: @translate.toJSON()}}))
+    el_contact_form.append(Haml.render(@template_contact_form(), {locals: {contact: @contact.toJSON(), translate: @translate.toJSON(), page: window.location.hash.split("/")[window.location.hash.split("/").length-1]}}))
 
   create: (event) ->
     data = $(@id_form_create).toJSON()
@@ -25,7 +25,6 @@ class App.Views.Contacts.NewContact extends Backbone.View
       success: (contact, response_contact) ->
         window.location = "/items"
       error: (contact_response_error, response_contact_error) ->
-        console.log contact_response_error
         new App.Common.CommonViews.Notice.Notice({response_errors: contact_response_error.errors})
     )
     return false

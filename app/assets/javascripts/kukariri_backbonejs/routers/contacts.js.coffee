@@ -83,7 +83,8 @@ class App.Routers.Contacts extends Backbone.Router
     self = @
     type = new App.Type(id: type_id)
     type.item_id = item_id
-    contact = @contacts.get(id)
+    contact = new App.Contact(id: id)
+    contact.translate = @translate.toJSON()
     contact.item_id = item_id
     contact.type_id = type_id
     @translate.fetch

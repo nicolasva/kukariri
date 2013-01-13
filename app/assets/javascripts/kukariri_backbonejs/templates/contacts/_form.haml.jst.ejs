@@ -1,35 +1,56 @@
 %p
   %label{for: "contact_lastname"} = translate.activerecord.attributes.contact.lastname
   %br
-  %input.necessary{type: "text", id: "contact_lastname", name: "contact[lastname]", value: contact.lastname}
+  :if _.isEqual(page, "new")
+    %input.necessary{type: "text", id: "contact_lastname", name: "contact[lastname]", placeholder: contact.lastname}
+  :if !_.isEqual(page, "new")
+    %input.necessary{type: "text", id: "contact_lastname", name: "contact[lastname]", value: contact.lastname}
 
 %p
   %label{for: "contact_firstname"} = translate.activerecord.attributes.contact.firstname
   %br
-  %input.necessary{type: "text", id: "contact_firstname", name: "contact[firstname]", value: contact.firstname}
+  :if _.isEqual(page, "new")
+    %input.necessary{type: "text", id: "contact_firstname", name: "contact[firstname]", placeholder: contact.firstname}
+  :if !_.isEqual(page, "new")
+    %input.necessary{type: "text", id: "contact_firstname", name: "contact[firstname]", value: contact.firstname}
 
 %p
   %label{for: "contact_email"} = translate.activerecord.attributes.contact.email
   %br
-  %input{type: "text", id: "contact_email", name: "contact[email]", value: contact.email}
+  :if _.isEqual(page, "new")
+    %input{type: "text", id: "contact_email", name: "contact[email]", placeholder: contact.email}
+  :if !_.isEqual(page, "new")
+    %input{type: "text", id: "contact_email", name: "contact[email]", value: contact.email}
 
 %p
   %label{for: "contact_tel_home"} = translate.activerecord.attributes.contact.tel_phone
   %br
-  %input{type: "tel", id: "contact_tel_home", name: "contact[tel_home]", value: contact.tel_home}
+  :if _.isEqual(page, "new")
+    %input{type: "tel", id: "contact_tel_home", name: "contact[tel_home]", placeholder: contact.tel_home}
+  :if !_.isEqual(page, "new")
+    %input{type: "tel", id: "contact_tel_home", name: "contact[tel_home]", value: contact.tel_home}
 
 %p
   %label{for: "contact_tel_mobil"} = translate.activerecord.attributes.contact.tel_mobil
   %br
-  %input{type: "tel", id: "contact_tel_mobil", name: "contact[tel_mobil]", value: contact.tel_mobil}
+  :if _.isEqual(page, "new")
+    %input{type: "tel", id: "contact_tel_mobil", name: "contact[tel_mobil]", placeholder: contact.tel_mobil}
+  :if !_.isEqual(page, "new")
+    %input{type: "tel", id: "contact_tel_mobil", name: "contact[tel_mobil]", value: contact.tel_mobil}
 
 %p
   %label{for: "contact_adress"} = translate.activerecord.attributes.contact.adress
   %br
-  %input{type: "text", id: "contact_adress" , name: "contact[adress]", value: contact.adress}
+  :if _.isEqual(page, "new")
+    %input{type: "text", id: "contact_adress" , name: "contact[adress]", placeholder: contact.adress}
+  :if !_.isEqual(page, "new")
+    %input{type: "text", id: "contact_adress" , name: "contact[adress]", value: contact.adress}
 
 %p
   %label{for: "contact_country"} = translate.activerecord.attributes.contact.country
   %br
-  %input.necessary{type: "text", id: "contact_country", name: "contact[country]", value: contact.country}
+  :if _.isEqual(page, "new")
+    %input.necessary{type: "text", id: "contact_country", name: "contact[country]", placeholder: contact.country}
+  :if !_.isEqual(page, "new")
+    %input.necessary{type: "text", id: "contact_country", name: "contact[country]", value: contact.country}
 

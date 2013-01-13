@@ -1,4 +1,7 @@
 %p
   %label{for: "provided_date_date_to"} = translate.activerecord.provided_date.date_to
   %br
-  %input{type: "text", id: "provided_date_date_to", name: "provided_date[date_to]", value: provided_date.date_to}
+  :if _.isEqual(page, "new")
+    %input{type: "text", id: "provided_date_date_to", name: "provided_date[date_to]", placeholder: provided_date.date_to}
+  :if !_.isEqual(page, "new")
+    %input{type: "text", id: "provided_date_date_to", name: "provided_date[date_to]", value: provided_date.date_to}
