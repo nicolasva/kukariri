@@ -4,19 +4,29 @@ $("input[type=submit]").live 'click', ->
   token = true
   current_form = $(this).closest('form')[0]
   $(".necessary").each ->
-    if $(this).val() == '' and $(this).closest('form')[0] == current_form
-      $(this).addClass('error-empty')
+    if $(this).hasClass('select2-container')
+      select = $(this).next()
+      if $(select).val() == '' and $(select).closest('form')[0] == current_form
+        token = false
+        $(this).addClass('error-empty')
+    else if $(this).val() == '' and $(this).closest('form')[0] == current_form
       token = false
+      $(this).addClass('error-empty')
   $(".email").each ->
-    unless /^.+@.+\..+$/.test($(this).val())
-      if $(this).closest('form')[0] == current_form
-        $(this).addClass('error-empty')
-        token = false
+    unless $(this).val() == ''
+      unless /^.+@.+\..+$/.test($(this).val())
+        if $(this).closest('form')[0] == current_form
+          token = false
+          $(this).addClass('error-empty')
+  $(".url").each ->
+    unless $(this).val() == ''
+      unless /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w\#!:.?+=&%@!\-\/]))?/.test($(this).val())
+        $(this).attr("value", "http://"+$(this).val())
   $(".number").each ->
-    unless !isNaN(parseFloat($(this).val())) && isFinite($(this).val())
-      if $(this).closest('form')[0] == current_form
-        $(this).addClass('error-empty')
-        token = false
+    unless $(this).val() == ''
+      $(this).attr('value', $(this).val().replace(',','.').replace(' ', ''))
+      unless !isNaN(parseFloat($(this).val())) && isFinite($(this).val())
+        if $(this).closest('form')[0] == current_form
+          token = false
+          $(this).addClass('error-empty')
   return token
-
-

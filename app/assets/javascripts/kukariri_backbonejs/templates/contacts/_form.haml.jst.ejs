@@ -1,12 +1,12 @@
 %p
   %label{for: "contact_lastname"} = translate.activerecord.attributes.contact.lastname
   %br
-  %input{type: "text", id: "contact_lastname", name: "contact[lastname]", value: contact.lastname}
+  %input.necessary{type: "text", id: "contact_lastname", name: "contact[lastname]", value: contact.lastname}
 
 %p
   %label{for: "contact_firstname"} = translate.activerecord.attributes.contact.firstname
   %br
-  %input{type: "text", id: "contact_firstname", name: "contact[firstname]", value: contact.firstname}
+  %input.necessary{type: "text", id: "contact_firstname", name: "contact[firstname]", value: contact.firstname}
 
 %p
   %label{for: "contact_email"} = translate.activerecord.attributes.contact.email
@@ -31,5 +31,5 @@
 %p
   %label{for: "contact_country"} = translate.activerecord.attributes.contact.country
   %br
-  %input{type: "text", id: "contact_country", name: "contact[country]", value: contact.country}
+  %input.necessary{type: "text", id: "contact_country", name: "contact[country]", value: contact.country}
 
