@@ -12,7 +12,6 @@ class App.Views.Contacts.NewContact extends Backbone.View
   initialize: (options) ->
     @translate = options.translate
     @contact = options.contact
-    @contact.translate = @translate.toJSON()
     @render()
 
   render: ->
@@ -26,6 +25,7 @@ class App.Views.Contacts.NewContact extends Backbone.View
       success: (contact, response_contact) ->
         window.location = "/items"
       error: (contact_response_error, response_contact_error) ->
+        console.log contact_response_error
         new App.Common.CommonViews.Notice.Notice({response_errors: contact_response_error.errors})
     )
     return false

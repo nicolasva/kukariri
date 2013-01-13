@@ -1,3 +1,6 @@
+#$("button, input[type=submit], a").live 'click',  ->
+#  $('input[placeholder], textarea[placeholder]').placeholder()
+
 $("input[type=submit]").live 'click', ->
   $(".necessary.error-empty").each ->
     $(this).removeClass('error-empty')
@@ -29,4 +32,3 @@ $("input[type=submit]").live 'click', ->
         if $(this).closest('form')[0] == current_form
           token = false
           $(this).addClass('error-empty')
-  return token

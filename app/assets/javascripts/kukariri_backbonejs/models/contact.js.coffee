@@ -21,7 +21,7 @@ class App.Contact extends Backbone.Model
 
   validate: (attributes) ->
     #"Error!" unless attributes
-    message_empty = @translate.errors.messages.empty if @translate 
+    message_empty = @translate.errors.messages.empty unless _.isEmpty(@translate) 
     @errors = new Array()
     if attributes.contact?
       #console.log "nicolas"
