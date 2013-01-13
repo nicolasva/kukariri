@@ -10,14 +10,14 @@ fr:
       user: "Utilisateur"
     attributes:
       contact:
-        lastname: "Nom"
-        firstname: "Prénom"
-        email: "Email"
-        tel_phone: "Téléhpone (domicile)"
-        tel_mobil: "Téléphone (mobile)" 
-        adress: "Adresse"
-        country: "Pays"
-        user_id: "Id de l'utilisateur"
+        lastname: "Le nom"
+        firstname: "Le prénom"
+        email: "l'email"
+        tel_phone: "Le téléhpone (domicile)"
+        tel_mobil: "Le téléphone (mobile)" 
+        adress: "L'adresse"
+        country: "Le pays"
+        user_id: "L'Id de l'utilisateur"
       item:
         title: "Titre"
         user_id: "Id de l'utilisateur"

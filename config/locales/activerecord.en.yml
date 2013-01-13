@@ -10,14 +10,14 @@ en:
       user: "User"
     attributes: 
       contact:
-        lastname: "Lastname"
-        firstname: "Firstname"
-        email: "Email"
-        tel_phone: "Home Phone"
-        tel_mobil: "Mobil Phone"
-        adress: "Address"
-        country: "Country"
-        user_id: "User id"
+        lastname: "The lastname"
+        firstname: "The firstname"
+        email: "The email"
+        tel_phone: "The home Phone"
+        tel_mobil: "The mobil Phone"
+        adress: "The address"
+        country: "The country"
+        user_id: "The user id"
       item:
         title: "Title"
         user_id: "User id"

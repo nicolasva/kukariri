@@ -25,9 +25,9 @@ class App.Views.Contacts.NewContact extends Backbone.View
     @contact.save(data,
       success: (contact, response_contact) ->
         window.location = "/items"
-      error: (contact, response_contact) ->
-        alert("Error")
-        console.log contact.toJSON()
+      error: (contact_response_error, response_contact_error) ->
+        #alert("Error")
+        new App.Common.CommonViews.Notice.Notice({response_errors: contact_response_error.errors})
     )
     return false
 
