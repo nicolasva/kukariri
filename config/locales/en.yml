@@ -18,6 +18,15 @@ en:
       to_destroy: "removable"
       edit: "Edit"
       destroy: "Delete"
+    form_common:
+      placeholder:
+        lastname: "His lastname"
+        firstname: "His firstname"
+        email: "His email (<email>@<server>.<com,fr>)"
+        tel_home: "His home phone"
+        tel_mobile: "His mobile phone"
+        adress: "His address"
+        country: "His country"
   date:
     abbr_day_names:
     - Sun

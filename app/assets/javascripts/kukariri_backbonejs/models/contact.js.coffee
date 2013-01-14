@@ -1,4 +1,6 @@
 class App.Contact extends Backbone.Model
+
+  #translate: new App.Translate()
   defaults:
     lastname: "Lastname"
     firstname: "Fistname"
@@ -7,7 +9,7 @@ class App.Contact extends Backbone.Model
     tel_mobil: "Mobile Phone Number"
     adress: "Adress"
     country: "Country"
-
+  
   initialize: (translate) ->
     @translate = translate
 

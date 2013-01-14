@@ -26,6 +26,15 @@ fr:
       to_destroy: "Suppression"
       edit: "Editer"
       destroy: "Supprimer"
+    form_common:
+      placeholder:
+        lastname: "Son nom"
+        firstname: "Son prénom"
+        email: "Son e-mail (<email>@<server>.<com,fr>)"
+        tel_home: "Son téléphone (maison)"
+        tel_mobil: "Son téléphone (mobile)"
+        adress: "Son adresse"
+        country: "Son Pays"
   date:
     formats:
       default: "%d/%m/%Y"

@@ -49,6 +49,7 @@ class App.Routers.Contacts extends Backbone.Router
   new_contact: ->
     self = @
     @contact = new App.Contact()
+    #@contact.defaults()
     @contact.translate = @translate.toJSON()
     @translate.fetch
       success: () ->
