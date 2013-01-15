@@ -1,6 +1,6 @@
 class App.Routers.Items extends Backbone.Router
   routes:
-    "/items/new": "new"
+    "/items/new": "new_item"
     "/items/:id/edit" : "edit"
     "/items/:id" : "destroy"
 
@@ -8,7 +8,14 @@ class App.Routers.Items extends Backbone.Router
     @translate = new App.Translate()
     @libsLinkNewContact = new App.Libs.LinkNewContact()
     @item = new App.Item()
-  
+    @type = new App.Type()
+
+  new_item: ->
+    self = @
+    @translate.fetch
+      success: () ->
+        @viewItemsNew = new App.Views.Items.New({translate: self.translate, item: self.item, type: self.type})
+
   new: ->
     @create()
 

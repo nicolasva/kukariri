@@ -32,7 +32,7 @@ class App.Views.Items.Edit extends Backbone.View
     })
 
   render: ->
-    $(@el).html(Haml.render(@template(), {locals: {item: @item.toJSON(), pictures: @pictures.toJSON(), translate: @translate.toJSON()}}))
+    $(@el).html(Haml.render(@template(), {locals: {item: @item.toJSON(), page: window.location.hash.split("/")[window.location.hash.split("/").length-1], pictures: @pictures.toJSON(), translate: @translate.toJSON(), name_type: "item[types_attributes][0][descriptif]", page: window.location.hash.split("/")[window.location.hash.split("/").length-1]}}))
 
   select_files: (event) ->
     self = @
@@ -70,7 +70,7 @@ class App.Views.Items.Edit extends Backbone.View
   update_location: (location, hash)  ->
     data = $(@id_form_update_edit).toJSON()
     @item.save(data,
-      success: (adress, data) ->
+      success: (item, data) ->
         if hash == true
           window.location.hash = location
         else

@@ -17,6 +17,13 @@ fr:
       description: "Description"
       select_files: "Cliquer ici pour selectionner un fichier"
       add_contact_for_item: "Ajouter un contact pour cette objet"
+    form_common:
+      placeholder: 
+        title: "Le titre de l'objet"
+  types:
+    form_common:
+      placeholder:
+        descriptif: "La description"
   contacts:
     index:
       assoc_contact: "Associer à ce contact"

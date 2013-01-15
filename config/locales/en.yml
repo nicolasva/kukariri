@@ -9,6 +9,9 @@ en:
       description: "Description"
       select_files: "Click to select file"
       add_contact_for_item: "Add contact for this item"
+    form_common:
+      placeholder:
+        title: "The item title"
   contacts:
     index:
       assoc_contact: "Associate contact"
@@ -27,6 +30,10 @@ en:
         tel_mobile: "His mobile phone"
         adress: "His address"
         country: "His country"
+  types:
+    form_common:
+      placeholder:
+        descriptif: "The description"
   date:
     abbr_day_names:
     - Sun

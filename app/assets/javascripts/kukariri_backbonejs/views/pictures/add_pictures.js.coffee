@@ -3,7 +3,8 @@ class App.Views.Pictures.AddPictures extends Backbone.View
   el: ".modal"
 
   initialize: (options) ->
-    @item = options.item
+    if _.isUndefined(options.item)
+      @item = options.item
     @pictures = options.pictures
     self = @
     new App.Libs.UploadPicture({
@@ -14,14 +15,22 @@ class App.Views.Pictures.AddPictures extends Backbone.View
         picture = new App.Picture()
         picture.item_id = self.item.toJSON().id
         picture.type_id = self.item.toJSON().types[0].id
-        @hash_picture = 
-          picture:
+        if _.isUndefined(self.item)
+          @hash_picture = 
             picture:
-              url: data.url
-              current_path: "/uploads/tmp/#{data.cached_name}"
-            cached_path: data.cached_name
-            item_id: self.item.toJSON().id
-            type_id: self.item.toJSON().types[0].id
+              picture:
+                url: data.url
+                current_path: "/uploads/tmp/#{data.cached_name}"
+              cached_path: data.cached_name
+              item_id: self.item.toJSON().id
+              type_id: self.item.toJSON().types[0].id
+        else
+          @hash_picture = 
+            picture:
+              picture:
+                url: data.url
+                current_path: "/uploads/tmp/#{data.cached_name}"
+              cached_path: data.cached_name
         picture.save(@hash_picture,
           error: (picture, data) ->
             alert("Upload error")

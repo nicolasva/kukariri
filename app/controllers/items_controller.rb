@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.where(:user_id => current_user.id)
+    @items = Item.where(:user_id => current_user.id).all
     respond_with(@items)
   end
 
