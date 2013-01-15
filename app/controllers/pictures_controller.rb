@@ -4,7 +4,7 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
-    @pictures = Item.find(params[:item_id]).pictures.order(:position)
+    @pictures = params[:item_id].nil? ? Picture.order(:position) : Item.find(params[:item_id]).pictures.order(:position)
 
     respond_with(@pictures)
   end

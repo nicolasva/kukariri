@@ -36,8 +36,6 @@ class App.Views.Items.New extends Backbone.View
   select_files: (event) ->
     self = @
     @pictures = new App.Collections.Pictures()
-    @pictures.item_id = @item.toJSON().id
-    @pictures.type_id = @item.toJSON().types[0].id
     @pictures.fetch
       success: (collection, response) ->
         @viewAddPictures = new App.Views.Pictures.AddPictures({item: self.item, pictures: collection})

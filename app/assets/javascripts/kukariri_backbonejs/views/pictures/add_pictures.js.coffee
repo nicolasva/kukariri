@@ -13,9 +13,9 @@ class App.Views.Pictures.AddPictures extends Backbone.View
       }, (up, file, data) ->
         self.display_picture(data)
         picture = new App.Picture()
-        picture.item_id = self.item.toJSON().id
-        picture.type_id = self.item.toJSON().types[0].id
         if _.isUndefined(self.item)
+          picture.item_id = self.item.toJSON().id
+          picture.type_id = self.item.toJSON().types[0].id
           @hash_picture = 
             picture:
               picture:
