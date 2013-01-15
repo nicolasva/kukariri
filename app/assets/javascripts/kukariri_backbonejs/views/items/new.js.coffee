@@ -21,8 +21,6 @@ class App.Views.Items.New extends Backbone.View
           pictures_all_sort:
             $(this).sortable('toArray')
         @picture = new App.Picture()
-        @picture.item_id = self.item.toJSON().id
-        @picture.type_id = self.item.toJSON().types[0].id
         @picture.sort = "sort"
         @picture.save(@pictures_all_sort,
           success: (sort_item, data) ->
@@ -59,23 +57,37 @@ class App.Views.Items.New extends Backbone.View
   create: (event) -> 
     #event.preventDefault()
     #event.stopPropagation()
-    @create_location("/items", false)
+    @create_location(false)
 
   associate_item_contact: (event) ->
-    @create_location("#/items/#{@item.toJSON().id}/types/#{@item.toJSON().types[0].id}/contacts", true)
+    @create_location(true)
 
-  create_location: (location, hash)  ->
+  create_location: (hash)  ->
     self = @
     data = $(@id_form_update_edit).toJSON()
     @item.save(data,
       success: (item, data) ->
-        #if hash == true
-        #  window.location.hash = location
-        #else
-        #  window.location = location 
+        self.type.item_id = item.id
         self.type.save(data,
           success: (type, response) ->
-            console.log "true nicolas"
+            $(".ui-sortable").children().each (key,value) ->
+              picture_id = $(value).attr("id").split("_")[$(value).attr("id").split("_").length-1]
+              @picture = new App.Picture()
+              @picture.id = picture_id
+              hash_picture = 
+                picture:
+                  item_id: item.id
+                  type_id: type.id
+              @picture.save(hash_picture, {
+                #success: (picture, response) ->
+                #  console.log "success picture"
+                error: (picture, response) -> 
+                  console.log "error picture"
+              })
+            if hash == true
+              window.location.hash = "#/items/#{item.id}/types/#{type.id}/contacts"
+            else
+              window.location = "/items"
           error: (type, response) ->
             alert("Error")
             console.log(type)
@@ -83,3 +95,4 @@ class App.Views.Items.New extends Backbone.View
       error: (response) ->
         console.log response
     )
+    return false

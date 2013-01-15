@@ -11,9 +11,8 @@ class App.Views.Pictures.AddPictures extends Backbone.View
       browse_button: 'select_files',
       container: 'container',
       }, (up, file, data) ->
-        self.display_picture(data)
         picture = new App.Picture()
-        if _.isUndefined(self.item)
+        unless _.isUndefined(self.item)
           picture.item_id = self.item.toJSON().id
           picture.type_id = self.item.toJSON().types[0].id
           @hash_picture = 
@@ -32,16 +31,18 @@ class App.Views.Pictures.AddPictures extends Backbone.View
                 current_path: "/uploads/tmp/#{data.cached_name}"
               cached_path: data.cached_name
         picture.save(@hash_picture,
-          error: (picture, data) ->
+          success: (picture, response) ->
+            self.display_picture(picture.id, data)
+          error: (picture, response) ->
             alert("Upload error")
         )
       ,"picture"
       ,"#select_files"
     )
 
-  display_picture: (data) ->
+  display_picture: (picture_id, data) ->
     img = "<img src='#{data.url}' alt='#{data.picture_file_name}'>" 
-    $(".caroussel.other_pictures ul").append("<li>#{img}</li>")
+    $(".caroussel.other_pictures ul").append("<li id='picture_"+picture_id+"'>#{img}</li>")
     $(".caroussel.other_pictures").show()
 
    

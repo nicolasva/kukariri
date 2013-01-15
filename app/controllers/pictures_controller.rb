@@ -52,7 +52,7 @@ class PicturesController < ApplicationController
       @picture.update_attributes(params[:picture])
       respond_with(@picture) do |format|
         if @picture.update_attributes(params[:picture])
-          format.json { render json: @picture, status: :updated }
+          format.json { render json: @picture}
         else
           format.json { render json: @picture.errors, status: :unprocessable_entity }
         end
