@@ -24,7 +24,16 @@
         :if !_.isEqual(page, "new")
           :each picture in pictures
             %li{class: 'picture_sort', id: picture.id}
-              %img{ src: picture.picture.url}
+              %div.img_picture_url
+                %img{ src: picture.picture.url}
+              %div.img_button_admin_img
+                %ul
+                  %li
+                    %a{href:"#/pictures/edit/"+picture.id}
+                      = "Modifier"
+                  %li
+                    %a{href: "#/pictures/destroy/"+picture.id}
+                      = "Delete"
   .actions
     %ul
       %li
