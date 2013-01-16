@@ -12,10 +12,6 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
 
-    #respond_to do |format|
-    #  format.html # show.html.erb
-    #  format.json { render json: @item.to_json(:include => {:types => {:include =>[:pictures,:contact]}}) }
-    #end
     respond_with(@item) do |format| 
       format.json {render json: @item.to_json(:include => {:types => {:include =>[:pictures,:contact]}})}
     end
