@@ -1,7 +1,7 @@
 Kukariri::Application.routes.draw do 
   devise_for :users, :path => "users", :path_names => { :sign_in => "login", :sign_up => "new_user" }
 
-  scope :module => :contact do
+  scope do
     match "contacts" => "contacts#create", :via => "POST"
     match "contacts" => "contacts#index", :via => "GET"
     match "contacts/:id" => "contacts#show", :via => "GET"
@@ -9,7 +9,7 @@ Kukariri::Application.routes.draw do
     match "contacts/:id" => "contacts#destroy", :via =>"DELETE"
   end
  
-  scope :module => :picture do
+  scope do
     match "pictures" => "pictures#create", :via => "POST"
     match "pictures" => "pictures#index", :via => "GET"
     match "pictures/:id" => "pictures#show", :via => "GET"

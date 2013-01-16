@@ -1,8 +1,9 @@
 class App.Views.Pictures.AddPictures extends Backbone.View
-  template: JST["kukariri_backbonejs/templates/pictures"]
-  el: ".modal"
+  template: JST["kukariri_backbonejs/templates/pictures/pictures"]
+  el: ".caroussel.other_pictures ul" 
 
   initialize: (options) ->
+    @translate = options.translate
     if _.isUndefined(options.item)
       @item = options.item
     @pictures = options.pictures
@@ -41,8 +42,5 @@ class App.Views.Pictures.AddPictures extends Backbone.View
     )
 
   display_picture: (picture_id, data) ->
-    img = "<img src='#{data.url}' alt='#{data.picture_file_name}'>" 
-    $(".caroussel.other_pictures ul").append("<li id='picture_"+picture_id+"'>#{img}</li>")
-    $(".caroussel.other_pictures").show()
-
-   
+    $(@el).html(Haml.render(@template(), {locals: {picture: data, picture_id: picture_id, translate: @translate.toJSON()}}))
+    $(@el).show() 

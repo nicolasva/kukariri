@@ -1,0 +1,12 @@
+%li{class: 'picture_sort', id: 'picture_'+picture_id}
+  %div.img_picture_url 
+    %img{ src: picture.url, alt: picture.picture_file_name}
+  %div.img_button_admin_img
+    %ul
+      %li
+        %a{href: "#/pictures/edit/"+picture_id}
+          = translate.common_link.update
+      %li
+        %a{href: "#/pictures/edit/"+picture_id}
+          = translate.common_link.delete
+    

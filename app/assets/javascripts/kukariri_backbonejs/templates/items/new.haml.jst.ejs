@@ -23,17 +23,17 @@
       %ul
         :if !_.isEqual(page, "new")
           :each picture in pictures
-            %li{class: 'picture_sort', id: picture.id}
+            %li{class: 'picture_sort', id: 'picture_'+picture.id}
               %div.img_picture_url
                 %img{ src: picture.picture.url}
               %div.img_button_admin_img
                 %ul
                   %li
                     %a{href:"#/pictures/edit/"+picture.id}
-                      = "Modifier"
+                      = translate.common_link.update
                   %li
                     %a{href: "#/pictures/destroy/"+picture.id}
-                      = "Delete"
+                      = translate.common_link.delete
   .actions
     %ul
       %li
