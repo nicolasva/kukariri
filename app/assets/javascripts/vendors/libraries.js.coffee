@@ -6,3 +6,4 @@
 #= require ./bootstrap-modal
 #= require ./bootstrap-dropdown
 #= require ./plupload.full
+#= require ./yaml.min

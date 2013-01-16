@@ -1,9 +1,11 @@
 class App.Item extends Backbone.Model
+  #nativeObject = YAML.load('assets/kukariri_backbonejs/routing/routing.yml')
+  #console.log nativeObject.fr
   defaults:
     title: "Item Title"
 
   url: ->
-    base = "/items"
+    base = App.routing({}, "items")
     return base if @isNew()
     base + (if base.charAt(base.length - 1) is "/" then "" else "/") + @id
 

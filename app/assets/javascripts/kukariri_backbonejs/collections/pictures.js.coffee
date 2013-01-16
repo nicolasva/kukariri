@@ -3,7 +3,7 @@ class App.Collections.Pictures extends Backbone.Collection
 
   url: ->
     unless _.isUndefined(@item_id)
-      "/items/#{@item_id}/types/#{@type_id}/pictures"
+      App.routing({item_id: @item_id, type_id: @type_id}, "pictures")
     else
-      "/pictures"
+      App.routing({}, "pictures_bis")
 

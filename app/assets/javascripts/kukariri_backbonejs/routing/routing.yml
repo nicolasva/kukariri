@@ -1,0 +1,10 @@
+routing:
+  API:
+    items: "/items"
+    contacts: "/items/:item_id/types/:type_id/contacts"
+    contacts_bis: "/contacts" 
+    pictures: "/items/:item_id/types/:type_id/pictures"
+    pictures_bis: "/pictures"
+    provided_dates: "/items/:item_id/types/:type_id/contacts/:contact_id/provided_dates"
+    types: "/items/:item_id/types"
+    translates: "/translates"

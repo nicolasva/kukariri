@@ -2,4 +2,4 @@ class App.Collections.Items extends Backbone.Collection
   model: App.Item
 
   url: ->
-    "/items"
+    App.routing({},"items")

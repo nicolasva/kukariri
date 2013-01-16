@@ -3,6 +3,6 @@ class App.Collections.Contacts extends Backbone.Collection
 
   url: ->
     unless _.isUndefined(@item_id)
-      "/items/#{@item_id}/types/#{@type_id}/contacts"
+      App.routing({item_id: @item_id, type_id: @type_id} ,"contacts")
     else
-      "/contacts"
+      App.routing({}, "contacts_bis")

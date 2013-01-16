@@ -2,4 +2,4 @@ class App.Collections.Types extends Backbone.Collection
   model: App.Type
 
   url: ->
-    "/items/#{@item_id}/types"
+    App.routing({item_id: @item_id}, "types")

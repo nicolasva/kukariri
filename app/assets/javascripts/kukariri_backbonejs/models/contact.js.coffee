@@ -15,9 +15,9 @@ class App.Contact extends Backbone.Model
 
   url: ->
     unless _.isUndefined(@item_id)
-      base = "/items/#{@item_id}/types/#{@type_id}/contacts"
+      base = App.routing({item_id: @item_id, type_id: @type_id}, "contacts")
     else
-      base = "/contacts"
+      base = App.routing({}, "contacts_bis")
     return base if @isNew()
     base + (if base.charAt(base.length - 1) is "/" then "" else "/") + @id
 
