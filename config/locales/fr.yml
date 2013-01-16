@@ -7,11 +7,8 @@
 # Emended by Benjamin des Gachons and Patrick Chew : <http://www.fitima.org/docs/fiche.pdf>
 
 fr:
-  common_sentence:
-    confirm_delete: "Etes vous sur ?"
-  common_button:
-    submit: "Valider"
   items:
+    new_item: "Nouvelle objet"
     edit:
       title: "Titre"
       description: "Description"
@@ -25,6 +22,8 @@ fr:
       placeholder:
         descriptif: "La description"
   contacts:
+    new_contact: "Nouveau contact"
+    contact_lists: "Liste des contacts"
     index:
       assoc_contact: "Associer à ce contact"
       lastname: "Nom"

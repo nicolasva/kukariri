@@ -1,9 +1,6 @@
 en:
-  common_sentence:
-    confirm_delete: "Are you sure ?"
-  common_button:
-    submit: "Submit"
-  items: 
+  items:
+    new_item: "New Item" 
     edit:
       title: "Title"
       description: "Description"
@@ -13,6 +10,8 @@ en:
       placeholder:
         title: "The item title"
   contacts:
+    new_contact: "New contact"
+    contact_lists: "Contact lists"
     index:
       assoc_contact: "Associate contact"
       lastname: "Lastname"
