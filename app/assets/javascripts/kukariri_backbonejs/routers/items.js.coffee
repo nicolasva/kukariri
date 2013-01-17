@@ -1,8 +1,6 @@
 class App.Routers.Items extends Backbone.Router
   routes:
-    "/items/new": "new_item"
-    "/items/:id/edit" : "edit"
-    "/items/:id" : "destroy"
+    App.routing_yaml.routing_backbonejs.API.items.routes
 
   initialize: ->
     @translate = new App.Translate()

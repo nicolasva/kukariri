@@ -32,12 +32,12 @@
     Backbone.history.start()
     return
 
-routing_yaml = YAML.load('assets/kukariri_backbonejs/routing/routing.yml')
+App.routing_yaml = YAML.load('assets/kukariri_backbonejs/routing/routing.yml')
 App.routing = (hash = {}, route) ->
   #hash = {"item_id": 1}
   #console.log routing_yaml.routing
   route_val = ""
-  $.each(routing_yaml.routing.API, (key, val) ->
+  $.each(App.routing_yaml.routing.API, (key, val) ->
     if key == route
       route_val = val 
   )
@@ -49,6 +49,14 @@ App.routing = (hash = {}, route) ->
       route_val = route_val.replace(":"+key, val)
     )
     return route_val
+
+App.routing_backbone = (route) ->
+  route_val = ""
+  $.each(App.routing_yaml.routing_backbone.API, (key, val) ->
+    if key == route
+      route_val = val 
+  )
+  return route_val
 
 
 $(document).ready ->

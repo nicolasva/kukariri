@@ -1,13 +1,6 @@
 class App.Routers.Contacts extends Backbone.Router
   routes:
-    "/items/:item_id/types/:type_id/contacts": "index"
-    "/items/:item_id/types/:type_id/contacts/:id/delete": "destroy"
-    "/items/:item_id/types/:type_id/contacts/:id/edit" : "edit"
-    "/items/:item_id/types/:type_id/contacts/new" : "new"
-    "/contacts/new" : "new_contact"
-    "/contacts" : "index_all"
-    "/contacts/:id/edit" : "edit_all"
-    "/contacts/:id/delete" : "destroy_all"
+    App.routing_yaml.routing_backbonejs.API.contacts.routes
 
   initialize: ->
     @translate = new App.Translate()
