@@ -14,9 +14,6 @@ class App.Routers.Items extends Backbone.Router
       success: () ->
         @viewItemsNew = new App.Views.Items.New({translate: self.translate, item: self.item, type: self.type})
 
-  new: ->
-    @create()
-
   edit: (id) ->
     self = @
     @item = new App.Item(id: id)
@@ -31,39 +28,6 @@ class App.Routers.Items extends Backbone.Router
             self.pictures.fetch
               success: (collection, response) ->
                 @ViewsItemsEdit = new App.Views.Items.Edit(item: model, pictures: collection, translate: self.translate)
-
-  create: ->
-    self = @
-    @item.save({},{
-      success: (item) ->
-        hash_params_create_type = 
-          type:
-            descriptif: "Descriptif" 
-            item_id: item.toJSON().id
-            contact_id: null
-        @type = new App.Type()
-        @type.item_id = item.toJSON().id
-        @type.save(hash_params_create_type, {
-          success: (type) ->
-            hash_params_create_picture =
-              picture:
-                item_id: item.toJSON().id
-                type_id: type.toJSON().id
-            @picture = new App.Picture()
-            @picture.item_id = item.toJSON().id
-            @picture.type_id = type.toJSON().id
-            @picture.save(hash_params_create_picture, {
-              success: (picture) ->
-                window.location.hash = "#/items/#{item.toJSON().id}/edit"
-              error: (picture, response) ->
-                alert("Error  Create Picture")
-            })
-          error: (type, response) ->
-            alert("Error Create Type")
-        })
-      error: (item, response) ->
-        alert("Error Create Item")
-    })
 
   destroy: (id) ->
     @item = new App.Item(id: id)
