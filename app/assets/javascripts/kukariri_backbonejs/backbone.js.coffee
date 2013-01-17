@@ -34,8 +34,6 @@
 
 App.routing_yaml = YAML.load('assets/kukariri_backbonejs/routing/routing.yml')
 App.routing = (hash = {}, route) ->
-  #hash = {"item_id": 1}
-  #console.log routing_yaml.routing
   route_val = ""
   $.each(App.routing_yaml.routing.API, (key, val) ->
     if key == route
