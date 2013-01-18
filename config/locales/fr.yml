@@ -21,6 +21,9 @@ fr:
     form_common:
       placeholder:
         descriptif: "La description"
+  pictures:
+    photos:
+      take_photo: "Prendre une photo"
   contacts:
     new_contact: "Nouveau contact"
     contact_lists: "Liste des contacts"

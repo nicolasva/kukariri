@@ -33,6 +33,9 @@ en:
     form_common:
       placeholder:
         descriptif: "The description"
+  pictures:
+    photos:
+      take_photo: "Take photo"
   date:
     abbr_day_names:
     - Sun
