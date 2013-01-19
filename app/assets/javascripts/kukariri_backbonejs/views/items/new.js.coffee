@@ -7,6 +7,7 @@ class App.Views.Items.New extends Backbone.View
   events:
     "submit #edit_items" : "create"
     "click #select_files" : "select_files"
+    "click #cam_active" : "use_cam"
     "click .class_add_contact_item" : "associate_item_contact"
 
   initialize: (options) ->
@@ -30,6 +31,10 @@ class App.Views.Items.New extends Backbone.View
 
   render: ->
     $(@el).html(Haml.render(@template(), {locals: {name_type: "type[descriptif]", translate: @translate.toJSON(), page: window.location.hash.split("/")[window.location.hash.split("/").length-1]}}))
+
+  use_cam: (event) ->
+    alert("nicolas")
+    @ViewsPicturesPhotoShow = new App.Views.Pictures.Photos.Show({translate: @translate})
 
   select_files: (event) ->
     self = @

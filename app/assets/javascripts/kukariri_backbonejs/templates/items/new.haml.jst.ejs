@@ -17,8 +17,13 @@
         = item.types[0].descriptif
 
   %div#container
-    %span#select_files
-      = translate.items.edit.select_files
+    %ul
+      %li
+        %span#select_files
+          = translate.items.edit.select_files
+      %li
+        %span#cam_active
+          = "Use webcam to take photo"
     %div.caroussel.other_pictures
       %ul
         :if !_.isEqual(page, "new")
