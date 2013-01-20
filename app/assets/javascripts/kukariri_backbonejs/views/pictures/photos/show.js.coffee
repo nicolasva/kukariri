@@ -56,8 +56,8 @@ class App.Views.Pictures.Photos.Show extends Backbone.View
           @hash_picture = 
             picture:
               picture: 
-                url: "/"+picture.toJSON().url
-                current_path: "/"+picture.toJSON().url
+                url: picture.toJSON().url
+                current_path: picture.toJSON().url
               cached_path: picture.toJSON().cached_name
         else
           @hash_picture = 
@@ -70,11 +70,15 @@ class App.Views.Pictures.Photos.Show extends Backbone.View
               type_id: self.item.toJSON().types[0].id
 
         self.picture.save(@hash_picture,
-          success: (picture, response) ->
-            console.log picture.toJSON()
+          success: (response_picture, response) ->
+            console.log "nicolas"
+            console.log response_picture.toJSON()
+            console.log "end"
+            #console.log picture.toJSON()
+            @viewsPicturesDisplayPictures = new App.Views.Pictures.DisplayPictures({picture: response_picture, translate: self.translate})
           error: (picture, response) ->
             alert("error")
         )
 
     )
-    $(@el).append(image)
+    #$(@el).append(image)

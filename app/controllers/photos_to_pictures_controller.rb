@@ -5,9 +5,9 @@ class PhotosToPicturesController < ApplicationController
     @photos_file = params[:photos][:file].sub(/^data:image\/(png|jpg);base64,/, "")
     @random_photo = Random.rand(2000)
     @cached_name = "cam_to_photo_#{@random_photo}/photo_#{@random_photo}.png"
-    @url = "uploads/tmp/#{@cached_name}"
+    @url = "/uploads/tmp/#{@cached_name}"
     Dir.mkdir("#{Rails.root.to_s}/public/uploads/tmp/cam_to_photo_#{@random_photo}")
-    File.open("#{Rails.root.to_s}/public/#{@url}", "wb") do |file|
+    File.open("#{Rails.root.to_s}/public#{@url}", "wb") do |file|
       file.write(Base64.decode64(@photos_file))
     end
 
