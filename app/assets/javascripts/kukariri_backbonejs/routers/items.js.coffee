@@ -7,12 +7,16 @@ class App.Routers.Items extends Backbone.Router
     @libsLinkNewContact = new App.Libs.LinkNewContact()
     @item = new App.Item()
     @type = new App.Type()
+    @picture = new App.Picture()
+    @photos_to_pictures = new App.PhotosToPictures()
 
   new_item: ->
     self = @
     @translate.fetch
       success: () ->
-        @viewItemsNew = new App.Views.Items.New({translate: self.translate, item: self.item, type: self.type})
+        self.picture.fetch
+          success: (model, response) ->
+            @viewItemsNew = new App.Views.Items.New({translate: self.translate, item: self.item, type: self.type, photos_to_pictures: self.photos_to_pictures, picture: model})
 
   edit: (id) ->
     self = @

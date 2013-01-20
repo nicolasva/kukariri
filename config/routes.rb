@@ -27,6 +27,8 @@ Kukariri::Application.routes.draw do
       end
     end 
   end
+
+  resources :photos_to_pictures, :only => [:create]
   resources :attachments, :only => :create
   resources :translates, :only => :index
 

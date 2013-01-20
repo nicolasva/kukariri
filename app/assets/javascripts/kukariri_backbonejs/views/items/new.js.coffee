@@ -14,6 +14,8 @@ class App.Views.Items.New extends Backbone.View
     @item = options.item
     @type = options.type
     @translate = options.translate
+    @photos_to_pictures = options.photos_to_pictures
+    @picture = options.picture
     @render()
     $(".caroussel.other_pictures").children().first().sortable({
       items: '.picture_sort',
@@ -33,8 +35,8 @@ class App.Views.Items.New extends Backbone.View
     $(@el).html(Haml.render(@template(), {locals: {name_type: "type[descriptif]", translate: @translate.toJSON(), page: window.location.hash.split("/")[window.location.hash.split("/").length-1]}}))
 
   use_cam: (event) ->
-    alert("nicolas")
-    @ViewsPicturesPhotoShow = new App.Views.Pictures.Photos.Show({translate: @translate})
+    #alert("nicolas")
+    @ViewsPicturesPhotoShow = new App.Views.Pictures.Photos.Show({translate: @translate, photos_to_pictures: @photos_to_pictures, picture: @picture})
 
   select_files: (event) ->
     self = @

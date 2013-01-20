@@ -8,6 +8,7 @@ routing:
     provided_dates: "/items/:item_id/types/:type_id/contacts/:contact_id/provided_dates"
     types: "/items/:item_id/types"
     translates: "/translates"
+    photos_to_pictures: "/photos_to_pictures"
 
 routing_backbonejs:
   API:

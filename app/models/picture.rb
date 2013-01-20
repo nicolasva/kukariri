@@ -4,7 +4,7 @@ class Picture < ActiveRecord::Base
   attr_accessible :item_id
   attr_accessible :type_id
   mount_uploader :picture, PicturesUploader
-  before_save :build_picture_from_cache, :if => "remote_picture_url.blank?" 
+  #before_save :build_picture_from_cache, :if => "remote_picture_url.blank?" 
   belongs_to :item
   belongs_to :type
   accepts_nested_attributes_for :item
