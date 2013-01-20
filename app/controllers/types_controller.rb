@@ -36,7 +36,7 @@ class TypesController < ApplicationController
   # POST /types
   # POST /types.json
   def create
-    @type = Type.new(params[:type])
+    @type = Type.where(:item_id=>params[:item_id]).new(params[:type])
     respond_with(@type) do |format|
       if @type.save
         format.json { render json: @type }
@@ -50,7 +50,6 @@ class TypesController < ApplicationController
   # PUT /types/1.json
   def update
     @type = Type.find(params[:id])
-
     respond_with(@type) do |format|
       if @type.update_attributes(params[:type])
         format.json { render json: @type}

@@ -50,10 +50,8 @@ class App.Views.Pictures.Photos.Show extends Backbone.View
     hash_pictures_photo_cam = 
       photos:
         file: @canvas.toDataURL("image/png") 
-    console.log @photos_to_pictures
     @photos_to_pictures.save(hash_pictures_photo_cam, 
       success: (picture, response) ->
-        console.log picture.toJSON()
         if  _.isUndefined(self.item)
           @hash_picture = 
             picture:
@@ -71,7 +69,6 @@ class App.Views.Pictures.Photos.Show extends Backbone.View
               item_id: self.item.toJSON().id
               type_id: self.item.toJSON().types[0].id
 
-        console.log @hash_picture
         self.picture.save(@hash_picture,
           success: (picture, response) ->
             console.log picture.toJSON()

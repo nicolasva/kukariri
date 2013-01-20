@@ -25,16 +25,12 @@ class App.Views.Pictures.AddPictures extends Backbone.View
               item_id: self.item.toJSON().id
               type_id: self.item.toJSON().types[0].id
         else
-          console.log data.url
-          console.log "data_url"
-          console.log data.cached_name
           @hash_picture = 
             picture:
               picture:
                 url: data.url
                 current_path: "/uploads/tmp/#{data.cached_name}"
               cached_path: data.cached_name
-        console.log @hash_picture
         picture.save(@hash_picture,
           success: (picture, response) ->
             self.display_picture(picture.id, data)

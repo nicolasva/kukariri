@@ -75,8 +75,9 @@ class App.Views.Items.New extends Backbone.View
     self = @
     data = $(@id_form_update_edit).toJSON()
     @item.save(data,
-      success: (item, data) ->
+      success: (item, response) ->
         self.type.item_id = item.id
+        console.log data
         self.type.save(data,
           success: (type, response) ->
             $(".ui-sortable").children().each (key,value) ->
