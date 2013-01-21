@@ -45,8 +45,6 @@ class App.Views.Pictures.Photos.Show extends Backbone.View
     self = @
     image = new Image()
     image.src = @canvas.toDataURL("image/png")
-    #console.log @canvas.replace(/^data:image\/(png|jpg);base64,/, "")
-    console.log image.src
     hash_pictures_photo_cam = 
       photos:
         file: @canvas.toDataURL("image/png") 
