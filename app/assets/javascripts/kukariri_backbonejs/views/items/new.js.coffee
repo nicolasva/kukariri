@@ -77,7 +77,6 @@ class App.Views.Items.New extends Backbone.View
     @item.save(data,
       success: (item, response) ->
         self.type.item_id = item.id
-        console.log data
         self.type.save(data,
           success: (type, response) ->
             $(".ui-sortable").children().each (key,value) ->
