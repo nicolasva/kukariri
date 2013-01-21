@@ -15,6 +15,14 @@
 /tmp
 *.gem
 *.rbc
+*.png
+*.PNG
+*.jpg
+*.jpeg
+*.JPG
+*.JPEG
+*.bmp
+*.BMP
 *.swp
 *.*~
 .bundle
