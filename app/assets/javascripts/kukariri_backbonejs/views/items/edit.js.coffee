@@ -37,7 +37,7 @@ class App.Views.Items.Edit extends Backbone.View
 
   use_cam: (event) ->
     #alert("nicolas")
-    @ViewsPicturesPhotoShow = new App.Views.Pictures.Photos.Show({translate: @translate})
+    @ViewsPicturesPhotoShow = new App.Views.Pictures.Photos.Show({translate: @translate, item: @item})
 
   select_files: (event) ->
     self = @
