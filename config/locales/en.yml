@@ -1,6 +1,7 @@
 en:
   items:
-    new_item: "New Item" 
+    new_item: "New Item"
+    items_list: "Items list" 
     edit:
       title: "Title"
       description: "Description"

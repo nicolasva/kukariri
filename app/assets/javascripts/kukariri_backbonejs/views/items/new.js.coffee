@@ -64,8 +64,6 @@ class App.Views.Items.New extends Backbone.View
     })
 
   create: (event) -> 
-    #event.preventDefault()
-    #event.stopPropagation()
     @create_location(false)
 
   associate_item_contact: (event) ->

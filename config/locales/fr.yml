@@ -9,6 +9,7 @@
 fr:
   items:
     new_item: "Nouvelle objet"
+    items_list: "Liste des objets"
     edit:
       title: "Titre"
       description: "Description"
