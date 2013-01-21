@@ -21,7 +21,7 @@ class App.Views.ProvidedDates.Form extends Backbone.View
   checked_date_to_activation: (event) ->
     if $(event.target).attr("checked") == "checked"
       $(event.target).attr("value", true)
-      $(@el_date_to_activation).append(Haml.render(@template_form_date_to(), {locals: {provided_date: @provided_date.toJSON(), translate: @translate.toJSON()}}))
+      $(@el_date_to_activation).append(Haml.render(@template_form_date_to(), {locals: {provided_date: @provided_date.toJSON(), translate: @translate.toJSON(), page: window.location.hash.split("/")[window.location.hash.split("/").length-1]}}))
       $("#provided_date_date_to").datepicker()
     else
       $(event.target).attr("value", false)

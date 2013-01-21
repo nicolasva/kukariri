@@ -40,7 +40,10 @@ class App.Views.Contacts.New extends Backbone.View
             id: data["type"]["id"]
         self.type_selected.save(hash_type,{
           success: (type, response) ->
-            date_to = "" unless $("#provided_date_date_to_activation").attr("checked") == true
+            unless $("#provided_date_date_to_activation").attr("value") == true
+              date_to = "" 
+            else
+              date_to = data["provided_date"]["date_to"].split("/").reverse().join("-")
             hash_provided_date = 
               provided_date:
                 date_at: data["provided_date"]["date_at"].split("/").reverse().join("-")
