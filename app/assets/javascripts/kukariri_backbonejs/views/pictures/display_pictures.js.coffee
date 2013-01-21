@@ -8,7 +8,5 @@ class App.Views.Pictures.DisplayPictures extends Backbone.View
     @render()
 
   render: ->
-    console.log @picture.toJSON().picture.url
-    #console.log @translate.toJSON()
     $(@el).html(Haml.render(@template(), {locals: {picture: @picture.toJSON(), translate: @translate.toJSON()}}))
     $(@el).show()
