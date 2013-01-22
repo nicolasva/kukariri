@@ -19,10 +19,15 @@
         %li
           = link_to(t("items.new_item"), "/#/items/new")
 
+      %div
+        %ul
+          %li
+            = link_to(t("layout.logout"), destroy_user_session_path)
+
     %section.notice
       %ul
 
-    %section.container
+    %section.container.container-fluid
       = yield
       .modal
 

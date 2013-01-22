@@ -7,9 +7,13 @@
 # Emended by Benjamin des Gachons and Patrick Chew : <http://www.fitima.org/docs/fiche.pdf>
 
 fr:
+  layout:
+    logout: "Déconnection"
   items:
     new_item: "Nouvelle objet"
     items_list: "Liste des objets"
+    index: 
+      title: "Titre"
     edit:
       title: "Titre"
       description: "Description"

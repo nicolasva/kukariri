@@ -1,3 +1,7 @@
 fr:
   common_sentence:
     confirm_delete: "Etes vous sur ?"
+    edit: "Edition"
+    removable: "Suppression"
+    edit: "Editer"
+    delete: "Suppression"

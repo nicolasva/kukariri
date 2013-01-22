@@ -1,3 +1,7 @@
 en:
   common_sentence:
     confirm_delete: "Are you sure ?"
+    edit: "Editing"
+    removable: "Removable"
+    edit: "Edit"
+    delete: "Destroy"

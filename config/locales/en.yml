@@ -1,7 +1,11 @@
 en:
+  layout:
+    logout: "Logout"
   items:
     new_item: "New Item"
     items_list: "Items list" 
+    index:
+      title: "Title"
     edit:
       title: "Title"
       description: "Description"

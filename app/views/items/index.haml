@@ -1,19 +1,19 @@
 %h1
-  = "Listing items"
+  = t("items.items_list")
 
-%table
+%table.table
   %tr
     %th
-      = "Title"
+      = t("items.index.title")
     %th
-      = "Edit"
+      = t("common_sentence.edit")
     %th
-      = "Delete"
+      = t("common_sentence.removable")
   - @items.each do |item|
     %tr
       %td
         = item.title
       %td
-        = link_to('Edit', "/#/items/#{item.id}/edit")
+        = link_to(t("common_sentence.edit"), "/#/items/#{item.id}/edit", class: "btn btn-primary")
       %td
-        = link_to('Destroy', "/#/items/#{item.id}", method: :delete, data: { confirm: 'Are you sure?' })
+        = link_to(t("common_sentence.delete"), "/#/items/#{item.id}", method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger")
