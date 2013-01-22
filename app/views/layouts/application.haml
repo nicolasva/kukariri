@@ -9,17 +9,17 @@
       %meta{:content => u(cookies[Rails.application.config.session_options[:key]]), :name => "session-key-value"}
   %body.container-fluid
     %section.header
-      %ul
-        %li
+      %ul.span11
+        %li.span2
           = link_to(t("items.items_list"), items_path)
-        %li
+        %li.span2
           = link_to(t("contacts.new_contact"), "/#/contacts/new")
-        %li
+        %li.span2
           = link_to(t("contacts.contact_lists"), "/#/contacts")
-        %li
+        %li.span2
           = link_to(t("items.new_item"), "/#/items/new")
 
-      %div
+      %div.span1
         %ul
           %li
             = link_to(t("layout.logout"), destroy_user_session_path)
