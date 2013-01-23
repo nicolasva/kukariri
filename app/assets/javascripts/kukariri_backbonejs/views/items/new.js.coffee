@@ -32,7 +32,7 @@ class App.Views.Items.New extends Backbone.View
     })
 
   render: ->
-    $(@el).html(Haml.render(@template(), {locals: {name_type: "type[descriptif]", translate: @translate.toJSON(), page: window.location.hash.split("/")[window.location.hash.split("/").length-1]}}))
+    $(@el).html(Haml.render(@template(), {locals: {name_type: "item[type][descriptif]", translate: @translate.toJSON(), page: window.location.hash.split("/")[window.location.hash.split("/").length-1]}}))
 
   use_cam: (event) ->
     #alert("nicolas")

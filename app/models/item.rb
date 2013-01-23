@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-  attr_accessor :types, :pictures 
+  attr_accessor :type, :picture 
   attr_accessible :title, :type, :pictures
   attr_accessible :types_attributes
   attr_accessible :user_id
@@ -13,7 +13,11 @@ class Item < ActiveRecord::Base
   validates_presence_of :title
 
   def save_new
-    self.save
-
+    item = self.save
+    if self.save      
+      type = self.types.new(self.type)
+      type.save
+    end
+    return self
   end
 end
