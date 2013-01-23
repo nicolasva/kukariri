@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(:title => params[:item][:title], :user_id => current_user.id)
     respond_with(@item) do |format|
-      if @item.save_new
+      if @item.save_new(params[:item][:type], params[:item][:picture])
         format.json { render json: @item, status: :created }
       else
         format.json { render json: @item.errors, status: :unprocessable_entity }

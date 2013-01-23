@@ -1,6 +1,6 @@
 class Item < ActiveRecord::Base
-  attr_accessor :type, :picture 
-  attr_accessible :title, :type, :pictures
+  attr_accessor :type, :picture
+  attr_accessible :title
   attr_accessible :types_attributes
   attr_accessible :user_id
   attr_accessible :id
@@ -12,11 +12,16 @@ class Item < ActiveRecord::Base
   accepts_nested_attributes_for :types
   validates_presence_of :title
 
-  def save_new
+  def save_new(type_params,tab_pictures)
     item = self.save
     if self.save      
-      type = self.types.new(self.type)
-      type.save
+      type = self.types.new(type_params)
+      if type.save
+        tab_pictures["ids"].each do |value|
+          picture = Picture.find(value)
+          picture.update_attributes(:item_id => self.id, :type_id => type.id)
+        end
+      end
     end
     return self
   end

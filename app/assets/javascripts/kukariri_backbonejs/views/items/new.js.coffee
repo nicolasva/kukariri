@@ -75,61 +75,22 @@ class App.Views.Items.New extends Backbone.View
     tab_picture = new Array()
     $(".ui-sortable").children().each (key,value) ->
       tab_picture.push($(value).attr("id").split("_")[$(value).attr("id").split("_").length-1])
-    if _.isEmpty(tab_picture)
-      hash_data_picture =
-        item:
-          data.item
+    data =
+      item:
+        title: data.item.title
         type:
-          data.type
-    else
-      hash_data_picture =
-        item:
-          data.item
-        type:
-          data.type
+          descriptif: data.item.type.descriptif
         picture:
-          tab_picture
+          ids: tab_picture
 
 
-    @item.save(hash_data_picture,
+    @item.save(data,
       success: (item_response, response_item) ->
-        console.log "nicolas"
+        if hash == true 
+          window.location.hash = "#/items/#{item.id}/types/#{type.id}/contacts"
+        else
+          window.location = "/items"
       error: (item_response, response_item) ->
         alert("error")
     )
     return false
-
-        #@item.save(data,
-        #success: (item, response) ->
-        #self.type.item_id = item.id
-        #self.type.save(data,
-        #  success: (type, response) ->
-        #    nb_picture = $(".ui-sortable").children().length
-        #    $(".ui-sortable").children().each (key,value) ->
-        #      picture_id = $(value).attr("id").split("_")[$(value).attr("id").split("_").length-1]
-        #      @picture = new App.Picture()
-        #      @picture.id = picture_id
-        #      hash_picture = 
-        #        picture:
-        #          item_id: item.id
-        #          type_id: type.id
-        #      @picture.save(hash_picture, {
-                #success: (picture, response) ->
-                #  console.log self.cpt
-                #  self.cpt = self.cpt + 1
-                #   value = true
-                #  console.log "success picture"
-                #       error: (picture, response) -> 
-                #  console.log "error picture"
-                #})
-                #if hash == true 
-                #window.location.hash = "#/items/#{item.id}/types/#{type.id}/contacts"
-                #else
-                #window.location = "/items"
-                #error: (type, response) ->
-                #alert("Error")
-                #console.log(type)
-                #)
-                #error: (response) ->
-                #console.log response
-        #)
