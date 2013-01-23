@@ -1,8 +1,7 @@
 class App.Views.Pictures.AddPictures extends Backbone.View
   initialize: (options) ->
     @translate = options.translate
-    if _.isUndefined(options.item)
-      @item = options.item
+    @item = options.item unless _.isUndefined(options.item)   
     @pictures = options.pictures
     self = @
     new App.Libs.UploadPicture({
@@ -11,6 +10,7 @@ class App.Views.Pictures.AddPictures extends Backbone.View
       }, (up, file, data) ->
         picture = new App.Picture()
         unless _.isUndefined(self.item)
+          console.log "nicolas"
           picture.item_id = self.item.toJSON().id
           picture.type_id = self.item.toJSON().types[0].id
           @hash_picture = 

@@ -1,23 +1,26 @@
-%h1
-  = t("items.items_list")
+- unless @items.empty?
+  %h1
+    = t("items.items_list")
 
-%table.table
-  %tr
-    %th
-      = t("items.index.title")
-    %th
-      = t("common_sentence.edit")
-    %th
-      = t("common_sentence.removable")
-  - @items.each do |item|
+  %table.table
     %tr
-      %td
-        %ul.grid.row-fluid
-          %li.span4
-            = image_tag(item.pictures.where(:position => 0..1).first.picture.url)
-          %li.span8
-            = item.title
-      %td
-        = link_to(t("common_sentence.edit"), "/#/items/#{item.id}/edit", class: "btn btn-primary")
-      %td
-        = link_to(t("common_sentence.delete"), "/#/items/#{item.id}", method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger")
+      %th
+        = t("items.index.title")
+      %th
+        = t("common_sentence.edit")
+      %th
+        = t("common_sentence.removable")
+    - @items.each do |item|
+      %tr
+        %td
+          %ul.grid.row-fluid
+            %li.span4
+              = image_tag(item.pictures.where(:position => 0..1).first.picture.url)
+            %li.span8
+              = item.title
+        %td
+          = link_to(t("common_sentence.edit"), "/#/items/#{item.id}/edit", class: "btn btn-primary")
+        %td
+          = link_to(t("common_sentence.delete"), "/#/items/#{item.id}", method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger")
+- else
+  = t("items.empty.items_empty")

@@ -10,6 +10,8 @@ fr:
   layout:
     logout: "Déconnection"
   items:
+    empty:
+      items_empty: "Il n'y a pas d'objets enregistré"
     new_item: "Nouvelle objet"
     items_list: "Liste des objets"
     index: 

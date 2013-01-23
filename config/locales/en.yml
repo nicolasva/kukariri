@@ -2,6 +2,8 @@ en:
   layout:
     logout: "Logout"
   items:
+    empty:
+      items_empty: "Item List empty"
     new_item: "New Item"
     items_list: "Items list" 
     index:
