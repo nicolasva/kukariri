@@ -1,0 +1,2 @@
+require 'carmen'
+include Carmen

@@ -28,6 +28,12 @@ Kukariri::Application.routes.draw do
     end 
   end
 
+
+  scope do 
+    match "countries/:name" => "countries#show", :via => "GET"
+  end
+
+  resources :countries, :except => [:show, :index, :new, :edit, :create, :update, :destroy]
   resources :photos_to_pictures, :only => [:create]
   resources :attachments, :only => :create
   resources :translates, :only => :index

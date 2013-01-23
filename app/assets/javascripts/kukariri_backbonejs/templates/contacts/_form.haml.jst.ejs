@@ -1,4 +1,4 @@
-%p
+%p.span12
   %label{for: "contact_lastname"} = translate.activerecord.attributes.contact.lastname
   %br
   :if _.isEqual(page, "new")
@@ -6,7 +6,7 @@
   :if !_.isEqual(page, "new")
     %input.necessary{type: "text", id: "contact_lastname", name: "contact[lastname]", value: contact.lastname}
 
-%p
+%p.span12
   %label{for: "contact_firstname"} = translate.activerecord.attributes.contact.firstname
   %br
   :if _.isEqual(page, "new")
@@ -14,15 +14,15 @@
   :if !_.isEqual(page, "new")
     %input.necessary{type: "text", id: "contact_firstname", name: "contact[firstname]", value: contact.firstname}
 
-%p
+%p.span12
   %label{for: "contact_email"} = translate.activerecord.attributes.contact.email
   %br
   :if _.isEqual(page, "new")
-    %input{type: "text", id: "contact_email", name: "contact[email]", placeholder: translate.contacts.form_common.placeholder.firstname}
+    %input{type: "text", id: "contact_email", name: "contact[email]", placeholder: translate.contacts.form_common.placeholder.email}
   :if !_.isEqual(page, "new")
     %input{type: "text", id: "contact_email", name: "contact[email]", value: contact.email}
 
-%p
+%p.span12
   %label{for: "contact_tel_home"} = translate.activerecord.attributes.contact.tel_phone
   %br
   :if _.isEqual(page, "new")
@@ -30,7 +30,7 @@
   :if !_.isEqual(page, "new")
     %input{type: "tel", id: "contact_tel_home", name: "contact[tel_home]", value: contact.tel_home}
 
-%p
+%p.span12
   %label{for: "contact_tel_mobil"} = translate.activerecord.attributes.contact.tel_mobil
   %br
   :if _.isEqual(page, "new")
@@ -38,7 +38,7 @@
   :if !_.isEqual(page, "new")
     %input{type: "tel", id: "contact_tel_mobil", name: "contact[tel_mobil]", value: contact.tel_mobil}
 
-%p
+%p.span12
   %label{for: "contact_adress"} = translate.activerecord.attributes.contact.adress
   %br
   :if _.isEqual(page, "new")
@@ -46,7 +46,7 @@
   :if !_.isEqual(page, "new")
     %input{type: "text", id: "contact_adress" , name: "contact[adress]", value: contact.adress}
 
-%p
+%p.span12
   %label{for: "contact_country"} = translate.activerecord.attributes.contact.country
   %br
   :if _.isEqual(page, "new")

@@ -32,6 +32,7 @@ gem 'devise'
 gem 'devise-encryptable'
 gem 'tire'
 gem 'haml'
+gem 'carmen', :git => "https://github.com/jim/carmen.git"
 gem 'carrierwave'
 gem 'rmagick'
 
