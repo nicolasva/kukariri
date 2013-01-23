@@ -1,47 +1,50 @@
-%form#edit_items
-  %p
-    %label{for: "item_title"} = translate.items.edit.title
-    %br
-    :if _.isEqual(page, "new")
-      %input{type: "text", id: "item_title", name: "item[title]", placeholder: translate.items.form_common.placeholder.title}
-    :if !_.isEqual(page, "new")
-      %input{type: "text", id: "item_title", name: "item[title]", value: item.title}
+%div.row-fluid
+  %form#edit_items
+    %div#items.span12
+      %ul.grid.row-fluid
+        %li.span6
+          %label{for: "item_title"} = translate.items.edit.title
+          %br
+          :if _.isEqual(page, "new")
+            %input.input-medium.search-query{type: "text", id: "item_title", name: "item[title]", placeholder: translate.items.form_common.placeholder.title}
+          :if !_.isEqual(page, "new")
+            %input.input-medium.search-query{type: "text", id: "item_title", name: "item[title]", value: item.title}
 
-  %p
-    %label{for: "item_types_attributes_0_descriptif"} = translate.items.edit.description
-    %br
-    :if _.isEqual(page, "new")
-      %textarea{id: "item_types_attributes_0_descriptif", name: name_type, placeholder: translate.types.form_common.placeholder.descriptif}
-    :if !_.isEqual(page, "new")
-      %textarea{id: "item_types_attributes_0_descriptif", name: name_type}
-        = item.types[0].descriptif
+        %li.span6
+          %label{for: "item_types_attributes_0_descriptif"} = translate.items.edit.description
+          %br
+          :if _.isEqual(page, "new")
+            %textarea.input-medium.search-query{id: "item_types_attributes_0_descriptif", name: name_type, placeholder: translate.types.form_common.placeholder.descriptif}
+          :if !_.isEqual(page, "new")
+            %textarea.input-medium.search-query{id: "item_types_attributes_0_descriptif", name: name_type}
+              = item.types[0].descriptif
 
-  %div#container
-    %ul.grid.row-fluid
-      %li.span6
-        %span#select_files
-          = translate.items.edit.select_files
-      %li.span6
-        %span#cam_active
-          = "Use webcam to take photo"
-    %div.caroussel.other_pictures
-      %ul
-        :if !_.isEqual(page, "new")
-          :each picture in pictures
-            %li{class: 'picture_sort', id: 'picture_'+picture.id}
-              %div.img_picture_url
-                %img{src: picture.picture.url}
-              %div.img_button_admin_img
-                %ul
-                  %li
-                    %a{href:"#/pictures/edit/"+picture.id}
-                      = translate.common_link.update
-                  %li
-                    %a{href: "#/pictures/destroy/"+picture.id}
-                      = translate.common_link.delete
-  .actions
-    %ul
-      %li
-        %input{type: "button", name: "button_items_go_contact", value: translate.items.edit.add_contact_for_item, class: "class_add_contact_item"}
-      %li
-        %input{type: "submit", name: "submit_items", value: translate.common_button.submit, class: "id_submit_items"}
+    %div#container.span12
+      %ul.grid.row-fluid
+        %li.span6
+          %span.btn#select_files
+            = translate.items.edit.select_files
+        %li.span6
+          %span.btn#cam_active
+            = "Use webcam to take photo"
+      %div.caroussel.other_pictures.span12
+        %ul
+          :if !_.isEqual(page, "new")
+            :each picture in pictures
+              %li{class: 'picture_sort', id: 'picture_'+picture.id}
+                %div.img_picture_url
+                  %img{src: picture.picture.url}
+                %div.img_button_admin_img
+                  %ul
+                    %li
+                      %a{href:"#/pictures/edit/"+picture.id}
+                        = translate.common_link.update
+                    %li
+                      %a{href: "#/pictures/destroy/"+picture.id}
+                        = translate.common_link.delete
+    .actions.span12
+      %ul.grid.row-fluid
+        %li.span6
+          %input.class_add_contact_item.btn.btn-success{type: "button", name: "button_items_go_contact", value: translate.items.edit.add_contact_for_item}
+        %li.span6
+          %input.id_submit_items.btn.btn-info{type: "submit", name: "submit_items", value: translate.common_button.submit}

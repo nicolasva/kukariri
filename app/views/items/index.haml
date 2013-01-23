@@ -12,7 +12,11 @@
   - @items.each do |item|
     %tr
       %td
-        = item.title
+        %ul.grid.row-fluid
+          %li.span4
+            = image_tag(item.pictures.where(:position => 0..1).first.picture.url)
+          %li.span8
+            = item.title
       %td
         = link_to(t("common_sentence.edit"), "/#/items/#{item.id}/edit", class: "btn btn-primary")
       %td
