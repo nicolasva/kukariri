@@ -45,7 +45,7 @@ class App.Views.Items.New extends Backbone.View
       success: () ->
         self.pictures.fetch
           success: (collection, response) ->
-            @viewAddPictures = new App.Views.Pictures.AddPictures({item: self.item, pictures: collection, translate: self.translate})
+            @viewAddPictures = new App.Views.Pictures.AddPictures({pictures: collection, translate: self.translate})
 
   init_uploader: ->
     @uploader = new plupload.Uploader({
@@ -70,6 +70,7 @@ class App.Views.Items.New extends Backbone.View
     @create_location(true)
 
   create_location: (hash)  ->
+    @cpt = 0
     self = @
     data = $(@id_form_update_edit).toJSON()
     @item.save(data,
@@ -77,6 +78,7 @@ class App.Views.Items.New extends Backbone.View
         self.type.item_id = item.id
         self.type.save(data,
           success: (type, response) ->
+            nb_picture = $(".ui-sortable").children().length
             $(".ui-sortable").children().each (key,value) ->
               picture_id = $(value).attr("id").split("_")[$(value).attr("id").split("_").length-1]
               @picture = new App.Picture()
@@ -87,11 +89,14 @@ class App.Views.Items.New extends Backbone.View
                   type_id: type.id
               @picture.save(hash_picture, {
                 #success: (picture, response) ->
+                #  console.log self.cpt
+                #  self.cpt = self.cpt + 1
+                #   value = true
                 #  console.log "success picture"
                 error: (picture, response) -> 
                   console.log "error picture"
               })
-            if hash == true
+            if hash == true 
               window.location.hash = "#/items/#{item.id}/types/#{type.id}/contacts"
             else
               window.location = "/items"

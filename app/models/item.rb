@@ -1,5 +1,6 @@
 class Item < ActiveRecord::Base
-  attr_accessible :title
+  attr_accessor :types, :pictures 
+  attr_accessible :title, :type, :pictures
   attr_accessible :types_attributes
   attr_accessible :user_id
   attr_accessible :id
@@ -10,4 +11,9 @@ class Item < ActiveRecord::Base
   accepts_nested_attributes_for :pictures
   accepts_nested_attributes_for :types
   validates_presence_of :title
+
+  def save_new
+    self.save
+
+  end
 end
