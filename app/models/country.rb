@@ -1,7 +1,6 @@
 class Country
   class << self
     def show_country(name)
-      # "Tunisia".scan(/#{val}/)
       country = Carmen::Country.named(name)
       return country.name
     end
