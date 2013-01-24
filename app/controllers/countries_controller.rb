@@ -1,9 +1,14 @@
 class CountriesController < ApplicationController
+  respond_to :json
+  def index
+    @country = Country.find_all_country
+
+    respond_with(@country)
+  end
+
   def show
     @country = Country.find_country(params[:name])
 
-    respond_to do |format|
-      format.json { render json: @country }
-    end
+    respond_with(@country)
   end
 end

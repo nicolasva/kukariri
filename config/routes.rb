@@ -33,7 +33,7 @@ Kukariri::Application.routes.draw do
     match "countries/:name" => "countries#show", :via => "GET"
   end
 
-  resources :countries, :except => [:show, :index, :new, :edit, :create, :update, :destroy]
+  resources :countries, :except => [:show, :new, :edit, :create, :update, :destroy]
   resources :photos_to_pictures, :only => [:create]
   resources :attachments, :only => :create
   resources :translates, :only => :index
