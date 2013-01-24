@@ -9,7 +9,7 @@ class Country
     tab_country = Array.new
     self.all_country.each do |value|
       value.each do |key, value|
-        unless value.scan(/#{name.capitalize}/).empty?
+        unless value.capitalize.scan(/#{name.capitalize}/).empty?
           hash_country = Hash.new
           hash_country["country"] = value
           tab_country.push(hash_country)
