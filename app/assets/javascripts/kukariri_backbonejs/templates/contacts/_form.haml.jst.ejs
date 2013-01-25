@@ -46,11 +46,3 @@
   :if !_.isEqual(page, "new")
     %input{type: "text", id: "contact_adress" , name: "contact[adress]", value: contact.adress}
 
-%p.span12
-  %label{for: "contact_country"} = translate.activerecord.attributes.contact.country
-  %br
-  :if _.isEqual(page, "new")
-    %input.necessary{type: "text", id: "contact_country", name: "contact[country]", placeholder: translate.contacts.form_common.placeholder.country}
-  :if !_.isEqual(page, "new")
-    %input.necessary{type: "text", id: "contact_country", name: "contact[country]", value: contact.country}
-

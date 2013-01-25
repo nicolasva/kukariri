@@ -7,6 +7,7 @@ class App.Routers.Contacts extends Backbone.Router
     @provided_dates = new App.Collections.ProvidedDates()
     @provided_date = new App.ProvidedDate()
     @contacts = new App.Collections.Contacts()
+    @countries = new App.Collections.Countries()
     @types = new App.Collections.Types()
 
   index: (item_id, type_id) ->
@@ -48,7 +49,9 @@ class App.Routers.Contacts extends Backbone.Router
       success: () ->
         self.contact.fetch
           success: (model, response) ->
-            @ViewsContactsNewContact = new App.Views.Contacts.NewContact({contact: model, translate: self.translate})
+            self.countries.fetch 
+              success: (collection, response_collection) ->
+                @ViewsContactsNewContact = new App.Views.Contacts.NewContact({contact: model, translate: self.translate, countries: collection})
 
   destroy_all: (id) ->
     contact = @contacts.get(id)

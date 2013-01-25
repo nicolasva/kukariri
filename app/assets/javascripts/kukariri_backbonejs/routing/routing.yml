@@ -9,6 +9,7 @@ routing:
     types: "/items/:item_id/types"
     translates: "/translates"
     photos_to_pictures: "/photos_to_pictures"
+    countries: "/countries"
 
 routing_backbonejs:
   API:
