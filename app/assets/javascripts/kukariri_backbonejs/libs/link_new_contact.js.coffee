@@ -6,6 +6,6 @@ class App.Libs.LinkNewContact extends Backbone.View
         if regex.test(window_location_hash) == true
           item_id = window_location_hash.split("/")[2]
           type_id = window_location_hash.split("/")[4]
-          $(".header").children().first().children().first().children().first().attr("href", "#/items/#{item_id}/types/#{type_id}/contacts/new")
+          $(".header").children().first().children().first().children()[1].attr("href", "#/items/#{item_id}/types/#{type_id}/contacts/new")
         else
-          $(".header").children().first().children().first().children().first().attr("href", "#/contacts/new")
+          $(".header").children().first().children().first().children()[1].attr("href", "#/contacts/new")
