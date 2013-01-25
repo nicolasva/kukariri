@@ -11,9 +11,10 @@ class App.Views.Countries.SelectCountriesForm extends Backbone.View
   render: ->
     self = @
     $(@el).children().first().append(Haml.render(@template(), {locals: {translate: @translate.toJSON()}}))
-    
+   
     $.each(@countries.toJSON(), (key, countrie) ->
       $(self.el).children().first().children().last().children().last().append(Haml.render(self.template_option_value(), {locals: {countrie: countrie}}))
     )
+    $(self.el).children().first().children().last().children().last().select2()
     #$(@el).append(Haml.render(@template))
 
