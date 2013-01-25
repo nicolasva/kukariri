@@ -1,4 +1,6 @@
 en:
+  killbills:
+    lending_money: "lending money"
   layout:
     logout: "Logout"
   items:

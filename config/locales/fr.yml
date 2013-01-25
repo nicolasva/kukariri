@@ -7,6 +7,8 @@
 # Emended by Benjamin des Gachons and Patrick Chew : <http://www.fitima.org/docs/fiche.pdf>
 
 fr:
+  killbills:
+    lending_money: "Prêt d'argent"
   layout:
     logout: "Déconnection"
   items:
