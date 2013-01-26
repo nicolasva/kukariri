@@ -2,28 +2,32 @@
   %h1
     = t("items.items_list")
 
-  %table.table
-    %tr
-      %th
-        = t("items.index.title")
-      %th
-        = t("common_sentence.edit")
-      %th
-        = t("common_sentence.removable")
-    - @items.each do |item|
+  %table.table.tablesorter
+    %thead
       %tr
-        %td
-          - unless item.pictures.nil? || item.pictures.empty?
-            %ul.grid.row-fluid
-              %li.span4
-                = image_tag(item.pictures.where(:position => 0..1).first.picture.url)
-              %li.span8
-                = item.title
-          - else
-            = item.title
-        %td
-          = link_to(t("common_sentence.edit"), "/#/items/#{item.id}/edit", class: "btn btn-primary")
-        %td
-          = link_to(t("common_sentence.delete"), "/#/items/#{item.id}", method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger")
+        %th
+          = t("items.index.title")
+        %th
+          = t("common_sentence.edit")
+        %th
+          = t("common_sentence.removable")
+    %tbody
+      - @items.each do |item|
+        %tr
+          %td
+            - unless item.pictures.nil? || item.pictures.empty?
+              %ul.grid.row-fluid
+                %li.span4
+                  = image_tag(item.pictures.where(:position => 0..1).first.picture.url)
+                %li.span8
+                  = item.title
+            - else
+              = item.title
+          %td
+            = link_to(t("common_sentence.edit"), "/#/items/#{item.id}/edit", class: "btn btn-primary")
+          %td
+            = link_to(t("common_sentence.delete"), "/#/items/#{item.id}", method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger")
 - else
   = t("items.empty.items_empty")
+
+= javascript_include_tag("rails/items")

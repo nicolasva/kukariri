@@ -7,4 +7,6 @@
 #= require ./bootstrap-dropdown
 #= require ./plupload.full
 #= require ./select2/select2
+#= require ./tablesorter/jquery-latest
+#= require ./tablesorter/jquery.tablesorter.min
 #= require ./yaml.min
