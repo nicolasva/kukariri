@@ -4,4 +4,4 @@ class App.Libs.TableSorter extends Backbone.View
     @tablesorter()
 
   tablesorter: ->
-    $(@el).tablesorter()
+    $(self.el).tablesorter()
