@@ -35,6 +35,7 @@ fr:
       take_photo: "Prendre une photo"
   contacts:
     new_contact: "Nouveau contact"
+    add_new_contact: "Ajouter un nouveau contact"
     contact_lists: "Liste des contacts"
     index:
       assoc_contact: "Associer à ce contact"

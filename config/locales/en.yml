@@ -20,6 +20,7 @@ en:
         title: "The item title"
   contacts:
     new_contact: "New contact"
+    add_new_contact: "Add new contact"
     contact_lists: "Contact lists"
     index:
       assoc_contact: "Associate contact"

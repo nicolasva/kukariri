@@ -16,6 +16,7 @@ class App.Views.Contacts.New extends Backbone.View
     @item_id = options.item_id
     @type_id = options.type_id
     @types = options.types
+    @countries = options.countries
     @provided_date = options.provided_date
     @type_selected = options.type_selected
     @contact = options.contact
@@ -25,6 +26,7 @@ class App.Views.Contacts.New extends Backbone.View
     $(@el).html(Haml.render(@template(), {locals: {translate: @translate.toJSON()}}))
     el_contact_form = $('.actions').children().first()
     el_contact_form.append(Haml.render(@template_contact_form(), {locals: {contact: @contact.toJSON(), translate: @translate.toJSON(), page: window.location.hash.split("/")[window.location.hash.split("/").length-1]}}))
+    @ViewsCountriesSelectCountriesForm = new App.Views.Countries.SelectCountriesForm({countries: @countries, translate: @translate})
     @viewProvidedDates = new App.Views.ProvidedDates.Form({provided_date: @provided_date, el: el_contact_form, translate: @translate})
     el_contact_form.append(Haml.render(@template_type_form(), {locals: {types: @types.toJSON(), type_selected: @type_selected.toJSON(), contact: "", name: "type", translate: @translate.toJSON()}}))
     $("#provided_date_at").datepicker()

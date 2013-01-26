@@ -148,5 +148,7 @@ class App.Routers.Contacts extends Backbone.Router
                     self.provided_date.contact_id = "new"
                     self.provided_date.fetch
                       success: (provided_date, response_provided_date) ->
-                        @ViewContactNew = new App.Views.Contacts.New({contact: model, item_id: item_id, type_id: type_id, types: collection, type_selected: type_selected, provided_date: provided_date, translate: self.translate})
+                        self.countries.fetch
+                          success: (collection, response) ->
+                            @ViewContactNew = new App.Views.Contacts.New({contact: model, item_id: item_id, type_id: type_id, types: collection, type_selected: type_selected, provided_date: provided_date, translate: self.translate, countries: collection})
 
