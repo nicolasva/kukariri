@@ -9,7 +9,7 @@ class CreatePictures < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :pictures, [:item_id], :name => "index_items_on_pictures"
-    add_index :pictures, [:type_id], :name => "index_types_on_pictures"
+    add_index :pictures, [:item_id], :name => "index_items_on_pictures", :unique => false
+    add_index :pictures, [:type_id], :name => "index_types_on_pictures", :unique => false
   end
 end
