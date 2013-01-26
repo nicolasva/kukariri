@@ -18,7 +18,7 @@ class App.Routers.Contacts extends Backbone.Router
       success: () ->
         self.contacts.fetch
           success: (collection, response) ->
-            @ViewsContactsIndex = new App.Views.Contacts.Index({contacts: collection, item_id: item_id, type_id: type_id, translate: self.translate})
+            @ViewsContactsIndex = new App.Views.Contacts.Index({contacts: collection, item_id: item_id, type_id: type_id, translate: self.translate, link: "/#/items/"+item_id+"/types/"+type_id+"/contacts/new"})
 
   index_all: ->
     self = @
@@ -26,7 +26,7 @@ class App.Routers.Contacts extends Backbone.Router
       success: () ->
         self.contacts.fetch 
           success: (collection, response) ->
-            @ViewsContactsIndex = new App.Views.Contacts.Index({contacts: collection, translate: self.translate})
+            @ViewsContactsIndex = new App.Views.Contacts.Index({contacts: collection, translate: self.translate, link: "/#/contacts/new"})
 
   edit_all: (id) ->
     self = @
