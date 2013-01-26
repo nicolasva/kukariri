@@ -1,20 +1,22 @@
-%table.table
-  %tr
-    %th
-      = translate.contacts.index.assoc_contact
-    %th
-      = translate.activerecord.attributes.contact.lastname
-    %th
-      = translate.activerecord.attributes.contact.firstname
-    %th
-      = translate.contacts.index.edit
-    %th
-      = translate.contacts.index.destroy
+%table.table.tablesorter
+  %thead
+    %tr
+      %th
+        = translate.contacts.index.assoc_contact
+      %th
+        = translate.activerecord.attributes.contact.lastname
+      %th
+        = translate.activerecord.attributes.contact.firstname
+      %th
+        = translate.contacts.index.edit
+      %th
+        = translate.contacts.index.destroy
   :each contact in contacts
-    %tr.contact_lists{id: "contact_lists_"+contact.id}
-      %td
-        = "checkbox" 
-      %td
-        = contact.lastname
-      %td
-        = contact.firstname
+    %tbody
+      %tr.contact_lists{id: "contact_lists_"+contact.id}
+        %td
+          = "checkbox" 
+        %td
+          = contact.lastname
+        %td
+          = contact.firstname

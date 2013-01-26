@@ -23,4 +23,5 @@ class App.Views.Contacts.Index extends Backbone.View
       else
         $(@el_tr_contact_lists).append(Haml.render(self.template_contact_edit_delete(), {locals: {contact: val, translate: self.translate.toJSON()}}))
     )
+    @LibsTableSorter = new App.Libs.TableSorter(".table")
 

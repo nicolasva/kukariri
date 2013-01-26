@@ -16,5 +16,4 @@ class App.Views.Countries.SelectCountriesForm extends Backbone.View
       $(self.el).children().first().children().last().children().last().append(Haml.render(self.template_option_value(), {locals: {countrie: countrie}}))
     )
     $(self.el).children().first().children().last().children().last().select2()
-    #$(@el).append(Haml.render(@template))
 
