@@ -9,5 +9,8 @@ class App.Routers.VcfToContacts extends Backbone.Router
     self = @
     @translate.fetch
       success: () ->
-        @viewVcfToContacts = new App.Views.VcfToContacts.VcfToContacts({translate: self.translate.toJSON()})
+        @viewVcfToContacts = new App.Views.VcfToContacts.VcfToContacts({translate: self.translate.toJSON()},
+        (up, file, data) ->
+          console.log data
+        )
 

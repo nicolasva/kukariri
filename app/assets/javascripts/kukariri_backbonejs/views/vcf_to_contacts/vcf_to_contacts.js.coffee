@@ -3,18 +3,13 @@ class App.Views.VcfToContacts.VcfToContacts extends Backbone.View
   template: JST["kukariri_backbonejs/templates/vcf_to_contacts/create"]
 
   events: 
-    "submit #add_vcf_cart_to_contact": "create"
+    "click #add_vcf_cart_to_contact": "create"
 
-  initialize: (options) ->
+  initialize: (options, callback) ->
+    @callback = callback
     @translate = options.translate
     @render()
-
-  render: ->
-    $(@el).html(Haml.render(@template(), {locals: {translate: @translate}}))
-    @uploader()
-
-  uploader: ->
-    $("#uploader").pluploadQueue({
+    @uploaded = $("#uploader").pluploadQueue({
       runtimes: 'gears,flash,silverlight,browserplus,html5'
       url: '/attachments.js'
       max_file_size: '10mb'
@@ -34,18 +29,18 @@ class App.Views.VcfToContacts.VcfToContacts extends Backbone.View
       silverlight_xap_url: '/assets/silverlight/plupload.silverlight.xap'
     })
 
+
+  render: ->
+    $(@el).html(Haml.render(@template(), {locals: {translate: @translate}}))
+  
   create: (event) ->
-    uploader = $("#uploader").pluploadQueue()
-    if uploader.files.length > 0
-      uploader.bind('StateChanged', ->
-        $("#add_vcf_cart_to_contact")[0].submit() if uploader.files.length == (uploader.total.uploaded + uploader.total.failed)
-      )
-      uploader.start()
-    else
-      alert("You must queue at least on file.")
-
-    return false
-
-
-
+    @uploader = $('#uploader').pluploadQueue()
+    console.log @uploader.files
+    #if @uploaded.files.length > 0
+    #  @uploaded.bind('StateChanged', ->
+    #    console.log(@uploaded.files) 
+        #if @uploaded.files.length == (@uploaded.total.uploaded + @uploaded.total.failed)
+        #  )
+        #@uploaded.start()
+        #return false
 
