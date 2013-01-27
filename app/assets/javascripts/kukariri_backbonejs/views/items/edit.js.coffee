@@ -36,7 +36,6 @@ class App.Views.Items.Edit extends Backbone.View
     $(@el).html(Haml.render(@template(), {locals: {item: @item.toJSON(), page: window.location.hash.split("/")[window.location.hash.split("/").length-1], pictures: @pictures.toJSON(), translate: @translate.toJSON(), name_type: "item[types_attributes][0][descriptif]", page: window.location.hash.split("/")[window.location.hash.split("/").length-1]}}))
 
   use_cam: (event) ->
-    #alert("nicolas")
     @ViewsPicturesPhotoShow = new App.Views.Pictures.Photos.Show({translate: @translate, item: @item})
 
   select_files: (event) ->
@@ -50,22 +49,6 @@ class App.Views.Items.Edit extends Backbone.View
           success: (collection, response) ->
             @viewAddPictures = new App.Views.Pictures.AddPictures({item: self.item, pictures: collection, translate: self.translate})
   
-  init_uploader: ->
-    @uploader = new plupload.Uploader({
-      runtimes: 'gears,html5,flash,silverlight,browserplus',
-      browse_button: 'pickfiles',
-      container: '.container',
-      max_file_size: '10mb',
-      url: '/attachments.js',
-      flash_swf_url: '/assets/plupload.flash.swf'
-      silverlight_xap_url: '/assets/plupload.silverlight.xap'
-      multipart: true
-      filters: [
-        {title : "Image files", extensions : "JPG,JPEG,jpeg,jpg,gif,png"}
-      ]
-
-    })
-
   update: (event) ->
     event.preventDefault()
     event.stopPropagation()

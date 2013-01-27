@@ -69,14 +69,9 @@ class App.Views.Pictures.Photos.Show extends Backbone.View
 
         self.picture.save(@hash_picture,
           success: (response_picture, response) ->
-            console.log "nicolas"
-            console.log response_picture.toJSON()
-            console.log "end"
-            #console.log picture.toJSON()
             @viewsPicturesDisplayPictures = new App.Views.Pictures.DisplayPictures({picture: response_picture, translate: self.translate})
           error: (picture, response) ->
             alert("error")
         )
 
     )
-    #$(@el).append(image)

@@ -5,7 +5,9 @@
 #= require ./bootstrap.min
 #= require ./bootstrap-modal
 #= require ./bootstrap-dropdown
+#= require ./browserplus-min
 #= require ./plupload.full
+#= require ./jquery.plupload.queue
 #= require ./tablesorter/jquery.tablesorter.min
 #= require ./select2/select2
 #= require ./yaml.min

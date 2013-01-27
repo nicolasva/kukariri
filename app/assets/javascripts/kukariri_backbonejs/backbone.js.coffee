@@ -24,11 +24,13 @@
     States: {}
     Types: {}
     Users: {}
+    VcfToContacts: {}
   Routers: {}
   Libs: {}
   init: ->
     new App.Routers.Items()
     new App.Routers.Contacts()
+    new App.Routers.VcfToContacts()
     Backbone.history.start()
     return
 

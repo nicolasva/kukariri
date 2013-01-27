@@ -3,7 +3,7 @@ class App.Libs.UploadPicture extends Backbone.View
     runtimes: "html5,flash,silverlight"
     max_file_size: '15mb'
     filters: [
-      {title: "Image files", extensions: "jpg,jpeg,gif,png"}
+      {title: "Files", extensions: "jpg,jpeg,gif,png,vcf"}
     ]
     flash_swf_url: '/assets/plupload.flash.swf'
     silverlight_xap_url: '/assets/plupload.silverlight.xap'

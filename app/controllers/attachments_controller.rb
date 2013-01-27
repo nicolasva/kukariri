@@ -5,7 +5,12 @@ class AttachmentsController < ApplicationController
     #@uploader = case params[:attachment_type]
     #  when "picture" then PicturesUploader.new
     #end
-    @uploader = PicturesUploader.new
+    Rails.logger.info params[:attachment_type]
+    if params[:attachment_type] == "vcf_to_contacts"
+      @uploader = VcfUploader.new
+    else
+      @uploader = PicturesUploader.new
+    end
     @uploader.cache!(params[:file]) unless params[:file].nil?
     
     respond_to do |format|

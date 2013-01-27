@@ -3,6 +3,9 @@ class App.Views.Contacts.Index extends Backbone.View
   template: JST["kukariri_backbonejs/templates/contacts/index"]
 
   template_no_contact: JST["kukariri_backbonejs/templates/contacts/no_contact"]
+ 
+  template_vcf_to_contacts: JST["kukariri_backbonejs/templates/vcf_to_contacts/link_to_export_vcf_to_contacts"]
+
   initialize: (options) ->
     @link = options.link
     unless _.isUndefined(options.item_id)
@@ -18,7 +21,8 @@ class App.Views.Contacts.Index extends Backbone.View
   render: ->
     self = @
     if _.isEmpty(@contacts.toJSON())
-      $(@el).html(Haml.render(@template_no_contact(), {locals: {translate: @translate.toJSON(), link: @link}}))
+      $(@el).html(Haml.render(@template_no_contact(), {locals: {translate: @translate.toJSON(), link: @link}})) 
+      $(@el).children().first().append(Haml.render(self.template_vcf_to_contacts(), {locals: {translate: self.translate.toJSON()}}))
     else
       $(@el).html(Haml.render(@template(), {locals: {contacts: @contacts.toJSON(), translate: @translate.toJSON()}}))
       $.each(@contacts.toJSON(), (key,val) ->
@@ -28,4 +32,5 @@ class App.Views.Contacts.Index extends Backbone.View
         else
           $(@el_tr_contact_lists).append(Haml.render(self.template_contact_edit_delete(), {locals: {contact: val, translate: self.translate.toJSON()}}))
       )
+      $(@el).children().last().append(Haml.render(self.template_vcf_to_contacts(), {locals: {translate: self.translate.toJSON()}}))
 

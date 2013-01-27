@@ -32,7 +32,7 @@ Kukariri::Application.routes.draw do
   scope do 
     match "countries/:name" => "countries#show", :via => "GET"
   end
-
+  resources :vcf_to_contacts, :only => [:create]
   resources :countries, :except => [:show, :new, :edit, :create, :update, :destroy]
   resources :photos_to_pictures, :only => [:create]
   resources :attachments, :only => :create
