@@ -34,8 +34,6 @@ class App.Views.VcfToContacts.VcfToContacts extends Backbone.View
     $(@el).html(Haml.render(@template(), {locals: {translate: @translate}}))
   
   create: (event) ->
-    @uploader = $('#uploader').pluploadQueue()
-    console.log @uploader.files
     #if @uploaded.files.length > 0
     #  @uploaded.bind('StateChanged', ->
     #    console.log(@uploaded.files) 

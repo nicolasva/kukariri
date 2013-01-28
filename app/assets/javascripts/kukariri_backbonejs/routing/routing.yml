@@ -8,7 +8,6 @@ routing:
     provided_dates: "/items/:item_id/types/:type_id/contacts/:contact_id/provided_dates"
     types: "/items/:item_id/types"
     translates: "/translates"
-    vcf_to_contacts: "/vcf_to_contacts"
     photos_to_pictures: "/photos_to_pictures"
     countries: "/countries"
 
