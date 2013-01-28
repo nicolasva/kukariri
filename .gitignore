@@ -21,6 +21,7 @@
 *.jpeg
 *.JPG
 *.JPEG
+.DS_Store
 *.bmp
 *.BMP
 *.swp
