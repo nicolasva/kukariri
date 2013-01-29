@@ -37,11 +37,9 @@
                 %div.img_button_admin_img
                   %ul
                     %li
-                      %a{href:"#/pictures/edit/"+picture.id}
-                        = translate.common_link.update
+                      %span{id: "picture_update_"+picture.id, class: "picture_update"} = translate.common_link.update
                     %li
-                      %a{href: "#/pictures/destroy/"+picture.id}
-                        = translate.common_link.delete
+                      %span{id: "picture_delete_"+picture.id, class: "picture_delete"} = translate.common_link.delete
     .actions.span12
       %ul.grid.row-fluid
         %li.span6

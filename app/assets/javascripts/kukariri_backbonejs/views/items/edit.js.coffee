@@ -9,6 +9,8 @@ class App.Views.Items.Edit extends Backbone.View
     "click #select_files" : "select_files"
     "click #cam_active" : "use_cam"
     "click .class_add_contact_item" : "associate_item_contact"
+    "click .picture_update" : "picture_update"
+    "click .picture_delete" : "picture_delete"
 
   initialize: (options) ->
     self = @
@@ -68,3 +70,14 @@ class App.Views.Items.Edit extends Backbone.View
       error: (response) ->
         console.log response
     )
+
+  picture_update: (event) ->
+    picture_id = @get_id(event.target.id)
+    console.log picture_id
+
+  picture_delete: (event) ->
+    picture_id = @get_id(event.target.id)
+    console.log picture_id
+
+  get_id: (id) ->
+    return id.split("_")[id.split("_").length - 1]
