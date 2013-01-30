@@ -72,8 +72,16 @@ class App.Views.Items.Edit extends Backbone.View
     )
 
   picture_update: (event) ->
+    @pictures = new App.Collections.Pictures()
+    @pictures.item_id = @item.toJSON().id
+    @pictures.type_id = @item.toJSON().types[0].id
+    self = @
     picture_id = @get_id(event.target.id)
-    console.log picture_id
+    @translate.fetch
+      success: () ->
+        self.pictures.fetch
+          success: (collection, response) ->
+            @viewPicturesUpdatePictures = new App.Views.Pictures.UpdatePictures({item: self.item, pictures: collection, translate: self.translate, picture_id: picture_id})
 
   picture_delete: (event) ->
     picture_id = @get_id(event.target.id)
