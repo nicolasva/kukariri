@@ -1,5 +1,5 @@
 class App.Libs.JqueryUploader extends Backbone.View
-  initialize:(options)
+  initialize: (options) ->
     @callback = new Array()
     @el = options.el
     @fileTypes = options.fileTypes
@@ -11,21 +11,8 @@ class App.Libs.JqueryUploader extends Backbone.View
       dataType: 'json',
       url: '/attachments.js'
       done: (data, response) ->
+        console.log response
         self.callback.push(response)
-      process: [
-        {
-          action: 'load',
-          fileTypes: self.fileTypes,
-          maxFileSize: 80000000
-        },
-        {
-          action: 'resize',
-          maxWidth: 300,
-          maxHeight: 300
-        },
-        {
-          action: 'save'
-        }
-      ]
+        return false
     })
     return @callback

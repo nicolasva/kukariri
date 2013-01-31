@@ -11,6 +11,3 @@
 #= require ./tablesorter/jquery.tablesorter.min
 #= require ./select2/select2
 #= require ./yaml.min
-#= require ./jquery.ui.widget
-#= require ./jquery_uploader/jquery.iframe-transport
-#= require ./jquery_uploader/jquery.fileupload-ui
