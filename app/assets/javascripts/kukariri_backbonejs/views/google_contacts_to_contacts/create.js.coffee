@@ -77,6 +77,42 @@ class App.Views.GoogleContactsToContacts extends Backbone.View
     else
       return @entries.gd$structuredPostalAddress[0].gd$city.$t
 
+  getCountry: ->
+    if !@addrExists() || _.isNull(@entries.gd$structuredPostalAddress[0].gd$country)
+      return ""
+    else
+      return @entries.gd$structuredPostalAddress[0].gd$country.$t
+
+  getPostcode: ->
+    if !@addrExists() || _.isNull(@entries.gd$structuredPostalAddress[0].gd$postcode)
+      return ""
+    else
+      return @entries.gd$structuredPostalAddress[0].gd$postcode.$t
+
+  getPhone: ->
+    if _.isNull(@entries.gd$phoneNumber) || _.isEqual(@entries.gd$phoneNumber.length, 0)
+      return ""
+    else
+      return @entries.gd$phoneNumber[0].$t
+
+  getOrganization: ->
+    if _.isNull(@entries.gd$organization) || _.isEqual(@entries.gd$organization.length, 0) || _.isNull(@entries.gd$organization[0].getOrgName())
+      return ""
+    else
+      return @entries.gd$organization[0].getOrgName().getValue()
+
+  getBirthday: ->
+    if _.isNull(@entries.gContact$birthday) || _.isNull(@entries.gContact$birthday.when)
+      return ""
+    else
+      return @entries.gContact$birthday.when
+
+  getEvent: ->
+    if _.isNull(@entries.gContact$event) || _.isEqual(@entries.gContact$event.length, 0)
+      return ""
+    else
+      return @entries.gContact$event[0].gd$when.startTime
+
   addrExists: ->
     if _.isNull(@entries.gd$structuredPostalAddress) || _.isEqual(@entries.gd$structuredPostalAddress.length, 0)
       return false
