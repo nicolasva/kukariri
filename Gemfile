@@ -49,7 +49,8 @@ group :development, :test do
   gem 'capybara'
 end
 
-gem :production do
+group :production do
+  gem 'passenger'
   gem 'mysql2'
   gem 'unicorn'
   gem 'memcache-client'
