@@ -27,19 +27,24 @@ class App.Views.GoogleContactsToContacts extends Backbone.View
 
   handleContactsFeed: (result) ->
     @entries = result.feed.entry
-    contact = @contactEntry(entries)
-    address = {}
-    address["firstname"] = contact.getFirstName()
-    address["lastname"] = contact.getLastName() if _.isEmpty(contact.getAdditionalName()) is true then "" else " " + contact.getAdditionalName()
-    address["address"] = contact.getStreet()
-    address["city"] = contact.getCity()
-    address["country"] = contact.getCountry()
-    address["zip"] = contact.getPostcode()
-    address["phone"] = contact.getPhone()
-    address["mail"] = contact.getEmail()
-    address["organization"] = contact.getOrganization()
-    address["birthday"] = contact.getBirthday
-    address["event"] = contact.getEvent()
+    #contact = @contactEntry(entries)
+    #address = {}
+    #address["firstname"] = contact.getFirstName()
+    #address["lastname"] = contact.getLastName() if _.isEmpty(contact.getAdditionalName()) is true then "" else " " + contact.getAdditionalName()
+    #address["address"] = contact.getStreet()
+    #address["city"] = contact.getCity()
+    #address["country"] = contact.getCountry()
+    #address["zip"] = contact.getPostcode()
+    #address["phone"] = contact.getPhone()
+    #address["mail"] = contact.getEmail()
+    #address["organization"] = contact.getOrganization()
+    #address["birthday"] = contact.getBirthday
+    #address["event"] = contact.getEvent()
+    address =
+      firstname: @getFirstName()
+      lastname: @getLastName()
+      address: @address
+
 
   getFirstName: ->
     if _.isNull(@entries.gd$name) || _.isNull(@entries.gd$name.gd$givenName) || _.isNull(@entries.gd$name.gd$givenName.$t)
