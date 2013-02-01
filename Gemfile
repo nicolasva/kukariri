@@ -48,6 +48,12 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'capybara'
 end
+
+gem :production do
+  gem 'mysql2'
+  gem 'unicorn'
+  gem 'memcache-client'
+end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
