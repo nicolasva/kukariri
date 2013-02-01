@@ -10,4 +10,5 @@
 #= require ./jquery.plupload.queue
 #= require ./tablesorter/jquery.tablesorter.min
 #= require ./select2/select2
+#= require ./google_api/jsapi
 #= require ./yaml.min

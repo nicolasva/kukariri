@@ -31,3 +31,6 @@ routing_backbonejs:
     vcf_to_contacts:
       routes: 
         "/vcf_to_contacts" : "create"
+    google_contacts_to_contacts:
+      routes:
+        "/google_contacts_to_contacts" : "create"
