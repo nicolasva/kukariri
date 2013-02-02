@@ -11,7 +11,5 @@ class CreateProvidedDates < ActiveRecord::Migration
 
     add_index :provided_dates, [:contact_id], :name => "index_provided_dated_on_contacts"
     add_index :provided_dates, [:item_id], :name => "index_provided_dated_on_items"
-    remove_column :types, :date_at
-    remove_column :types, :date_to
   end
 end
