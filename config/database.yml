@@ -19,7 +19,11 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/kukariri_production.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: kukariri_prod
+  username: root
+  password: infonies
   pool: 5
-  timeout: 5000
+  socket: /var/run/mysqld/mysqld.sock
