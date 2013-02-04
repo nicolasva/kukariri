@@ -20,9 +20,10 @@ class App.Views.Contacts.Index extends Backbone.View
 
   render: ->
     self = @
+    span = "span4"
     if _.isEmpty(@contacts.toJSON())
-      $(@el).html(Haml.render(@template_no_contact(), {locals: {translate: @translate.toJSON(), link: @link}})) 
-      $(@el).children().first().append(Haml.render(self.template_vcf_to_contacts(), {locals: {translate: self.translate.toJSON()}}))
+      span = "span2"
+      $(@el).html(Haml.render(@template_no_contact(), {locals: {translate: @translate.toJSON(), link: @link, span: span}})) 
     else
       $(@el).hide()
       $(@el).html(Haml.render(@template(), {locals: {contacts: @contacts.toJSON(), translate: @translate.toJSON()}}))
@@ -33,6 +34,6 @@ class App.Views.Contacts.Index extends Backbone.View
         else
           $(@el_tr_contact_lists).append(Haml.render(self.template_contact_edit_delete(), {locals: {contact: val, translate: self.translate.toJSON()}}))
       )
-      $(@el).children().first().append(Haml.render(self.template_vcf_to_contacts(), {locals: {translate: self.translate.toJSON()}}))
-      $(@el).show()  
+    $(@el).children().first().append(Haml.render(self.template_vcf_to_contacts(), {locals: {translate: self.translate.toJSON(), span: span}}))
+    $(@el).show()  
 

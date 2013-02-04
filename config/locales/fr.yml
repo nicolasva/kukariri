@@ -36,7 +36,9 @@ fr:
   contacts:
     new_contact: "Nouveau contact"
     add_new_contact: "Ajouter un nouveau contact"
-    contact_lists: "Liste des contacts"
+    contact_lists: "Liste des contacts" 
+    export_vcf_to_contacts: "Exporter un ou plusieurs VCF vers les contacts"
+    export_google_contact_to_contacts: "Exporter des contacts de google"
     index:
       assoc_contact: "Associer à ce contact"
       lastname: "Nom"

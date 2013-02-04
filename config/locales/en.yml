@@ -22,6 +22,8 @@ en:
     new_contact: "New contact"
     add_new_contact: "Add new contact"
     contact_lists: "Contact lists"
+    export_vcf_card_to_contacts: "Export VCF card to contacts"
+    export_google_contact_to_contacts: "Export google contact to contacts"
     index:
       assoc_contact: "Associate contact"
       lastname: "Lastname"

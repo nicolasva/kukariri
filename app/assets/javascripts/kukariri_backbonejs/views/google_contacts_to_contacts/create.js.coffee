@@ -1,50 +1,52 @@
 class App.Views.GoogleContactsToContacts extends Backbone.View
   el: ".container"
   template: JST["kukariri_backbonejs/templates/google_contacts_to_contacts/create"]
+  scope: 'https://www.google.com/m8/feeds'
+  google_load: google.load("gdata", "1.x")
+  contactsFeedUri: 'https://www.google.com/m8/feeds/contacts/default/full?v=3.0&alt=json'
 
   initialize: (options) ->
-    @google_load = google.load("gdata", "1.x")
-    @scope = 'https://www.google.com/m8/feeds'
-    @contactsFeedUri = 'https://www.google.com/m8/feeds/contacts/default/full?v=3.0&alt=json'
+    @contact = options.contact
+    @google_load()
     @logMeIn = @logMeIn()
     @setOnLoadCallback = google.setOnLoadCallback(initFunc)
     @entries = ""
+    @tab_contact = new Array()
     @contactsService = @setupContactsService()
+    @getSetContact()
 
   setupContactsService: ->
     contactsService = new google.gdata.contacts.ContactsService('GoogleInc-jsguide-1.0')
     return contactsService
 
   logMeIn: ->
-    return google.accounts.user.login(@scope)
+    return google.accounts.user.login(@scope())
 
   logMeOut: ->
-    google.accounts.user.logout() if google.accounts.user.checkLogin(@scope)
+    google.accounts.user.logout() if google.accounts.user.checkLogin(@scope())
 
   getMyContacts: ->
-    query = new google.gdata.contacts.ContactQuery(@contactsFeedUri)
+    query = new google.gdata.contacts.ContactQuery(@contactsFeedUri())
     @contactsService.getContactFeed(query, @handleContactsFeed, @handleError)
 
   handleContactsFeed: (result) ->
     @entries = result.feed.entry
-    #contact = @contactEntry(entries)
-    #address = {}
-    #address["firstname"] = contact.getFirstName()
-    #address["lastname"] = contact.getLastName() if _.isEmpty(contact.getAdditionalName()) is true then "" else " " + contact.getAdditionalName()
-    #address["address"] = contact.getStreet()
-    #address["city"] = contact.getCity()
-    #address["country"] = contact.getCountry()
-    #address["zip"] = contact.getPostcode()
-    #address["phone"] = contact.getPhone()
-    #address["mail"] = contact.getEmail()
-    #address["organization"] = contact.getOrganization()
-    #address["birthday"] = contact.getBirthday
-    #address["event"] = contact.getEvent()
     address =
       firstname: @getFirstName()
       lastname: @getLastName()
-      address: @address
+      address: @getStreet()
+      city: @getCity()
+      country: @getCountry()
+      zip: @getPostcode()
+      phone: @getPhone()
+      mail: @getEmail()
+      organization: @getOrganization()
+      birthday: @getBirthday()
+      event: @getEvent()
+    @tab_contact.push(address)
 
+  @getSetContact: ->
+    console.log @tab_contact
 
   getFirstName: ->
     if _.isNull(@entries.gd$name) || _.isNull(@entries.gd$name.gd$givenName) || _.isNull(@entries.gd$name.gd$givenName.$t)

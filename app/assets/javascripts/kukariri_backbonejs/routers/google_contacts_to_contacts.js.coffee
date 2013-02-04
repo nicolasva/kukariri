@@ -6,4 +6,7 @@ class GoogleContactsToContacts extends Backbone.Router
     @contact = new App.Contact()
 
   create: ->
-    console.log "loading"
+    #console.log "loading"
+    @contact.fetch
+      success: (model, response) ->
+        @viewsGoogleContactsToContacts = new App.Views.GoogleContactsToContacts({contact: model})
