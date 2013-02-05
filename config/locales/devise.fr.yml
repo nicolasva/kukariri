@@ -2,7 +2,7 @@ fr:
   devise:
     confirmations:
       confirmed: "Votre compte a été confirmée. Vous êtes maintenant inscrit."
-      send_instructions:"Vous recevrez un courriel avec des instructions sur la façon de confirmer votre compte dans quelques minutes."
+      send_instructions: "Vous recevrez un courriel avec des instructions sur la façon de confirmer votre compte dans quelques minutes."
       send_paranoid_instructions: "Si votre adresse email existent dans notre base de données, vous recevrez un courriel avec des instructions sur la façon de confirmer votre compte en quelques minutes."
     failure:
       already_authenticated: "Vous êtes déjà connecté."
@@ -35,7 +35,7 @@ fr:
       signed_up: "Bienvenue! Vous vous êtes inscrit avec succès."
       signed_up_but_inactive: "Vous vous êtes inscrit avec succès. Cependant, nous n'avons pu vous connecter car votre compte n'est pas encore activé."
       signed_up_but_locked: "Vous vous êtes inscrit avec succès. Cependant, nous n'avons pu vous connecter car votre compte est verrouillé."
-      signed_up_but_unconfirmed:"Un message contenant un lien de confirmation a été envoyé à votre adresse email. S'il vous plaît ouvrir le lien pour activer votre compte."
+      signed_up_but_unconfirmed: "Un message contenant un lien de confirmation a été envoyé à votre adresse email. S'il vous plaît ouvrir le lien pour activer votre compte."
       updated: "Votre compte a été mise à jour avec succès"
     sessions:
       signed_in: "Enregistré avec succès"
