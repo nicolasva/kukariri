@@ -20,6 +20,7 @@
     Items: {}
     Notifications: {}
     ProvidedDates: {}
+    GoogleContactsToContacts: {}
     Pictures: {}
     States: {}
     Types: {}
@@ -31,6 +32,7 @@
     new App.Routers.Items()
     new App.Routers.Contacts()
     new App.Routers.VcfToContacts()
+    new App.Routers.GoogleContactsToContacts()
     Backbone.history.start()
     return
 

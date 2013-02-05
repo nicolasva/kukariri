@@ -1,4 +1,4 @@
-class App.Views.GoogleContactsToContacts extends Backbone.View
+class App.Views.GoogleContactsToContacts.Create extends Backbone.View
   el: ".container"
   template: JST["kukariri_backbonejs/templates/google_contacts_to_contacts/create"]
   scope: 'https://www.google.com/m8/feeds'
@@ -7,7 +7,7 @@ class App.Views.GoogleContactsToContacts extends Backbone.View
 
   initialize: (options) ->
     @contact = options.contact
-    @google_load()
+    @google_load
     @logMeIn = @logMeIn()
     @setOnLoadCallback = google.setOnLoadCallback(initFunc)
     @entries = ""
@@ -20,13 +20,13 @@ class App.Views.GoogleContactsToContacts extends Backbone.View
     return contactsService
 
   logMeIn: ->
-    return google.accounts.user.login(@scope())
+    return google.accounts.user.login(@scope)
 
   logMeOut: ->
-    google.accounts.user.logout() if google.accounts.user.checkLogin(@scope())
+    google.accounts.user.logout() if google.accounts.user.checkLogin(@scope)
 
   getMyContacts: ->
-    query = new google.gdata.contacts.ContactQuery(@contactsFeedUri())
+    query = new google.gdata.contacts.ContactQuery(@contactsFeedUri)
     @contactsService.getContactFeed(query, @handleContactsFeed, @handleError)
 
   handleContactsFeed: (result) ->
