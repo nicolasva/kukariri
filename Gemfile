@@ -50,7 +50,7 @@ group :development, :test do
 end
 
 group :production do
-  #gem 'passenger'
+  gem 'passenger'
   gem 'mysql2'
   gem 'unicorn'
   gem 'memcache-client'
