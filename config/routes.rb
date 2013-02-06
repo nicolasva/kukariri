@@ -32,6 +32,8 @@ Kukariri::Application.routes.draw do
   scope do 
     match "countries/:name" => "countries#show", :via => "GET"
   end
+
+  resources :google_contacts_to_contacts
   resources :countries, :except => [:show, :new, :edit, :create, :update, :destroy]
   resources :photos_to_pictures, :only => [:create]
   resources :attachments, :only => :create

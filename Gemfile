@@ -35,6 +35,9 @@ gem 'haml'
 gem 'carmen', :git => "https://github.com/jim/carmen.git"
 gem 'carrierwave'
 gem 'rmagick'
+gem 'google-api-client'
+gem 'logger'
+gem 'gdata', ">= 1.1.2", :git => "https://github.com/nicolasva/gdata_ruby_2.git"
 
 group :development, :test do
   gem 'guard'
