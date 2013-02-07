@@ -35,8 +35,6 @@ gem 'haml'
 gem 'carmen', :git => "https://github.com/jim/carmen.git"
 gem 'carrierwave'
 gem 'rmagick'
-gem 'google-api-client'
-gem 'logger'
 gem 'hpricot'
 
 group :development, :test do
