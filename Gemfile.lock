@@ -119,6 +119,7 @@ GEM
     haml (3.1.7)
     hashr (0.0.22)
     hike (1.2.1)
+    hpricot (0.8.6)
     i18n (0.6.1)
     jasmine-core (1.3.1)
     jasmine-headless-webkit (0.8.4)
@@ -287,6 +288,7 @@ DEPENDENCIES
   guard-rspec
   guid
   haml
+  hpricot
   jquery-rails
   json
   logger
