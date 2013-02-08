@@ -10,6 +10,7 @@ routing:
     translates: "/translates"
     photos_to_pictures: "/photos_to_pictures"
     countries: "/countries"
+    google_contacts_to_contacts: "/google_contacts_to_contacts"
 
 routing_backbonejs:
   API:

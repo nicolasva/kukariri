@@ -1,0 +1,12 @@
+%form#id_form_gmail
+  %p
+    %label{for: "google_contacts_to_contact_email"} = translate.google_contacts_to_contacts.create.email
+    %br
+    %input{type: "text", name: "google_contacts_to_contact[email]", id: "google_contacts_to_contact_email", placeholder: translate.google_contacts_to_contacts.create.email}
+
+  %p
+    %label{for: "google_contacts_to_contact_password"} = translate.google_contacts_to_contacts.create.password
+    %br
+    %input{type: "password", name: "google_contacts_to_contact[password]", id: "google_contacts_to_contact_password"}
+  .actions.span12
+    %input{type: "submit", name: "submit_google_contacts_to_contacts", value: translate.google_contacts_to_contacts.create.submit_export_google_contact_to_contact}

@@ -17,8 +17,7 @@ class Contacts
       feed = @client.get(CONTACTS_FEED).to_xml
       
       @contacts = feed.elements.to_a('entry').collect do |entry|
-        #puts entry.elements["gd:phoneNumber"].to_s.scan(/^.{1,}\>(.{1,})\<.{1,}$/)
-        title, email, tel, other_tel, address = entry.elements['title'].text, nil, entry.elements["gd:phoneNumber"].to_s.scan(/^.{1,}\>(.{1,})\<.{1,}$/).empty? ? "" : entry.elements["gd:phoneNumber"].to_s.scan(/^.{1,}\>(.{1,})\<.{1,}$/)[0][0], entry.elements["gd:phoneNumber"].to_s.scan(/^.{1,}\>(.{1,})\<.{1,}$/).empty? ? "" : entry.elements["gd:phoneNumber"].to_s.scan(/^.{1,}\>(.{1,})\<.{1,}$/)[0][0], entry.elements["gd:postalAddress"].to_s.scan(/^.{1,}\>(.{1,})\<.{1,}$/).empty? ? "" : entry.elements["gd:postalAddress"].to_s.scan(/^.{1,}\>(.{1,})\<.{1,}$/)[0][0]
+        title, email, tel, other_tel, address = entry.elements['title'].text.nil? ? "" : entry.elements['title'].text, nil, entry.elements["gd:phoneNumber"].to_s.scan(/^.{1,}\>(.{1,})\<.{1,}$/).empty? ? "" : entry.elements["gd:phoneNumber"].to_s.scan(/^.{1,}\>(.{1,})\<.{1,}$/)[0][0], entry.elements["gd:phoneNumber"].to_s.scan(/^.{1,}\>(.{1,})\<.{1,}$/).empty? ? "" : entry.elements["gd:phoneNumber"].to_s.scan(/^.{1,}\>(.{1,})\<.{1,}$/)[0][0], entry.elements["gd:postalAddress"].to_s.scan(/^.{1,}\>(.{1,})\<.{1,}$/).empty? ? "" : entry.elements["gd:postalAddress"].to_s.scan(/^.{1,}\>(.{1,})\<.{1,}$/)[0][0]
         entry.elements.each('gd:email') do |e|
           email = e.attribute('address').value if e.attribute('primary')
         end

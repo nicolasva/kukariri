@@ -3,6 +3,11 @@ en:
     lending_money: "lending money"
   layout:
     logout: "Logout"
+  google_contacts_to_contacts:
+    create:
+      email: "Your Gmail E-mail"
+      password: "Your Gmail Password" 
+      submit_export_google_contact_to_contact: "Export Google contacts"
   items:
     empty:
       items_empty: "Item List empty"

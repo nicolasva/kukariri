@@ -6,6 +6,7 @@ fr:
       notification: "Notification"
       picture: "Picture"
       provided_date: "Programmation des dates"
+      google_contacts_to_contact: "Contacts google vers les contacts de Kukariri"
       type: "Type"
       user: "Utilisateur"
     attributes:
@@ -21,6 +22,9 @@ fr:
       item:
         title: "Titre"
         user_id: "Id de l'utilisateur"
+      google_contacts_to_contact:
+        email: "E-mail"
+        password: "Mot de passe"
       notification:
         date_at: "Date de"
         user_id: "Id de l'utilisateur" 

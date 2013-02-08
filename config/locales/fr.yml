@@ -11,6 +11,11 @@ fr:
     lending_money: "Prêt d'argent"
   layout:
     logout: "Déconnection"
+  google_contacts_to_contacts:
+    create:
+      email: "Votre E-mail Gmail"
+      password: "Votre mot de passe Gmail"
+      submit_export_google_contact_to_contact: "Exporter les Contacts de google"
   items:
     empty:
       items_empty: "Il n'y a pas d'objets enregistré"

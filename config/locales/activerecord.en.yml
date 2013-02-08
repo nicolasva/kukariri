@@ -6,6 +6,7 @@ en:
       notification: "Notification"
       picture: "Picture"
       provided_date: "Provided Date"
+      google_contacts_to_contact: "google contacts to contacts kukariri"
       type: "Type"
       user: "User"
     attributes: 
@@ -21,6 +22,9 @@ en:
       item:
         title: "Title"
         user_id: "User id"
+      google_contacts_to_contact:
+        email: "E-mail"
+        password: "Password"
       notification:
         date_at: "Date at"
         user_id: "Id user"
