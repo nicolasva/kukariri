@@ -39,7 +39,7 @@ class App.Views.Pictures.Photos.Show extends Backbone.View
 
   run_cam_to_canvas: (event) ->
     @context.drawImage(@video, 0, 0, 640, 480)
-    $(@el).append("<span class= 'valid_photo'>Valid photo</span>")
+    $(@el).append("<span class= 'valid_photo btn btn-success'>Valid photo</span>")
 
   register_bd_img: (event) ->
     self = @

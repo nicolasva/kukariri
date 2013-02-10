@@ -15,7 +15,7 @@ class Contacts
       until forward.nil?
         data, resp, cookies, forward, old_url = get(forward, cookies, old_url) + [forward]
       end
-      
+
       postdata =  "PPSX=%s&PwdPad=%s&login=%s&passwd=%s&LoginOptions=2&PPFT=%s" % [
         CGI.escape(data.split("><").grep(/PPSX/).first[/=\S+$/][2..-3]),
         PWDPAD[0...(PWDPAD.length-@password.length)],
