@@ -84,7 +84,6 @@ class App.Views.Items.Edit extends Backbone.View
 
   picture_delete: (event) ->
     picture_id = @get_id(event.target.id)
-    console.log picture_id
 
   get_id: (id) ->
     return id.split("_")[id.split("_").length - 1]

@@ -22,6 +22,7 @@ class App.Routers.Contacts extends Backbone.Router
 
   index_all: ->
     self = @
+    $(".container").html("<img src='assets/pictures/ajax_loader/ajax-loader.gif'></img>")
     @translate.fetch
       success: () ->
         self.contacts.fetch 
