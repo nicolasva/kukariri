@@ -11,6 +11,8 @@ class App.Routers.Contacts extends Backbone.Router
     @types = new App.Collections.Types()
 
   index: (item_id, type_id) ->
+    $(".notice").show()
+    $("#loader").show()
     self = @
     @contacts.item_id = item_id
     @contacts.type_id = type_id
