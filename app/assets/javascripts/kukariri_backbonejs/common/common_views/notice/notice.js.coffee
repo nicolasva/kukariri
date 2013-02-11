@@ -8,8 +8,10 @@ class App.Common.CommonViews.Notice.Notice extends Backbone.View
 
   render: ->
     $(@el).show()
-    $(@el).html(Haml.render(@template(), {locals: {response_errors: @response_errors}}))
+    $(@el).children().first().html(Haml.render(@template(), {locals: {response_errors: @response_errors}}))
+    $(@el).children().first().show()
     if $(@el).is(':visible')
       $(@el).delay(1000).fadeToggle(4000, "linear")
+      $(@el).children().first().hide() if $(@el).is(':hidden')
     return false
 

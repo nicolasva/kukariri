@@ -2,6 +2,9 @@ class App.Views.Contacts.Index extends Backbone.View
   el: ".container"
   template: JST["kukariri_backbonejs/templates/contacts/index"]
 
+  el_loader: "#loader"
+  el_section_notice: ".notice"
+
   template_no_contact: JST["kukariri_backbonejs/templates/contacts/no_contact"]
  
   template_vcf_to_contacts: JST["kukariri_backbonejs/templates/vcf_to_contacts/link_to_export_vcf_to_contacts"]
@@ -34,6 +37,8 @@ class App.Views.Contacts.Index extends Backbone.View
         else
           $(@el_tr_contact_lists).append(Haml.render(self.template_contact_edit_delete(), {locals: {contact: val, translate: self.translate.toJSON()}}))
       )
-    $(@el).children().first().append(Haml.render(self.template_vcf_to_contacts(), {locals: {translate: self.translate.toJSON(), span: span}}))
+    $(@el).children().first().append(Haml.render(self.template_vcf_to_contacts(), {locals: {translate: self.translate.toJSON(), span: span}})) 
+    $(@el_section_notice).hide()
+    $(@el_loader).hide()
     $(@el).show()  
 

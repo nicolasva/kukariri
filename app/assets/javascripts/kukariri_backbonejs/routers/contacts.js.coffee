@@ -21,8 +21,9 @@ class App.Routers.Contacts extends Backbone.Router
             @ViewsContactsIndex = new App.Views.Contacts.Index({contacts: collection, item_id: item_id, type_id: type_id, translate: self.translate, link: "/#/items/"+item_id+"/types/"+type_id+"/contacts/new"})
 
   index_all: ->
+    $(".notice").show()
+    $("#loader").show()
     self = @
-    $(".container").html("<img src='assets/pictures/ajax_loader/ajax-loader.gif'></img>")
     @translate.fetch
       success: () ->
         self.contacts.fetch 
