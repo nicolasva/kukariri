@@ -28,8 +28,8 @@ class App.Routers.Contacts extends Backbone.Router
     self = @
     @translate.fetch
       success: () ->
-        self.contacts.fetch 
-          success: (collection, response) ->
+        self.contacts.fetch
+          success: (collection, response) =>
             @ViewsContactsIndex = new App.Views.Contacts.Index({contacts: collection, translate: self.translate, link: "/#/contacts/new"})
 
   edit_all: (id) ->
@@ -58,24 +58,19 @@ class App.Routers.Contacts extends Backbone.Router
                 @ViewsContactsNewContact = new App.Views.Contacts.NewContact({contact: model, translate: self.translate, countries: collection})
 
   destroy_all: (id) ->
+    console.log "nicolas"
     contact = @contacts.get(id)
+    contact.translate = @translate.toJSON()
     contact.destroy
-      success: (contact, response) ->
-        window.location.hash = "#/contacts"
-      error: (contact, response) ->
-        alert("Error")
-        console.log contact.toJSON()
+    window.location.hash = "#/contacts"
 
-  destroy: (item_id, type_id, id) ->
+  destroy: (item_id, type_id, id) -> 
     @contacts.item_id = item_id
     @contacts.type_id = type_id
     contact = @contacts.get(id)
+    contact.translate = @translate.toJSON()
     contact.destroy
-      success: (contact, response) ->
-        window.location.hash = "#/items/"+item_id+"/types/"+type_id+"/contacts"
-      error: (contact, response) ->
-        alert("Error")
-        console.log contact.toJSON()
+    window.location.hash = "#/items/"+item_id+"/types/"+type_id+"/contacts"
 
   edit: (item_id, type_id, id) ->
     @contacts.item_id = item_id

@@ -28,7 +28,6 @@ routing_backbonejs:
       routes:
         "/items/new": "new_item"
         "/items/:id/edit" : "edit"
-        "/items/:id" : "destroy"
     vcf_to_contacts:
       routes: 
         "/vcf_to_contacts" : "create"

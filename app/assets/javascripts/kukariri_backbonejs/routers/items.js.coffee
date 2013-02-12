@@ -32,10 +32,3 @@ class App.Routers.Items extends Backbone.Router
             self.pictures.fetch
               success: (collection, response) ->
                 @ViewsItemsEdit = new App.Views.Items.Edit(item: model, pictures: collection, translate: self.translate)
-
-  destroy: (id) ->
-    @item = new App.Item(id: id)
-    @item.destroy ->
-      success: (item, response) ->
-        window.location = "/items" 
-    return false
