@@ -25,7 +25,7 @@
         %div.span1
           %ul
             %li
-              = link_to(t("layout.logout"), destroy_user_session_path)
+              = link_to(t("layout.logout"), destroy_user_session_path, :method => :delete)
 
     %section.notice
       %ul
