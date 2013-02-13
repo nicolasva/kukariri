@@ -42,7 +42,9 @@ class App.Routers.Contacts extends Backbone.Router
       success: () ->
         self.contact.fetch
           success: (model, response) ->
-            @viewContactnew = new App.Views.Contacts.Edit({contact: model, translate: self.translate, regions: self.regions})
+            self.countries.fetch
+              success: (collection_countrie, response) ->
+                @viewContactnew = new App.Views.Contacts.Edit({contact: model, translate: self.translate, regions: self.regions, countries: collection_countrie})
 
 
   new_contact: ->
@@ -122,7 +124,9 @@ class App.Routers.Contacts extends Backbone.Router
                         self.provided_date.contact_id = id
                         self.provided_date.fetch
                           success: (model_provided_date, response_model_provided_date) ->
-                            @ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection, provided_date: model_provided_date, translate: self.translate, regions: self.regions})
+                            self.countries.fetch
+                              success: (collection_country, response_country) ->
+                                @ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection, provided_date: model_provided_date, translate: self.translate, regions: self.regions, countries: collection_country, regions: self.regions})
           error: (model, response) ->
             alert("Error")
             console.log model.toJSON()

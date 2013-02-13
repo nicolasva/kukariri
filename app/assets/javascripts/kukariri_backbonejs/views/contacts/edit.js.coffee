@@ -16,6 +16,7 @@ class App.Views.Contacts.Edit extends Backbone.View
       @provided_date = options.provided_date
       @type_selected = options.type_selected
       @types = options.types
+    @countries = options.countries
     @translate = options.translate
     @regions = options.regions
     @contact = options.contact
@@ -24,7 +25,8 @@ class App.Views.Contacts.Edit extends Backbone.View
   render: ->
     $(@el).html(Haml.render(@template(), {locals: {translate: @translate.toJSON()}}))
     el_contact_form = $('.actions').children().first()
-    el_contact_form.append(Haml.render(@template_contact_form(), {locals: {contact: @contact.toJSON(), translate: @translate.toJSON(), page: window.location.hash.split("/")[window.location.hash.split("/").length-1]}}))
+    el_contact_form.append(Haml.render(@template_contact_form(), {locals: {contact: @contact.toJSON(), translate: @translate.toJSON(), page: window.location.hash.split("/")[window.location.hash.split("/").length-1]}})) 
+    @ViewsCountriesSelectCountriesForm = new App.Views.Countries.SelectCountriesForm({countries: @countries, translate: @translate, regions: @regions})
     unless _.isUndefined(@provided_date)
       @viewProvidedDates = new App.Views.ProvidedDates.Form({provided_date: @provided_date, el: el_contact_form, translate: @translate})
       el_contact_form.append(Haml.render(@template_type_form(), {locals: {types: @types.toJSON(), type_selected: @type_selected.toJSON(), contact: @contact.toJSON(), name: "contact[types_attributes][0]", translate: @translate.toJSON()}}))
@@ -37,7 +39,6 @@ class App.Views.Contacts.Edit extends Backbone.View
         if _.isUndefined(self.provided_date)
           window.location.hash = "#/contacts"
         else
-          #format date 2013-01-03T00:00:00Z
           data["provided_date"]["date_at"] = data["provided_date"]["date_at"].split("/").reverse().join("-")
 
           self.provided_date.save(data,{ 
