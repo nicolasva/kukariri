@@ -16,6 +16,7 @@
       Notice: {}
   Views: {} =
     Contacts: {}
+    Regions: {}
     Countries: {}
     Items: {}
     Notifications: {}

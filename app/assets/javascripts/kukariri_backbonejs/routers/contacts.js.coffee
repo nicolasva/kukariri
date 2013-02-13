@@ -8,6 +8,7 @@ class App.Routers.Contacts extends Backbone.Router
     @provided_date = new App.ProvidedDate()
     @contacts = new App.Collections.Contacts()
     @countries = new App.Collections.Countries()
+    @regions = new App.Collections.Regions()
     @types = new App.Collections.Types()
 
   index: (item_id, type_id) ->
@@ -41,7 +42,7 @@ class App.Routers.Contacts extends Backbone.Router
       success: () ->
         self.contact.fetch
           success: (model, response) ->
-            @viewContactnew = new App.Views.Contacts.Edit({contact: model, translate: self.translate})
+            @viewContactnew = new App.Views.Contacts.Edit({contact: model, translate: self.translate, regions: self.regions})
 
 
   new_contact: ->
@@ -55,7 +56,7 @@ class App.Routers.Contacts extends Backbone.Router
           success: (model, response) ->
             self.countries.fetch 
               success: (collection, response_collection) ->
-                @ViewsContactsNewContact = new App.Views.Contacts.NewContact({contact: model, translate: self.translate, countries: collection})
+                @ViewsContactsNewContact = new App.Views.Contacts.NewContact({contact: model, translate: self.translate, countries: collection, regions: self.regions})
 
   destroy_all: (id) ->
     console.log "nicolas"
@@ -121,7 +122,7 @@ class App.Routers.Contacts extends Backbone.Router
                         self.provided_date.contact_id = id
                         self.provided_date.fetch
                           success: (model_provided_date, response_model_provided_date) ->
-                            @ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection, provided_date: model_provided_date, translate: self.translate})
+                            @ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection, provided_date: model_provided_date, translate: self.translate, regions: self.regions})
           error: (model, response) ->
             alert("Error")
             console.log model.toJSON()
@@ -149,5 +150,5 @@ class App.Routers.Contacts extends Backbone.Router
                       success: (provided_date, response_provided_date) ->
                         self.countries.fetch
                           success: (collection, response) ->
-                            @ViewContactNew = new App.Views.Contacts.New({contact: model, item_id: item_id, type_id: type_id, types: collection, type_selected: type_selected, provided_date: provided_date, translate: self.translate, countries: collection})
+                            @ViewContactNew = new App.Views.Contacts.New({contact: model, item_id: item_id, type_id: type_id, types: collection, type_selected: type_selected, provided_date: provided_date, translate: self.translate, countries: collection, regions: self.regions})
 

@@ -13,13 +13,14 @@ class App.Views.Contacts.NewContact extends Backbone.View
     @countries = options.countries
     @translate = options.translate
     @contact = options.contact
+    @regions = options.regions
     @render()
 
   render: ->
     $(@el).html(Haml.render(@template(), {locals: {translate: @translate.toJSON()}}))
     el_contact_form = $('.actions').children().first()
     el_contact_form.append(Haml.render(@template_contact_form(), {locals: {contact: @contact.toJSON(), translate: @translate.toJSON(), page: window.location.hash.split("/")[window.location.hash.split("/").length-1], countries: @countries}}))
-    @ViewsCountriesSelectCountriesForm = new App.Views.Countries.SelectCountriesForm({countries: @countries, translate: @translate})
+    @ViewsCountriesSelectCountriesForm = new App.Views.Countries.SelectCountriesForm({countries: @countries, translate: @translate, regions: @regions})
 
   create: (event) ->
     data = $(@id_form_create).toJSON()

@@ -18,6 +18,7 @@ fr:
         tel_mobil: "Le téléphone (mobile)" 
         adress: "L'adresse"
         country: "Le pays"
+        region: "La region"
         user_id: "L'Id de l'utilisateur"
       item:
         title: "Titre"
@@ -28,6 +29,8 @@ fr:
       notification:
         date_at: "Date de"
         user_id: "Id de l'utilisateur" 
+      regions:
+        region: "La région"
       picture:
         picture: "Photo"
         item_id: "Id de l'item"

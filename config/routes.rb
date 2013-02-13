@@ -34,7 +34,10 @@ Kukariri::Application.routes.draw do
   end
 
   resources :google_contacts_to_contacts
-  resources :countries, :except => [:show, :new, :edit, :create, :update, :destroy]
+  resources :countries, :except => [:show, :new, :edit, :create, :update, :destroy] do
+    resources :regions, :except => [:edit, :update, :destroy, :new, :show, :index, :create]
+  end
+  match "countries/:country_name/regions" => "regions#index"
   resources :photos_to_pictures, :only => [:create]
   resources :attachments, :only => :create
   resources :translates, :only => :index

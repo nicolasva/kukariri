@@ -17,6 +17,7 @@ class App.Views.Contacts.Edit extends Backbone.View
       @type_selected = options.type_selected
       @types = options.types
     @translate = options.translate
+    @regions = options.regions
     @contact = options.contact
     @render()
 
