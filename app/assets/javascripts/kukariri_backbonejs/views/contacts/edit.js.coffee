@@ -23,10 +23,15 @@ class App.Views.Contacts.Edit extends Backbone.View
     @render()
 
   render: ->
+    self = @
     $(@el).html(Haml.render(@template(), {locals: {translate: @translate.toJSON()}}))
     el_contact_form = $('.actions').children().first()
     el_contact_form.append(Haml.render(@template_contact_form(), {locals: {contact: @contact.toJSON(), translate: @translate.toJSON(), page: window.location.hash.split("/")[window.location.hash.split("/").length-1]}})) 
     @ViewsCountriesSelectCountriesForm = new App.Views.Countries.SelectCountriesForm({countries: @countries, translate: @translate, regions: @regions})
+    @regions.country_name = @contact.toJSON().country
+    @regions.fetch
+      success: (collection, response) ->
+        @ViewsRegionsIndex = new App.Views.Regions.Index({regions: collection, translate: self.translate, contact: self.contact})
     unless _.isUndefined(@provided_date)
       @viewProvidedDates = new App.Views.ProvidedDates.Form({provided_date: @provided_date, el: el_contact_form, translate: @translate})
       el_contact_form.append(Haml.render(@template_type_form(), {locals: {types: @types.toJSON(), type_selected: @type_selected.toJSON(), contact: @contact.toJSON(), name: "contact[types_attributes][0]", translate: @translate.toJSON()}}))

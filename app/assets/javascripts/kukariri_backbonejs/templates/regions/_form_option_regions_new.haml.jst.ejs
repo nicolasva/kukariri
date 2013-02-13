@@ -1,0 +1,4 @@
+:if contact.region == region.region
+  %option{value: region.region, selected: "selected"} = region.region 
+:if contact.region != region.region
+  %option{value: region.region} = region.region 
