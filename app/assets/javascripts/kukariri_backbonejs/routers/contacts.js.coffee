@@ -61,10 +61,10 @@ class App.Routers.Contacts extends Backbone.Router
                 @ViewsContactsNewContact = new App.Views.Contacts.NewContact({contact: model, translate: self.translate, countries: collection, regions: self.regions})
 
   destroy_all: (id) ->
-    console.log "nicolas"
+    console.log "destroy_all"
     contact = @contacts.get(id)
     contact.translate = @translate.toJSON()
-    contact.destroy
+    contact.destroy()
     window.location.hash = "#/contacts"
 
   destroy: (item_id, type_id, id) -> 
@@ -72,7 +72,7 @@ class App.Routers.Contacts extends Backbone.Router
     @contacts.type_id = type_id
     contact = @contacts.get(id)
     contact.translate = @translate.toJSON()
-    contact.destroy
+    contact.destroy()
     window.location.hash = "#/items/"+item_id+"/types/"+type_id+"/contacts"
 
   edit: (item_id, type_id, id) ->

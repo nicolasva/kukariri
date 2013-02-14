@@ -32,7 +32,7 @@ Kukariri::Application.routes.draw do
   scope do 
     match "countries/:name" => "countries#show", :via => "GET"
   end
-
+  resources :friends
   resources :google_contacts_to_contacts
   resources :countries, :except => [:show, :new, :edit, :create, :update, :destroy] do
     resources :regions, :except => [:edit, :update, :destroy, :new, :show, :index, :create]

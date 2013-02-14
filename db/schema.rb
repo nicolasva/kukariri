@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130213111623) do
+ActiveRecord::Schema.define(:version => 20130214113738) do
 
   create_table "contacts", :force => true do |t|
     t.string   "lastname",   :null => false
@@ -28,6 +28,22 @@ ActiveRecord::Schema.define(:version => 20130213111623) do
   end
 
   add_index "contacts", ["user_id"], :name => "index_users_on_contacts"
+
+  create_table "friend_users", :force => true do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
+  end
+
+  add_index "friend_users", ["friend_id"], :name => "index_friend_on_friend_users"
+  add_index "friend_users", ["user_id"], :name => "index_users_on_friend_users"
+
+  create_table "friends", :force => true do |t|
+    t.boolean "follow",  :default => false
+    t.boolean "friend",  :default => false
+    t.integer "user_id"
+  end
+
+  add_index "friends", ["user_id"], :name => "index_user_on_friends"
 
   create_table "items", :force => true do |t|
     t.string   "title",      :null => false

@@ -12,6 +12,7 @@ routing:
     countries: "/countries"
     google_contacts_to_contacts: "/google_contacts_to_contacts"
     regions: "/countries/:country_name/regions"
+    friends: "/friends"
 routing_backbonejs:
   API:
     contacts:
