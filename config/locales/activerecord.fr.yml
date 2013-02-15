@@ -9,6 +9,7 @@ fr:
       google_contacts_to_contact: "Contacts google vers les contacts de Kukariri"
       type: "Type"
       user: "Utilisateur"
+      friend: "Ami"
     attributes:
       contact:
         lastname: "Le nom"
@@ -20,6 +21,11 @@ fr:
         country: "Le pays"
         region: "La region"
         user_id: "L'Id de l'utilisateur"
+      friend:
+        follow: "Le suivre"
+        friend: "Ajouter dans mes amis"
+        user_id: "Id de l'utilisateur"
+        accept_friend: "Accepter en tant qu'ami"
       item:
         title: "Titre"
         user_id: "Id de l'utilisateur"

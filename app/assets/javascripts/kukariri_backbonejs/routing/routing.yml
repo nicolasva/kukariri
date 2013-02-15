@@ -13,6 +13,7 @@ routing:
     google_contacts_to_contacts: "/google_contacts_to_contacts"
     regions: "/countries/:country_name/regions"
     friends: "/friends"
+    user_search_to_contacts: "/user_search_to_contacts"
 routing_backbonejs:
   API:
     contacts:
@@ -25,6 +26,9 @@ routing_backbonejs:
         "/contacts" : "index_all"
         "/contacts/:id/edit" : "edit_all"
         "/contacts/:id/delete" : "destroy_all"
+    friends:
+      routes:
+        "/friends": "index"
     items:
       routes:
         "/items/new": "new_item"

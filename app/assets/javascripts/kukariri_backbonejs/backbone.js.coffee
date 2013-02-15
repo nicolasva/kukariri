@@ -27,6 +27,7 @@
     Types: {}
     Users: {}
     VcfToContacts: {}
+    Friends: {}
   Routers: {}
   Libs: {}
   init: ->
@@ -34,6 +35,7 @@
     new App.Routers.Contacts()
     new App.Routers.VcfToContacts()
     new App.Routers.GoogleContactsToContacts()
+    new App.Routers.Friends()
     Backbone.history.start()
     return
 

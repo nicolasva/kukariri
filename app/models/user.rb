@@ -16,5 +16,6 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   has_many :items
   has_many :friends
+  has_many :contacts
   has_and_belongs_to_many :friends
 end

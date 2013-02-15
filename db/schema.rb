@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214113738) do
+ActiveRecord::Schema.define(:version => 20130215132925) do
 
   create_table "contacts", :force => true do |t|
     t.string   "lastname",   :null => false
@@ -29,21 +29,24 @@ ActiveRecord::Schema.define(:version => 20130214113738) do
 
   add_index "contacts", ["user_id"], :name => "index_users_on_contacts"
 
-  create_table "friend_users", :force => true do |t|
+  create_table "friends", :force => true do |t|
+    t.boolean  "follow",        :default => false
+    t.boolean  "friend",        :default => false
+    t.integer  "user_id"
+    t.boolean  "accept_friend", :default => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
+  add_index "friends", ["user_id"], :name => "index_user_on_friends"
+
+  create_table "friends_users", :force => true do |t|
     t.integer "user_id"
     t.integer "friend_id"
   end
 
-  add_index "friend_users", ["friend_id"], :name => "index_friend_on_friend_users"
-  add_index "friend_users", ["user_id"], :name => "index_users_on_friend_users"
-
-  create_table "friends", :force => true do |t|
-    t.boolean "follow",  :default => false
-    t.boolean "friend",  :default => false
-    t.integer "user_id"
-  end
-
-  add_index "friends", ["user_id"], :name => "index_user_on_friends"
+  add_index "friends_users", ["friend_id"], :name => "index_friend_on_friend_users"
+  add_index "friends_users", ["user_id"], :name => "index_users_on_friend_users"
 
   create_table "items", :force => true do |t|
     t.string   "title",      :null => false

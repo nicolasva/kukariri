@@ -27,11 +27,11 @@ Kukariri::Application.routes.draw do
       end
     end 
   end
-
-
+  
   scope do 
     match "countries/:name" => "countries#show", :via => "GET"
   end
+  resources :user_search_to_contacts
   resources :friends
   resources :google_contacts_to_contacts
   resources :countries, :except => [:show, :new, :edit, :create, :update, :destroy] do
