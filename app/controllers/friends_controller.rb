@@ -8,7 +8,7 @@ class FriendsController < ApplicationController
   end
 
   def create
-    @friend = Friend.new(:follow => params[:friend][:follow], :friend => params[:friend][:friend], :accept_friend => params[:friend][:accept_friend], :user_ids => params[:friend][:user_ids], :user_id => current_user.id)
+    @friend = Friend.new(:follow => params[:friend][:follow], :friend => params[:friend][:friend], :accept_friend => params[:friend][:accept_friend], :cancel => params[:friend][:cancel], :user_ids => params[:friend][:user_ids], :user_id => current_user.id)
     respond_with(@friend) do |format|
       if @friend.save
         format.json {render json: @friend}

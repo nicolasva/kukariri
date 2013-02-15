@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130215132925) do
+ActiveRecord::Schema.define(:version => 20130215153819) do
 
   create_table "contacts", :force => true do |t|
     t.string   "lastname",   :null => false
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20130215132925) do
     t.boolean  "accept_friend", :default => false
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
+    t.boolean  "cancel",        :default => false, :null => false
   end
 
   add_index "friends", ["user_id"], :name => "index_user_on_friends"

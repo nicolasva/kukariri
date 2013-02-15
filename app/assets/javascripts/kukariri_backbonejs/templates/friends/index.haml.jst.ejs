@@ -5,6 +5,8 @@
     %th
       = "E-mail de l'ami suggèrer"
     %th
+      = "Annuler"
+    %th
       = "Le suivre"
     %th 
       = "Ajouter en tant qu'ami"
@@ -12,5 +14,6 @@
     %tbody
       %tr
         %td = contact.user.email
+        %td{class: "cancel_friend", id: "cancel_friend_"+contact.user.id} = "Annuler"
         %td{class: "add_friend", id: "add_friend_"+contact.user.id} = "Ajouter en tant qu'ami"
-        %td.follow_person = "Suivre uniquement cette personne"
+        %td{class: "follow_person", id: "follow_person_"+contact.user.id} = "Suivre uniquement cette personne"
