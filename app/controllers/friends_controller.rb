@@ -9,9 +9,12 @@ class FriendsController < ApplicationController
 
   def create
     @friend = Friend.new(:follow => params[:friend][:follow], :friend => params[:friend][:friend], :accept_friend => params[:friend][:accept_friend], :user_ids => params[:friend][:user_ids], :user_id => current_user.id)
-    @friend.save
     respond_with(@friend) do |format|
+      if @friend.save
         format.json {render json: @friend}
+      else
+        format.json {render json: @friend.errors, status: :unprocessable_entity}
+      end
     end
   end
 end

@@ -12,7 +12,7 @@ class App.Friend extends Backbone.Model
     base + (if base.charAt(base.length - 1) is "/" then "" else "/") + @id
 
   validate: (attributes) ->
-    message_empty = @translate.errors.empty unless _.isEmpty(@translate)
+    message_empty = @translate.errors.messages.empty unless _.isEmpty(@translate)
     @errors = new Array()
     if attributes.friend?
       @errors.push @translate.activerecord.attributes.friend.follow + " " + message_empty unless attributes.friend.follow? and attributes.friend.follow isnt ""
