@@ -4,7 +4,9 @@ class FriendsController < ApplicationController
   def index
     @friends = Friend.where(:user_id => current_user.id)
 
-    respond_with(@friends)
+    respond_with(@friends) do |format|
+      format.json {render json: @friends.to_json(:include => :users)}
+    end
   end
 
   def create

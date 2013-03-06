@@ -20,6 +20,13 @@
           %li.span2
             = link_to(t("items.new_item"), "/#/items/new")
           %li.span2
+            %ul{:class => "nav", :role => "navigation"}
+              %li.dropdown
+                = link_to(t("friends.friends_lists"), "#", {:class => "dropdown-toggle", "data-toggle" => "dropdown", :role => "button"})
+                %ul{:class => "dropdown-menu", "aria-labelledby" => "drop2", :role => "menu"}
+                  %li{:role => "presentation"}
+                    = "Pas d'amis"
+          %li.span2
             = link_to(t("killbills.lending_money"), "http://killbills.me/") 
 
         %div.span1
@@ -35,6 +42,13 @@
     %section.container.container-fluid
       = yield
 
-    %section.modal_box
+    %section.modal_box.modal.hide.fade
+      %div.modal-header
+        %button{:type => "button", :class => "close", "data-dismiss" => "modal", "aria-hidden" => true}
+          &times;
+      %div.modal-body
+      %div.modal-footer
+        %button{:class => "btn", "data-dismiss" => "modal", "aria-hidden" => true}
+          = "close"
 
     %section.footer

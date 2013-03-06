@@ -9,6 +9,8 @@
 fr:
   killbills:
     lending_money: "Prêt d'argent"
+  friends:
+    friends_lists: "Amis"
   layout:
     logout: "Déconnection"
   google_contacts_to_contacts:

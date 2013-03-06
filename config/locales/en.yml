@@ -1,6 +1,8 @@
 en:
   killbills:
     lending_money: "lending money"
+  friends: 
+    friends_lists: "Friends" 
   layout:
     logout: "Logout"
   google_contacts_to_contacts:

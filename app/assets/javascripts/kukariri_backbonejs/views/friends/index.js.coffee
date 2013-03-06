@@ -1,5 +1,6 @@
 class App.Views.Friends.Index extends Backbone.View
-  el: ".modal_box"
+  el: ".modal-body"
+  el_modal_box: ".modal_box"
   template: JST["kukariri_backbonejs/templates/friends/index"]
 
   events:
@@ -16,7 +17,8 @@ class App.Views.Friends.Index extends Backbone.View
   render: ->
     if @contacts.toJSON().length > 0
       $(@el).html(Haml.render(@template(), {locals: {contacts: @contacts.toJSON()}}))
-      $(@el).show()
+      $(@el_modal_box).modal('toggle')
+      #$(@el).show()
 
   add_friend: (event) ->
     id_friend = $(event.target).attr("id").split("_")[$(event.target).attr("id").split("_").length-1]
