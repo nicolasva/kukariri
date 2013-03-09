@@ -24,20 +24,21 @@ class App.Routers.Contacts extends Backbone.Router
           success: (collection, response) ->
             @ViewsContactsIndex = new App.Views.Contacts.Index({contacts: collection, login_id: login_id, item_id: item_id, type_id: type_id, translate: self.translate, link: "/#/users/"+login_id+"/items/"+item_id+"/types/"+type_id+"/contacts/new"})
 
-  index_all: ->
+  index_all: (login_id) ->
     $(".notice").show()
     $("#loader").show()
     self = @
+    self.contacts.login_id = login_id
     @translate.fetch
       success: () ->
         self.contacts.fetch
           success: (collection, response) =>
-            @ViewsContactsIndex = new App.Views.Contacts.Index({contacts: collection, translate: self.translate, link: "/#/contacts/new"})
+            @ViewsContactsIndex = new App.Views.Contacts.Index({contacts: collection, translate: self.translate, link: "/#/users/#{login_id}/contacts/new", login_id: login_id})
 
-  edit_all: (id) ->
+  edit_all: (login_id, id) ->
     self = @
-    #@contact = new App.Contact(id: id)
     @contact = @contacts.get(id)
+    @contact.login_id = login_id
     @contact.translate = @translate.toJSON()
     @translate.fetch
       success: () ->
@@ -48,10 +49,11 @@ class App.Routers.Contacts extends Backbone.Router
                 @viewContactnew = new App.Views.Contacts.Edit({contact: model, translate: self.translate, regions: self.regions, countries: collection_countrie})
 
 
-  new_contact: ->
+  new_contact: (login_id) ->
     self = @
     @contact = new App.Contact()
     @contact.translate = @translate.toJSON()
+    @contact.login_id = login_id
     @translate.fetch
       success: () ->
         self.contact.fetch
@@ -60,11 +62,12 @@ class App.Routers.Contacts extends Backbone.Router
               success: (collection, response_collection) ->
                 @ViewsContactsNewContact = new App.Views.Contacts.NewContact({contact: model, translate: self.translate, countries: collection, regions: self.regions})
 
-  destroy_all: (id) ->
+  destroy_all: (login_id, id) ->
     contact = @contacts.get(id)
+    contact.login_id = login_id
     contact.translate = @translate.toJSON()
     contact.destroy()
-    window.location.hash = "#/contacts"
+    window.location.hash = "#/users/"+login_id+"/contacts"
 
   destroy: (login_id, item_id, type_id, id) -> 
     @contacts.item_id = item_id
@@ -79,7 +82,7 @@ class App.Routers.Contacts extends Backbone.Router
   edit: (login_id, item_id, type_id, id) ->
     @contacts.item_id = item_id
     @contacts.type_id = type_id
-    @contact.login_id = login_id
+    @contacts.login_id = login_id
     @types.item_id = item_id
     @types.login_id = login_id
     self = @
@@ -165,5 +168,5 @@ class App.Routers.Contacts extends Backbone.Router
                       success: (provided_date, response_provided_date) ->
                         self.countries.fetch
                           success: (collection, response) ->
-                            @ViewContactNew = new App.Views.Contacts.New({contact: model, item_id: item_id, type_id: type_id, types: collection, type_selected: type_selected, provided_date: provided_date, translate: self.translate, countries: collection, regions: self.regions, email: email})
+                            @ViewContactNew = new App.Views.Contacts.New({contact: model, item_id: item_id, type_id: type_id, types: collection, type_selected: type_selected, provided_date: provided_date, translate: self.translate, countries: collection, regions: self.regions, login_id: login_id})
 

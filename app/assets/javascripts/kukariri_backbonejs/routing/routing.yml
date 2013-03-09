@@ -1,12 +1,12 @@
 routing:
   API:
-    items: "/users/:email/items"
-    contacts: "/users/:email/items/:item_id/types/:type_id/contacts"
-    contacts_bis: "/contacts" 
-    pictures: "/users/:email/items/:item_id/types/:type_id/pictures"
+    items: "/users/:login_id/items"
+    contacts: "/users/:login_id/items/:item_id/types/:type_id/contacts"
+    contacts_bis: "/users/:login_id/contacts" 
+    pictures: "/users/:login_id/items/:item_id/types/:type_id/pictures"
     pictures_bis: "/pictures"
-    provided_dates: "/users/:email/items/:item_id/types/:type_id/contacts/:contact_id/provided_dates"
-    types: "/users/:email/items/:item_id/types"
+    provided_dates: "/users/:login_id/items/:item_id/types/:type_id/contacts/:contact_id/provided_dates"
+    types: "/users/:login_id/items/:item_id/types"
     translates: "/translates"
     photos_to_pictures: "/photos_to_pictures"
     countries: "/countries"
@@ -23,10 +23,10 @@ routing_backbonejs:
         "/users/:login_id/items/:item_id/types/:type_id/contacts/:id/delete": "destroy"
         "/users/:login_id/items/:item_id/types/:type_id/contacts/:id/edit" : "edit"
         "/users/:login_id/items/:item_id/types/:type_id/contacts/new" : "new"
-        "/contacts/new" : "new_contact"
-        "/contacts" : "index_all"
-        "/contacts/:id/edit" : "edit_all"
-        "/contacts/:id/delete" : "destroy_all"
+        "/users/:login_id/contacts/new" : "new_contact"
+        "/users/:login_id/contacts" : "index_all"
+        "/users/:login_id/contacts/:id/edit" : "edit_all"
+        "/users/:login_id/contacts/:id/delete" : "destroy_all"
     friends:
       routes:
         "/friends": "index"
@@ -34,7 +34,7 @@ routing_backbonejs:
     items:
       routes:
         "/users/:login_id/items/new": "new_item"
-        "/users/:email/items/:id/edit" : "edit"
+        "/users/:login_id/items/:id/edit" : "edit"
     vcf_to_contacts:
       routes: 
         "/vcf_to_contacts" : "create"

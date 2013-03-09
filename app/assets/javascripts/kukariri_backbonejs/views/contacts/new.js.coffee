@@ -12,7 +12,7 @@ class App.Views.Contacts.New extends Backbone.View
     "submit #new_contact" : "create"
 
   initialize: (options) ->
-    @email = options.email
+    @login_id = options.login_id
     @translate = options.translate
     @item_id = options.item_id
     @type_id = options.type_id
@@ -57,7 +57,7 @@ class App.Views.Contacts.New extends Backbone.View
                 item_id: type.item_id
             self.provided_date.save(hash_provided_date, {
               success: (provided_date, response_provided_date) ->
-                window.location.hash = "#/users/"+self.email+"/items/"+self.item_id+"/types/"+self.type_id+"/contacts"
+                window.location.hash = "#/users/"+self.login_id+"/items/"+self.item_id+"/types/"+self.type_id+"/contacts"
               error: (provided_date, response_provided_date) ->
                 alert("error")
                 console.log provided_date

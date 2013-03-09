@@ -2,14 +2,6 @@ Kukariri::Application.routes.draw do
   devise_for :users, :path => "users", :path_names => { :sign_in => "login", :sign_up => "new_user" }
 
   scope do
-    match "contacts" => "contacts#create", :via => "POST"
-    match "contacts" => "contacts#index", :via => "GET"
-    match "contacts/:id" => "contacts#show", :via => "GET"
-    match "contacts/:id" => "contacts#update", :via => "PUT"
-    match "contacts/:id" => "contacts#destroy", :via =>"DELETE"
-  end
-
-  scope do
     match "pictures" => "pictures#create", :via => "POST"
     match "pictures" => "pictures#index", :via => "GET"
     match "pictures/:id" => "pictures#show", :via => "GET"
@@ -26,6 +18,13 @@ Kukariri::Application.routes.draw do
   end
 
   resources :users, :as => :login do
+    scope do
+      match "contacts" => "contacts#create", :via => "POST"
+      match "contacts" => "contacts#index", :via => "GET"
+      match "contacts/:id" => "contacts#show", :via => "GET"
+      match "contacts/:id" => "contacts#update", :via => "PUT"
+      match "contacts/:id" => "contacts#destroy", :via =>"DELETE"
+    end
     resources :items do
       resources :types do
         match "pictures/sort" => "pictures#update"

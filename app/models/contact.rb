@@ -9,6 +9,7 @@ class Contact < ActiveRecord::Base
   attr_accessible :country
   attr_accessible :user_id
   attr_accessible :types_attributes
+  attr_accessible :region
   has_many :types
   has_one :provided_date
   belongs_to :user

@@ -3,8 +3,7 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.where(:user_id => current_user.id)
-
+    @contacts = User.find_by_login(params[:login_id]).contacts
     respond_with(@contacts)
   end
 
@@ -29,12 +28,14 @@ class ContactsController < ApplicationController
   # GET /contacts/1/edit
   def edit
     @contact = Contact.find(params[:id])
+
+    respond_with(@contact)
   end
 
   # POST /contacts
   # POST /contacts.json
   def create
-    @contact = Contact.new(:lastname => params[:contact][:lastname], :firstname => params[:contact][:firstname], :email => params[:contact][:email], :tel_home => params[:contact][:tel_home], :tel_mobil => params[:contact][:tel_mobil], :adress => params[:contact][:adress], :country => params[:contact][:country], :user_id => current_user.id)
+    @contact = User.find_by_login(params[:login_id]).contacts.new(:lastname => params[:contact][:lastname], :firstname => params[:contact][:firstname], :email => params[:contact][:email], :tel_home => params[:contact][:tel_home], :tel_mobil => params[:contact][:tel_mobil], :adress => params[:contact][:adress], :country => params[:contact][:country])
 
     respond_with(@contact) do |format|
       if @contact.save

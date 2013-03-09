@@ -61,6 +61,7 @@ class App.Views.Items.Edit extends Backbone.View
 
   update_location: (location, hash)  ->
     data = $(@id_form_update_edit).toJSON()
+    console.log data
     @item.save(data,
       success: (item, data) ->
         if hash == true

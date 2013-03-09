@@ -62,7 +62,6 @@ class App.Views.Contacts.Edit extends Backbone.View
               console.log provided_date
           })
 
-          # 
       error: (contact_response_error, response_contact_error) ->
         new App.Common.CommonViews.Notice.Notice({response_errors: contact_response_error.errors})
     })

@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.where(:user_id => current_user.id).all
+    @items = params[:login_id].nil? ? Item.where(:user_id => current_user.id).all : User.find_by_login(params[:login_id]).items
 
     respond_with(@items) do |format|
       format.json {render json: @items.to_json(:include => :user)}
@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
   # GET /items/new
   # GET /items/new.json
   def new
-    @item = Item.new(:user_id => current_user.id)
+    @item = User.find_by_login(params[:login_id]).items.new
 
     respond_with(@item)
   end

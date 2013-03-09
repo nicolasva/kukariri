@@ -1,7 +1,7 @@
 #$("button, input[type=submit], a").live 'click',  ->
 #  $('input[placeholder], textarea[placeholder]').placeholder()
 
-$("input[type=submit]").live 'click', ->
+$("input[type=submit]").click ->
   $(".necessary.error-empty").each ->
     $(this).removeClass('error-empty')
   token = true

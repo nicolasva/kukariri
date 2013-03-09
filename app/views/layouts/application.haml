@@ -14,9 +14,9 @@
           %li.span2
             = link_to(t("items.items_list"), items_path)
           %li.span2
-            = link_to(t("contacts.new_contact"), "/#/contacts/new")
+            = link_to(t("contacts.new_contact"), "/#/users/#{current_user.login}/contacts/new")
           %li.span2
-            = link_to(t("contacts.contact_lists"), "/#/contacts")
+            = link_to(t("contacts.contact_lists"), "/#/users/#{current_user.login}/contacts")
           %li.span2
             = link_to(t("items.new_item"), "/#/users/#{current_user.login}/items/new")
           %li.span2

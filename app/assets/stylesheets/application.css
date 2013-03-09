@@ -2,4 +2,5 @@
  *= require_tree ./vendors
  *= require_tree ./layout
  *= require_tree ./pages
+ *= require_tree ./iphone_button
 */

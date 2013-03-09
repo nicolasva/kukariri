@@ -23,7 +23,7 @@ class App.Routers.Items extends Backbone.Router
   edit: (login_id, id) ->
     self = @
     @item = new App.Item(id: id)
-    @item.email = email
+    @item.login_id = login_id
     @pictures = new App.Collections.Pictures()
     @pictures.login_id = login_id
     @pictures.item_id = id
@@ -35,4 +35,4 @@ class App.Routers.Items extends Backbone.Router
           success: (model, response) ->
             self.pictures.fetch
               success: (collection, response) ->
-                @ViewsItemsEdit = new App.Views.Items.Edit(item: model, login_id: self.login_id, pictures: collection, translate: self.translate)
+                @ViewsItemsEdit = new App.Views.Items.Edit(item: model, login_id: login_id, pictures: collection, translate: self.translate)
