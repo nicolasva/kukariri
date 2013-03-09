@@ -1,6 +1,6 @@
 %td
-  %a{href: "#/items/"+item_id+"/types/"+type_id+"/contacts/"+contact.id+"/edit"}
+  %a.btn.btn-primary{href: "#/users/"+login_id+"/items/"+item_id+"/types/"+type_id+"/contacts/"+contact.id+"/edit"}
     = translate.contacts.index.edit
 %td
-  %a{href: "#/items/"+item_id+"/types/"+type_id+"/contacts/"+contact.id+"/delete", rel: "nofollow", data-confirm: translate.common_sentence.confirm_delete}
+  %a.btn.btn-danger{href: "#/users/"+login_id+"/items/"+item_id+"/types/"+type_id+"/contacts/"+contact.id+"/delete", rel: "nofollow", data-confirm: translate.common_sentence.confirm_delete}
     = translate.contacts.index.destroy

@@ -14,6 +14,7 @@ class App.Views.Contacts.Index extends Backbone.View
     unless _.isUndefined(options.item_id)
       @item_id = options.item_id
       @type_id = options.type_id
+      @login_id = options.login_id
       @template_contact_edit_delete = JST["kukariri_backbonejs/templates/contacts/_contact_edit_delete_with_item"]
     else
       @template_contact_edit_delete = JST["kukariri_backbonejs/templates/contacts/_contact_edit_delete_no_item"] 
@@ -33,7 +34,7 @@ class App.Views.Contacts.Index extends Backbone.View
       $.each(@contacts.toJSON(), (key,val) ->
         @el_tr_contact_lists = "#contact_lists_"+val.id
         unless _.isUndefined(self.item_id)
-          $(@el_tr_contact_lists).append(Haml.render(self.template_contact_edit_delete(), {locals: {contact: val, item_id: self.item_id, type_id: self.type_id, translate: self.translate.toJSON()}}))
+          $(@el_tr_contact_lists).append(Haml.render(self.template_contact_edit_delete(), {locals: {contact: val, item_id: self.item_id, type_id: self.type_id, login_id: self.login_id, translate: self.translate.toJSON()}}))
         else
           $(@el_tr_contact_lists).append(Haml.render(self.template_contact_edit_delete(), {locals: {contact: val, translate: self.translate.toJSON()}}))
       )

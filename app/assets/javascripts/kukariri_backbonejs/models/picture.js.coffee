@@ -4,7 +4,7 @@ class App.Picture extends Backbone.Model
 
   url: ->
     unless _.isUndefined(@item_id)
-      base = App.routing({item_id: @item_id, type_id: @type_id}, "pictures")
+      base = App.routing({login_id: @login_id, item_id: @item_id, type_id: @type_id}, "pictures")
     else
       base = App.routing({}, "pictures_bis")
     if @sort

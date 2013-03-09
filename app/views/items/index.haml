@@ -24,9 +24,9 @@
             - else
               = item.title
           %td
-            = link_to(t("common_sentence.edit"), "/#/items/#{item.id}/edit", class: "btn btn-primary")
+            = link_to(t("common_sentence.edit"), "/#/users/#{item.user.login}/items/#{item.id}/edit", class: "btn btn-primary")
           %td
-            = link_to(t("common_sentence.delete"), item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger")
+            = link_to(t("common_sentence.delete"), {:controller => "items", :action => "destroy", :login_id => item.user.login, :id => item.id}, data: { confirm: 'Are you sure?' }, class: "btn btn-danger")
 - else
   = t("items.empty.items_empty")
 

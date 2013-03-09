@@ -12,10 +12,10 @@ class App.Views.Items.New extends Backbone.View
 
   initialize: (options) ->
     @item = options.item
-    @type = options.type
     @translate = options.translate
     @photos_to_pictures = options.photos_to_pictures
     @picture = options.picture
+    @login_id = options.login_id
     @render()
     $(".caroussel.other_pictures").children().first().sortable({
       items: '.picture_sort',
@@ -87,7 +87,7 @@ class App.Views.Items.New extends Backbone.View
     @item.save(data,
       success: (item_response, response_item) ->
         if hash == true 
-          window.location.hash = "#/items/#{item.id}/types/#{type.id}/contacts"
+          window.location.hash = "#/users/#{self.login_id}/items/#{item_response.toJSON().id}/types/#{item_response.toJSON().types[0].id}/contacts"
         else
           window.location = "/items"
       error: (item_response, response_item) ->

@@ -15,7 +15,7 @@ class App.Contact extends Backbone.Model
 
   url: ->
     unless _.isUndefined(@item_id)
-      base = App.routing({item_id: @item_id, type_id: @type_id}, "contacts")
+      base = App.routing({login_id: @login_id, item_id: @item_id, type_id: @type_id}, "contacts")
     else
       base = App.routing({}, "contacts_bis")
     return base if @isNew()

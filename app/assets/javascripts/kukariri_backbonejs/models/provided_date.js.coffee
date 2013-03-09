@@ -5,7 +5,7 @@ class App.ProvidedDate extends Backbone.Model
     date_to_activation: false
 
   url: ->
-    base = App.routing({item_id: @item_id, type_id: @type_id, contact_id: @contact_id}, "provided_dates")
+    base = App.routing({login_id: @login_id, item_id: @item_id, type_id: @type_id, contact_id: @contact_id}, "provided_dates")
     return base if @isNew()
     base + (if base.charAt(base.length - 1) is "/" then "" else "/") + @id
 

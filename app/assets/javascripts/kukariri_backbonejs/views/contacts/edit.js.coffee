@@ -16,6 +16,8 @@ class App.Views.Contacts.Edit extends Backbone.View
       @provided_date = options.provided_date
       @type_selected = options.type_selected
       @types = options.types
+      @email = options.email
+      @login_id = options.login_id
     @countries = options.countries
     @translate = options.translate
     @regions = options.regions
@@ -50,7 +52,7 @@ class App.Views.Contacts.Edit extends Backbone.View
             success: (provided_date, response) ->
               self.type_selected.save(data,{
                 success: (type, response) ->
-                  window.location.hash = "#/items/"+type.item_id+"/types/"+type.id+"/contacts"
+                  window.location.hash = "#/users/"+self.login_id+"/items/"+type.item_id+"/types/"+type.id+"/contacts"
                 error: (type, response) ->
                   alert("Type Error")
                   console.log type

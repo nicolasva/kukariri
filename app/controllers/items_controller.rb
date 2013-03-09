@@ -4,7 +4,10 @@ class ItemsController < ApplicationController
   # GET /items.json
   def index
     @items = Item.where(:user_id => current_user.id).all
-    respond_with(@items)
+
+    respond_with(@items) do |format|
+      format.json {render json: @items.to_json(:include => :user)}
+    end
   end
 
   # GET /items/1
@@ -38,7 +41,7 @@ class ItemsController < ApplicationController
     @item = Item.new(:title => params[:item][:title], :user_id => current_user.id)
     respond_with(@item) do |format|
       if @item.save_new(params[:item][:type], params[:item][:picture])
-        format.json { render json: @item, status: :created }
+        format.json { render json: @item.to_json(:include => :types), status: :created }
       else
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end

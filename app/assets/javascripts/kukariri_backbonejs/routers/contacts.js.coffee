@@ -11,17 +11,18 @@ class App.Routers.Contacts extends Backbone.Router
     @regions = new App.Collections.Regions()
     @types = new App.Collections.Types()
 
-  index: (item_id, type_id) ->
+  index: (login_id, item_id, type_id) ->
     $(".notice").show()
     $("#loader").show()
     self = @
     @contacts.item_id = item_id
     @contacts.type_id = type_id
+    @contacts.login_id = login_id
     @translate.fetch
       success: () ->
         self.contacts.fetch
           success: (collection, response) ->
-            @ViewsContactsIndex = new App.Views.Contacts.Index({contacts: collection, item_id: item_id, type_id: type_id, translate: self.translate, link: "/#/items/"+item_id+"/types/"+type_id+"/contacts/new"})
+            @ViewsContactsIndex = new App.Views.Contacts.Index({contacts: collection, login_id: login_id, item_id: item_id, type_id: type_id, translate: self.translate, link: "/#/users/"+login_id+"/items/"+item_id+"/types/"+type_id+"/contacts/new"})
 
   index_all: ->
     $(".notice").show()
@@ -50,7 +51,6 @@ class App.Routers.Contacts extends Backbone.Router
   new_contact: ->
     self = @
     @contact = new App.Contact()
-    #@contact.defaults()
     @contact.translate = @translate.toJSON()
     @translate.fetch
       success: () ->
@@ -61,31 +61,36 @@ class App.Routers.Contacts extends Backbone.Router
                 @ViewsContactsNewContact = new App.Views.Contacts.NewContact({contact: model, translate: self.translate, countries: collection, regions: self.regions})
 
   destroy_all: (id) ->
-    console.log "destroy_all"
     contact = @contacts.get(id)
     contact.translate = @translate.toJSON()
     contact.destroy()
     window.location.hash = "#/contacts"
 
-  destroy: (item_id, type_id, id) -> 
+  destroy: (login_id, item_id, type_id, id) -> 
     @contacts.item_id = item_id
     @contacts.type_id = type_id
+    @contacts.login_id = login_id
     contact = @contacts.get(id)
     contact.translate = @translate.toJSON()
+    contact.login_id = login_id
     contact.destroy()
-    window.location.hash = "#/items/"+item_id+"/types/"+type_id+"/contacts"
+    window.location.hash = "#/users/"+login_id+"/items/"+item_id+"/types/"+type_id+"/contacts"
 
-  edit: (item_id, type_id, id) ->
+  edit: (login_id, item_id, type_id, id) ->
     @contacts.item_id = item_id
     @contacts.type_id = type_id
+    @contact.login_id = login_id
     @types.item_id = item_id
+    @types.login_id = login_id
     self = @
     type = new App.Type(id: type_id)
     type.item_id = item_id
+    type.login_id = login_id
     contact = new App.Contact(id: id)
     contact.translate = @translate.toJSON()
     contact.item_id = item_id
     contact.type_id = type_id
+    contact.login_id = login_id
     @translate.fetch
       success: () ->
         contact.fetch
@@ -102,6 +107,7 @@ class App.Routers.Contacts extends Backbone.Router
                     self.provided_dates.item_id = item_id
                     self.provided_dates.type_id = type_id
                     self.provided_dates.contact_id = id
+                    self.provided_dates.login_id = login_id
                     self.provided_dates.fetch 
                       success: (collection_provided_date, response_provided_date) ->
                         if _.isNull(model_type_selected.toJSON().contact_id)
@@ -122,23 +128,27 @@ class App.Routers.Contacts extends Backbone.Router
                         self.provided_date.item_id = item_id 
                         self.provided_date.type_id = type_id
                         self.provided_date.contact_id = id
+                        self.provided_date.login_id = login_id
                         self.provided_date.fetch
                           success: (model_provided_date, response_model_provided_date) ->
                             self.countries.fetch
                               success: (collection_country, response_country) ->
-                                @ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, type_selected: model_type_selected, types: collection, provided_date: model_provided_date, translate: self.translate, regions: self.regions, countries: collection_country, regions: self.regions})
+                                @ViewContactsEdit = new App.Views.Contacts.Edit({contact: model, login_id: login_id, type_selected: model_type_selected, types: collection, provided_date: model_provided_date, translate: self.translate, regions: self.regions, countries: collection_country})
           error: (model, response) ->
             alert("Error")
             console.log model.toJSON()
 
-  new: (item_id, type_id) ->
+  new: (login_id, item_id, type_id) ->
     @types.item_id = item_id
+    @types.login_id = login_id
     @contact = new App.Contact()
     @contact.item_id = item_id
     @contact.type_id = type_id
+    @contact.login_id = login_id
     self = @
     type = new App.Type(id: type_id)
     type.item_id = item_id
+    type.login_id = login_id
     @translate.fetch
       success: () ->
         self.contact.fetch
@@ -150,9 +160,10 @@ class App.Routers.Contacts extends Backbone.Router
                     self.provided_date.item_id = item_id
                     self.provided_date.type_id = type_id
                     self.provided_date.contact_id = "new"
+                    self.provided_date.login_id = login_id
                     self.provided_date.fetch
                       success: (provided_date, response_provided_date) ->
                         self.countries.fetch
                           success: (collection, response) ->
-                            @ViewContactNew = new App.Views.Contacts.New({contact: model, item_id: item_id, type_id: type_id, types: collection, type_selected: type_selected, provided_date: provided_date, translate: self.translate, countries: collection, regions: self.regions})
+                            @ViewContactNew = new App.Views.Contacts.New({contact: model, item_id: item_id, type_id: type_id, types: collection, type_selected: type_selected, provided_date: provided_date, translate: self.translate, countries: collection, regions: self.regions, email: email})
 

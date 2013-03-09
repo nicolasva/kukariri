@@ -3,7 +3,7 @@ class App.Item extends Backbone.Model
     title: "Item Title"
 
   url: ->
-    base = App.routing({}, "items")
+    base = App.routing({login_id: @login_id, email: @email}, "items")
     return base if @isNew()
     base + (if base.charAt(base.length - 1) is "/" then "" else "/") + @id
 

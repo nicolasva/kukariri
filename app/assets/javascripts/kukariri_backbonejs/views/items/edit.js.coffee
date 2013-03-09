@@ -17,6 +17,7 @@ class App.Views.Items.Edit extends Backbone.View
     @translate = options.translate
     @pictures = options.pictures
     @item = options.item
+    @login_id = options.login_id
     @render()
     $(".caroussel.other_pictures").children().first().sortable({
       items: '.picture_sort',
@@ -56,7 +57,7 @@ class App.Views.Items.Edit extends Backbone.View
     @update_location("/items", false)
 
   associate_item_contact: (event) ->
-    @update_location("#/items/#{@item.toJSON().id}/types/#{@item.toJSON().types[0].id}/contacts", true)
+    @update_location("#/users/#{@login_id}/items/#{@item.toJSON().id}/types/#{@item.toJSON().types[0].id}/contacts", true)
 
   update_location: (location, hash)  ->
     data = $(@id_form_update_edit).toJSON()

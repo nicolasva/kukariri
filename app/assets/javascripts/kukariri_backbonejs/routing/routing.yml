@@ -1,12 +1,12 @@
 routing:
   API:
-    items: "/items"
-    contacts: "/items/:item_id/types/:type_id/contacts"
+    items: "/users/:email/items"
+    contacts: "/users/:email/items/:item_id/types/:type_id/contacts"
     contacts_bis: "/contacts" 
-    pictures: "/items/:item_id/types/:type_id/pictures"
+    pictures: "/users/:email/items/:item_id/types/:type_id/pictures"
     pictures_bis: "/pictures"
-    provided_dates: "/items/:item_id/types/:type_id/contacts/:contact_id/provided_dates"
-    types: "/items/:item_id/types"
+    provided_dates: "/users/:email/items/:item_id/types/:type_id/contacts/:contact_id/provided_dates"
+    types: "/users/:email/items/:item_id/types"
     translates: "/translates"
     photos_to_pictures: "/photos_to_pictures"
     countries: "/countries"
@@ -14,14 +14,15 @@ routing:
     regions: "/countries/:country_name/regions"
     friends: "/friends"
     user_search_to_contacts: "/user_search_to_contacts"
+    users: "/users"
 routing_backbonejs:
   API:
     contacts:
       routes:
-        "/items/:item_id/types/:type_id/contacts": "index"
-        "/items/:item_id/types/:type_id/contacts/:id/delete": "destroy"
-        "/items/:item_id/types/:type_id/contacts/:id/edit" : "edit"
-        "/items/:item_id/types/:type_id/contacts/new" : "new"
+        "/users/:login_id/items/:item_id/types/:type_id/contacts": "index"
+        "/users/:login_id/items/:item_id/types/:type_id/contacts/:id/delete": "destroy"
+        "/users/:login_id/items/:item_id/types/:type_id/contacts/:id/edit" : "edit"
+        "/users/:login_id/items/:item_id/types/:type_id/contacts/new" : "new"
         "/contacts/new" : "new_contact"
         "/contacts" : "index_all"
         "/contacts/:id/edit" : "edit_all"
@@ -29,10 +30,11 @@ routing_backbonejs:
     friends:
       routes:
         "/friends": "index"
+        "/friends/show/:email" : "show"
     items:
       routes:
-        "/items/new": "new_item"
-        "/items/:id/edit" : "edit"
+        "/users/:login_id/items/new": "new_item"
+        "/users/:email/items/:id/edit" : "edit"
     vcf_to_contacts:
       routes: 
         "/vcf_to_contacts" : "create"
