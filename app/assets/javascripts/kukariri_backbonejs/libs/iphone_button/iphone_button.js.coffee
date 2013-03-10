@@ -9,7 +9,6 @@ class App.Libs.IphoneButton.IphoneButton extends Backbone.View
     @translate = options.translate
     $(document).ready ->
       $('.iphone-style').click ->
-        console.log "nicolas"
         inputID = '#provided_date_date_to_activation'
         if $(inputID)[0].value == 'false'
           $(this).animate({backgroundPosition: '0% 100%'}, 0, -> 
